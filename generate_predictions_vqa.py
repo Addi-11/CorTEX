@@ -12,8 +12,8 @@ from llava.mm_utils import process_images, tokenizer_image_token
 from llava.constants import DEFAULT_IMAGE_TOKEN, IMAGE_TOKEN_INDEX
 from llava.conversation import conv_templates
 
-DATA_DIR = "VisualQA-Dataset"
-IMAGE_DIR = "VisualQA-Dataset/images"
+DATA_DIR = "datasets/VisualQA-Dataset"
+IMAGE_DIR = "datasets/VisualQA-Dataset/images"
 INPUT_FILE = os.path.join(DATA_DIR, "llava_med_eval_qa50_qa.jsonl")
 OUTPUT_FILE = "llava_med_vqa_predictions.jsonl"
 
