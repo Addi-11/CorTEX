@@ -1,3 +1,7 @@
+# model repo
 /LLaVA-Med/
+
+# datasets
+datasets/MedS-Ins/
 candy.JPG
 **__pycache__**

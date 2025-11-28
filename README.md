@@ -2,6 +2,7 @@
 
 ## Steps:
 ### Basic LLava-Med Testing
+
 1. Run the [llava-med-basic-test.ipynb](./llava-med-basic-test.ipynb) to download the model weights.
 
 ### VQA Dataset (PMC article 60K-IM)
@@ -50,4 +51,5 @@ Total samples: 1273
 Correct: 418
 Accuracy: 32.84%
 
-### 
+### MedS-Ins Dataset
+1. Download dataset using [MedS-Ins data download](./download_meds_ins.py). 136 tasks (4k examples each)
