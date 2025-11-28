@@ -2,7 +2,7 @@
 
 ## Steps:
 ### Basic LLava-Med Testing
-1. Run the [llava-med-basic-test.ipynb](./llava-med-basic-test.ipynb) to download the model weights and image-urls data.
+1. Run the [llava-med-basic-test.ipynb](./llava-med-basic-test.ipynb) to download the model weights.
 
 ### VQA Dataset (PMC article 60K-IM)
 1. Run the [download_images.py](./download_images.py) to download (PMC-15M dataset). Pass the urls to get the images.
