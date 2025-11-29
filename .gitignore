@@ -1,7 +1,9 @@
 # model repo
 /LLaVA-Med/
 
-# datasets
+# FULL datasets
 datasets/MedS-Ins/
+
 candy.JPG
 **__pycache__**
+*.cache*git
