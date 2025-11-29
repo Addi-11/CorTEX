@@ -10,6 +10,7 @@ candy.JPG
 
 # saved models
 llava-med-finetuned-test/
+llava-med-finetuned/
 
 **__pycache__**
 *.cache*git

@@ -62,15 +62,22 @@ Dataset link - https://huggingface.co/datasets/Henrychur/MedS-Ins
 We use SFT using LoRA-PEFT
 
 1. Use [finetune-script for medinst](./finetune_llava_med.py)
+For testing on a small batch
 ```
-python finetune_llava_med.py \
+CUDA_VISIBLE_DEVICES=0 python finetune_llava_med.py \
     --data_path datasets/MedInstQA/MedQa_train.json \
-    --output_dir ./llava-med-finetuned-test \
     --max_samples 100 \
-    --num_train_epochs 1 \
+    --output_dir ./llava-med-finetuned \
+    --num_train_epochs 3 \
     --per_device_train_batch_size 2 \
-    --logging_steps 5 \
+    --logging_steps 50 \
+    --save_strategy "epoch" \
     --use_lora True
+```
+
+Using DeepSeed - Faster training
+```
+./train_multigpu.sh 4 datasets/MedInstQA/MedQa_train.json ./llava-med-finetuned 3 2 4
 ```
 
 2. Generate predictions and evaluate the finetuned model [evaluation script](./predict_medinst_finetuned.py)

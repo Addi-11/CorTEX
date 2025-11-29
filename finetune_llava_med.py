@@ -186,7 +186,7 @@ class MedInstDataset(Dataset):
         }
 
 
-def load_model_and_tokenizer(model_args: ModelArguments):
+def load_model_and_tokenizer(model_args: ModelArguments, local_rank: int = -1):
     """Load the LLaVA-Med model and tokenizer."""
     
     print(f"Loading model from {model_args.model_path}...")
@@ -202,11 +202,16 @@ def load_model_and_tokenizer(model_args: ModelArguments):
     
     model = LlavaMistralForCausalLM.from_pretrained(
         model_args.model_path,
-        torch_dtype=torch.float16,
+        torch_dtype=torch.bfloat16,  # Use bf16 for A100
         low_cpu_mem_usage=True,
     )
     
-    model = model.cuda()
+    # For DDP, move to the correct device
+    if local_rank >= 0:
+        device = torch.device(f"cuda:{local_rank}")
+        model = model.to(device)
+    else:
+        model = model.cuda()
     
     if model_args.freeze_vision_tower:
         print("Freezing vision tower...")
@@ -247,7 +252,10 @@ def main():
     parser = transformers.HfArgumentParser((ModelArguments, DataArguments, TrainingArguments))
     model_args, data_args, training_args = parser.parse_args_into_dataclasses()
     
-    model, tokenizer = load_model_and_tokenizer(model_args)
+    # Get local rank for DDP
+    local_rank = training_args.local_rank if hasattr(training_args, 'local_rank') else -1
+    
+    model, tokenizer = load_model_and_tokenizer(model_args, local_rank)
     
     train_dataset = MedInstDataset(
         data_path=data_args.data_path,
