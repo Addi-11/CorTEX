@@ -1,6 +1,9 @@
 # CorTEX
 
-## Steps:
+# Steps:
+
+## 1. Benchmarking LLava-Med Model
+
 ### Basic LLava-Med Testing
 
 1. Run the [llava-med-basic-test.ipynb](./llava-med-basic-test.ipynb) to download the model weights.
@@ -39,7 +42,7 @@ python llava/eval/summarize_gpt_review.py \
 
 ### MedINST Dataset (Multiple Choice Question Answering)
 (“Meta Dataset of Biomedical Instructions”) — A large-scale multi-domain/multi-task instruction dataset spanning ~7 million instruction-samples across 133 biomedical NLP task
-1. Dataset used [](./datasets/MedInst32/MedQa_test.json)
+1. Dataset used [](./datasets/MedInst/MedQa_test.json)
 2. Run [predict_medinst](./predict_medinst.py) to generate predictions
 ```
 python predict_medinst.py \
@@ -52,4 +55,29 @@ Correct: 418
 Accuracy: 32.84%
 
 ### MedS-Ins Dataset
+Dataset link - https://huggingface.co/datasets/Henrychur/MedS-Ins
 1. Download dataset using [MedS-Ins data download](./download_meds_ins.py). 136 tasks (4k examples each)
+
+## 2. Finetuning the LLava-Med Model on MedINST dataset
+We use SFT using LoRA-PEFT
+
+1. Use [finetune-script for medinst](./finetune_llava_med.py)
+```
+python finetune_llava_med.py \
+    --data_path datasets/MedInstQA/MedQa_train.json \
+    --output_dir ./llava-med-finetuned-test \
+    --max_samples 100 \
+    --num_train_epochs 1 \
+    --per_device_train_batch_size 2 \
+    --logging_steps 5 \
+    --use_lora True
+```
+
+2. Generate predictions and evaluate the finetuned model [evaluation script](./predict_medinst_finetuned.py)
+```
+python predict_medinst_finetuned.py \
+    --lora-adapter-path llava-med-finetuned-test \
+    --input-file datasets/MedInstQA/MedQa_test.json \
+    --output-file llava_med_finetuned_predictions.jsonl \
+    --max-samples 20 \
+```

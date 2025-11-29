@@ -4,6 +4,12 @@
 # FULL datasets
 datasets/MedS-Ins/
 
+# extra files
+predict_medinst_multigpu.py
 candy.JPG
+
+# saved models
+llava-med-finetuned-test/
+
 **__pycache__**
 *.cache*git
