@@ -83,7 +83,7 @@ Using DeepSeed - Faster training
 2. Generate predictions and evaluate the finetuned model [evaluation script](./predict_medinst_finetuned.py)
 ```
 python predict_medinst_finetuned.py \
-    --lora-adapter-path llava-med-finetuned-test \
+    --lora-adapter-path llava-med-finetuned \
     --input-file datasets/MedInstQA/MedQa_test.json \
     --output-file llava_med_finetuned_predictions.jsonl \
     --max-samples 20 \

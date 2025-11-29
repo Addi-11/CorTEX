@@ -1,0 +1,8 @@
+{
+  "total_samples": 1273,
+  "correct": 661,
+  "accuracy": 51.92,
+  "base_model_path": "/home/azureuser/.cache/huggingface/hub/models--microsoft--llava-med-v1.5-mistral-7b/snapshots/91bb16c122001ddc9cf1fd36ce1dae09448943a2",
+  "lora_adapter_path": "llava-med-finetuned",
+  "input_file": "datasets/MedInstQA/MedQa_test.json"
+}
