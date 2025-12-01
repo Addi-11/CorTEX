@@ -39,9 +39,12 @@ torchrun --nproc_per_node=$NUM_GPUS --master_port=29500 finetune_llava_med.py \
     --save_strategy "epoch" \
     --bf16 True \
     --use_lora True \
-    --learning_rate 2e-5 \
-    --warmup_ratio 0.03 \
+    --lora_r 128 \
+    --lora_alpha 256 \
+    --learning_rate 1e-4 \
+    --warmup_ratio 0.05 \
     --lr_scheduler_type "cosine" \
+    --weight_decay 0.01 \
     --ddp_find_unused_parameters False
 
 echo "Training complete!"

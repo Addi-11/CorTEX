@@ -9,8 +9,7 @@ predict_medinst_multigpu.py
 candy.JPG
 
 # saved models
-llava-med-finetuned-test/
-llava-med-finetuned/
+llava-med-finetuned*/
 
 **__pycache__**
 *.cache*git

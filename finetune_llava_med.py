@@ -45,12 +45,12 @@ class ModelArguments:
         metadata={"help": "Whether to use LoRA for efficient finetuning"}
     )
     lora_r: int = field(
-        default=64,
-        metadata={"help": "LoRA attention dimension"}
+        default=128,
+        metadata={"help": "LoRA attention dimension (higher = more capacity)"}
     )
     lora_alpha: int = field(
-        default=16,
-        metadata={"help": "LoRA alpha parameter"}
+        default=256,
+        metadata={"help": "LoRA alpha parameter (typically 2x lora_r)"}
     )
     lora_dropout: float = field(
         default=0.05,
