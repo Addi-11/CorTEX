@@ -13,3 +13,5 @@ llava-med-finetuned*/
 
 **__pycache__**
 *.cache*git
+.env.template
+*.pt

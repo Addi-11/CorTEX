@@ -88,3 +88,17 @@ python predict_medinst_finetuned.py \
     --output-file llava_med_finetuned_predictions.jsonl \
     --max-samples 20 \
 ```
+Summary - 
+  "total_samples": 1273,
+  "correct": 661,
+  "accuracy": 51.92,
+
+
+  ## 3. Tool RAG
+  Selects suitable candidate from Tool Universe based on description
+  https://huggingface.co/mims-harvard/ToolRAG-T1-GTE-Qwen2-1.5B
+
+  Add suitable tools for the MedInst Dataset [tool_rag model](./tool_rag.ipynb)
+
+  ## 4. Train MedINST to produce tools and parameters for input
+  
