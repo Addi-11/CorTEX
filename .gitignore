@@ -7,6 +7,7 @@ datasets/MedS-Ins/
 # extra files
 predict_medinst_multigpu.py
 candy.JPG
+run_txagent_gpu*
 
 # saved models
 llava-med-finetuned*/
@@ -16,3 +17,5 @@ llava-med-finetuned*/
 .env.template
 *.pt
 *.log
+tool_composition*
+results/*

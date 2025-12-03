@@ -100,5 +100,7 @@ Summary -
 
   Add suitable tools for the MedInst Dataset [tool_rag model](./tool_rag.ipynb)
 
+  Run to run all the generation script on all GPUS, with different data portions - [launch-gpu](./launch_all_gpus.sh)
+
   ## 4. Train MedINST to produce tools and parameters for input
   
