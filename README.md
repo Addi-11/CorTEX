@@ -98,9 +98,13 @@ Summary -
   Selects suitable candidate from Tool Universe based on description
   https://huggingface.co/mims-harvard/ToolRAG-T1-GTE-Qwen2-1.5B
 
-  Add suitable tools for the MedInst Dataset [tool_rag model](./tool_rag.ipynb)
+  - Discovering - add suitable tools for the MedInst Dataset [tool_rag model](./tool_rag.ipynb)
+  - Script to run inference on MedInstdataset [run_txagent_inference](./run_txagent_inference.py)
+  - Run to run all the generation script on all GPUS, with different data portions - [launch-gpu](./launch_all_gpus.sh)
 
-  Run to run all the generation script on all GPUS, with different data portions - [launch-gpu](./launch_all_gpus.sh)
-
-  ## 4. Train MedINST to produce tools and parameters for input
+  ## 4. Train MedINST to produce tools and parameters for input - Training Tool Selection
+  - [Training model for tool selection](./train_tool_selection.py)
+  - [Run Training script](./run_tool_selection_training.sh)
+  - [Evaluation trained model](./evaluate_tool_selection.py)
+  - [Inference on trained model](./inference_tool_selection.py)
   
