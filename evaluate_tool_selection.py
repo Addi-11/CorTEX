@@ -107,7 +107,12 @@ def load_test_data(data_dir, test_file=None, num_test=10):
 
 def create_prompt(question):
     """Create inference prompt matching training format."""
-    instruction = "Identify the biomedical database tools and drug names needed to answer this medical question. Output format: TOOL_NAME: drug1, drug2, ..."
+    instruction = """You are a biomedical tool selector. Given a medical question, identify the appropriate biomedical database tools and their parameters needed to answer it.
+
+Output each tool call on a new line in the format:
+tool_name: {'parameter1': 'value1', 'parameter2': 'value2'}
+
+If multiple tools are needed, list each on a separate line."""
     
     prompt = f"""### Instruction:
 {instruction}

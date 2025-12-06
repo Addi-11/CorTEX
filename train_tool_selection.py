@@ -99,8 +99,13 @@ def load_and_combine_datasets(data_dir, max_samples=None):
 
 def create_prompt(sample):
     """Create training prompt from sample."""
-    instruction = sample.get('instruction', 
-        "Identify the biomedical database tools and drug names needed to answer this medical question.")
+    # Use a clearer instruction that matches the actual output format
+    instruction = """You are a biomedical tool selector. Given a medical question, identify the appropriate biomedical database tools and their parameters needed to answer it.
+
+Output each tool call on a new line in the format:
+tool_name: {'parameter1': 'value1', 'parameter2': 'value2'}
+
+If multiple tools are needed, list each on a separate line."""
     question = sample['input']
     output = sample['output']
     

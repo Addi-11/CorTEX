@@ -15,3 +15,11 @@ nvidia-smi --query-gpu=index,memory.used,memory.total,memory.free --format=csv
 nvidia-smi --query-compute-apps=pid,process_name,used_memory,gpu_uuid --format=csv
 ```
 kill the pid number
+
+4. Dataset capacity
+```
+cd /home/azureuser/localfiles/cortex-project && echo "=== Dataset Files ===" && wc -l datasets/finetuning/*.jsonl 2>/dev/null && echo "" && echo "=== Results Files ===" && wc -l results/*.jsonl 2>/dev/null
+```
+```
+wc -l /home/azureuser/localfiles/cortex-project/datasets/finetuning/model1_tool_selection_missing_gpu*.jsonl 2>/dev/null
+```
