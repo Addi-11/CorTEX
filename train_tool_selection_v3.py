@@ -181,31 +181,41 @@ def format_sample(sample: dict) -> dict:
 
 
 def prepare_dataset(data: list, tokenizer, max_length: int = 4096):
-    """Prepare dataset for training."""
-    formatted_data = []
+    """Prepare dataset for training with batch tokenization."""
+    from tqdm import tqdm
     
-    for sample in data:
-        formatted = format_sample(sample)
+    print(f"Formatting {len(data)} samples...")
+    formatted_samples = [format_sample(sample) for sample in tqdm(data, desc="Formatting")]
+    
+    # Prepare texts for batch tokenization
+    input_texts = [s['input'] for s in formatted_samples]
+    full_texts = [s['input'] + "\n" + s['output'] for s in formatted_samples]
+    
+    print("Batch tokenizing inputs...")
+    input_encodings = tokenizer(
+        input_texts,
+        truncation=True,
+        max_length=max_length,
+        return_tensors=None,
+        padding=False
+    )
+    
+    print("Batch tokenizing full texts...")
+    full_encodings = tokenizer(
+        full_texts,
+        truncation=True,
+        max_length=max_length,
+        return_tensors=None,
+        padding=False
+    )
+    
+    print("Creating training examples...")
+    formatted_data = []
+    for i in tqdm(range(len(data)), desc="Processing"):
+        input_ids = input_encodings['input_ids'][i]
+        full_ids = full_encodings['input_ids'][i]
         
-        # Tokenize
-        full_text = formatted['input'] + "\n" + formatted['output']
-        
-        # Tokenize input and full text
-        input_ids = tokenizer(
-            formatted['input'],
-            truncation=True,
-            max_length=max_length,
-            return_tensors=None
-        )['input_ids']
-        
-        full_ids = tokenizer(
-            full_text,
-            truncation=True,
-            max_length=max_length,
-            return_tensors=None
-        )['input_ids']
-        
-        # Create labels (mask input portion)
+        # Create labels (mask input portion with -100)
         labels = [-100] * len(input_ids) + full_ids[len(input_ids):]
         labels = labels[:max_length]
         full_ids = full_ids[:max_length]
@@ -321,7 +331,8 @@ def main():
         bf16=True,
         gradient_checkpointing=True,
         dataloader_num_workers=4,
-        report_to="none",
+        report_to="tensorboard",
+        logging_dir=os.path.join(args.output_dir, "logs"),
         remove_unused_columns=False,
     )
     
