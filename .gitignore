@@ -12,6 +12,7 @@ run_txagent_gpu*
 # saved models
 llava-med-finetuned*/
 checkpoints/*
+anatomical*
 
 **__pycache__**
 *.cache*git
