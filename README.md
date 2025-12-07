@@ -94,18 +94,33 @@ Summary -
   "accuracy": 51.92,
 
 
-  ## 3. Tool RAG
-  Selects suitable candidate from Tool Universe based on description
-  https://huggingface.co/mims-harvard/ToolRAG-T1-GTE-Qwen2-1.5B
+## 3. Tool RAG
+Selects suitable candidate from Tool Universe based on description
+https://huggingface.co/mims-harvard/ToolRAG-T1-GTE-Qwen2-1.5B
 
-  - Discovering - add suitable tools for the MedInst Dataset [tool_rag model](./tool_rag.ipynb)
-  - Script to run inference on MedInstdataset [run_txagent_inference](./run_txagent_inference.py)
-  - Run to run all the generation script on all GPUS, with different data portions - [launch-gpu](./launch_all_gpus.sh)
+- Discovering - add suitable tools for the MedInst Dataset [tool_rag model](./tool_rag.ipynb)
+- Script to run inference on MedInstdataset [run_txagent_inference](./run_txagent_inference.py)
+- Run to run all the generation script on all GPUS, with different data portions - [launch-gpu](./launch_all_gpus.sh)
 
-  ## 4. Train MedINST to produce tools and parameters for input - Training Tool Selection
-  - [Training model for tool selection](./train_tool_selection.py)
-  - [Run Training script](./run_tool_selection_training.sh)
-  - [Evaluation trained model](./evaluate_tool_selection.py)
-  - [Inference on trained model](./inference_tool_selection.py)
-  
-  ## 5. Train Reasoning Model
+- Analyzing Tool Selection Data [tool selection analysis](./analysis_tool_selection_data.ipynb)
+
+## 4. Train MedINST to produce tools and parameters for input - Training Tool Selection
+- [Training model for tool selection](./train_tool_selection.py)
+- [Run Training script](./run_tool_selection_training.sh)
+- [Evaluation trained model](./evaluate_tool_selection.py)
+- [Inference on trained model](./inference_tool_selection.py)
+
+![training img](./training_plots/v3_training_plot.png)
+
+## 5. Train Reasoning Model
+
+### 5.1 SFT only
+### 5.2 SFT  + PPO only
+### 5.3 PPO only
+### 5.4 SFT + GRPO
+### 5.5 GRPO only
+
+
+# 6. Final Evaluation on Tool Selection + Reasoning
+
+
