@@ -5,14 +5,46 @@ from llava.mm_utils import tokenizer_image_token
 from tqdm import tqdm
 from collections import defaultdict
 
+
+def load_model(base_model_path, lora_model_path):
+    """Load the fine-tuned model with LoRA adapter."""
+    from transformers import AutoTokenizer
+    from peft import PeftModel
+    from llava.model import LlavaMistralForCausalLM
+    
+    print(f"Loading base model: {base_model_path}")
+    
+    # Load tokenizer from adapter path
+    tokenizer = AutoTokenizer.from_pretrained(
+        base_model_path,
+        trust_remote_code=True
+    )
+    
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
+    
+    # Load base LLaVA-Med model
+    model = LlavaMistralForCausalLM.from_pretrained(
+        base_model_path,
+        torch_dtype=torch.bfloat16,
+        device_map="auto",
+        low_cpu_mem_usage=True,
+    )
+    
+    # Load LoRA weights
+    print(f"Loading LoRA adapter from: {lora_model_path}")
+    model = PeftModel.from_pretrained(model, lora_model_path)
+    model.eval()
+    
+    return model, tokenizer
+
+
 # Load model and tokenizer
-model_path = "/mnt/workspace/CorTEX/.models/llava-med-v1.5-mistral-7b"  # Update this
+base_model_path = "/mnt/workspace/CorTEX/.models/llava-med-v1.5-mistral-7b"  # Update this
+lora_model_path = "/mnt/workspace/CorTEX/checkpoints/llava-med-tool-selection-v3/checkpoint-600"  # Update this
+
 model_name = 'llava-med-v1.5-mistral-7b'
-tokenizer, model, image_processor, context_len = load_pretrained_model(
-    model_path=model_path,
-    model_base=None,
-    model_name=model_name
-)
+tokenizer, model = load_model(base_model_path, lora_model_path)
 
 TOOL_DEFINITIONS = """
 1) DiseaseAnalyzerAgent  
@@ -51,7 +83,6 @@ Parameters: country (str); language (str); term_override (str); method (str); li
 Description: Search EU mental health data.
 Parameters: country (str); condition (str); limit (int)
 """
-
 
 def parse_output_format(output_str):
     """
@@ -176,6 +207,7 @@ Remember: ONLY output the tool calls. Nothing else. Start directly with the tool
                 
         response = tokenizer.decode(output_ids[0], skip_special_tokens=True)
         response = response.strip()
+        print(f"Response: {response}")
         # Parse predicted output
         predicted_calls = parse_output_format(response)
         predicted_tools = set([call[0] for call in predicted_calls])
@@ -221,6 +253,7 @@ Remember: ONLY output the tool calls. Nothing else. Start directly with the tool
             "tools_correct": tools_match,
             "expected_tools": list(expected_tools),
             "predicted_tools": list(predicted_tools),
+            "response": response
         }
         results.append(result)
     
@@ -243,10 +276,10 @@ Remember: ONLY output the tool calls. Nothing else. Start directly with the tool
     incorrect = [r for r in results if not r["exact_match"]]
     if incorrect:
         print(f"Sample Errors (first 3):\n")
-        for i, error in enumerate(incorrect[:3]):
+        for i, error in enumerate(incorrect[:9]):
             print(f"{i+1}. Query: {error['input_summary']}")
             print(f"   Expected: {error['expected']}")
-            print(f"   Got:      {error['predicted']}")
+            print(f"   Got Response: {error['response']}")
             print()
     
     return {
@@ -262,11 +295,6 @@ Remember: ONLY output the tool calls. Nothing else. Start directly with the tool
 if __name__ == "__main__":
     import os
     os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2,3,4,5,6,7'
-    dataset_path = "/mnt/workspace/CorTEX/tool_dataset.jsonl"  # Your dataset path
+    dataset_path = "/mnt/workspace/CorTEX/datasets/finetuning/cleaned/model1_tool_selection_val_filtered_9.jsonl"  # Your dataset path
     eval_results = evaluate_tool_and_args(dataset_path)
     
-    # Save results
-    with open("eval_results.json", "w") as f:
-        json.dump(eval_results, f, indent=2)
-    
-    print("Results saved to eval_results.json")
