@@ -10,16 +10,21 @@ import urllib.request
 
 def main(args):
   input_data = []
+  i = 0
   with open(args.input_path) as f:
     for line in f:
-      input_data.append(json.loads(line))
-
+      if i < 180:
+        input_data.append(json.loads(line))
+        i += 1
+      
   os.makedirs(args.pmc_output_path, exist_ok=True)
   os.makedirs(args.images_output_path, exist_ok=True)
 
   # Download all PMC articles
   print('Downloading PMC articles')
   for idx, sample in enumerate(tqdm(input_data)):
+    if idx < 179:
+      continue
     try:
       urllib.request.urlretrieve(sample['pmc_tar_url'], os.path.join(args.pmc_output_path, os.path.basename(sample['pmc_tar_url'])))
     except HTTPError as e:
@@ -46,8 +51,8 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     # Add path to LLAVA MED URLS JSONL
-    parser.add_argument('--input_path', type=str, default='llava_med_test_image_urls.jsonl')
-    parser.add_argument('--pmc_output_path', type=str, default='data/pmc_articles/')
-    parser.add_argument('--images_output_path', type=str, default='data/images/')
+    parser.add_argument('--input_path', type=str, default='datasets/VisualQA-PMCArticle-Dataset/train/llava_med_image_urls.jsonl')
+    parser.add_argument('--pmc_output_path', type=str, default='datasets/VisualQA-PMCArticle-Dataset/train/')
+    parser.add_argument('--images_output_path', type=str, default='datasets/VisualQA-PMCArticle-Dataset/train/images/')
     args = parser.parse_args()
     main(args)

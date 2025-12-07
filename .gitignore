@@ -27,3 +27,4 @@ logs/
 *.log
 tool_composition*
 results/*
+.env
