@@ -3,3 +3,5 @@ checkpoints/llava-med-tool-selection-v3/checkpoint-600/*.pt filter=lfs diff=lfs 
 checkpoints/llava-med-tool-selection-v3/checkpoint-1805/ filter=lfs diff=lfs merge=lfs -text
 checkpoints/llava-med-tool-selection-v3/checkpoint-1805/*.safetensors filter=lfs diff=lfs merge=lfs -text
 checkpoints/llava-med-tool-selection-v3/checkpoint-1805/*.pt filter=lfs diff=lfs merge=lfs -text
+checkpoints/M2Model/ filter=lfs diff=lfs merge=lfs -text
+datasets/ filter=lfs diff=lfs merge=lfs -text
