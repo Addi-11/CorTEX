@@ -9,14 +9,20 @@ Metrics:
 """
 
 import os
+import sys
 import json
 import argparse
 import torch
 from tqdm import tqdm
 from collections import Counter, defaultdict
-from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
+from transformers import AutoTokenizer, BitsAndBytesConfig
 from peft import PeftModel
 import re
+import warnings
+warnings.filterwarnings("ignore")
+
+# Add llava to path
+sys.path.insert(0, '/home/azureuser/localfiles/LLaVA-Med')
 
 def parse_tools_from_output(output_text):
     """Extract tool names from model output."""
@@ -43,11 +49,13 @@ def load_test_data(test_dir):
 
 def load_model(base_model_path, adapter_path, device="cuda"):
     """Load base model with LoRA adapter."""
+    from llava.model import LlavaMistralForCausalLM
+    
     print(f"Loading tokenizer from {base_model_path}...")
     tokenizer = AutoTokenizer.from_pretrained(base_model_path)
     tokenizer.pad_token = tokenizer.eos_token
     
-    print(f"Loading base model...")
+    print(f"Loading base model (LLaVA-Med)...")
     # Use 4-bit quantization for faster inference
     bnb_config = BitsAndBytesConfig(
         load_in_4bit=True,
@@ -56,11 +64,11 @@ def load_model(base_model_path, adapter_path, device="cuda"):
         bnb_4bit_use_double_quant=True,
     )
     
-    model = AutoModelForCausalLM.from_pretrained(
+    model = LlavaMistralForCausalLM.from_pretrained(
         base_model_path,
         quantization_config=bnb_config,
         device_map="auto",
-        trust_remote_code=True,
+        torch_dtype=torch.float16,
     )
     
     print(f"Loading LoRA adapter from {adapter_path}...")
@@ -72,21 +80,37 @@ def load_model(base_model_path, adapter_path, device="cuda"):
 def generate_prediction(model, tokenizer, input_text, max_new_tokens=512):
     """Generate model prediction for input."""
     inputs = tokenizer(input_text, return_tensors="pt", truncation=True, max_length=3584)
-    inputs = {k: v.to(model.device) for k, v in inputs.items()}
+    input_ids = inputs['input_ids'].to(model.device)
+    attention_mask = inputs['attention_mask'].to(model.device)
     
     with torch.no_grad():
-        outputs = model.generate(
-            **inputs,
-            max_new_tokens=max_new_tokens,
-            do_sample=False,  # Greedy decoding for evaluation
-            pad_token_id=tokenizer.eos_token_id,
-            eos_token_id=tokenizer.eos_token_id,
-        )
+        # Manual generation loop to avoid transformers version incompatibility
+        # LLaVA-Med doesn't support newer transformers args like cache_position
+        generated_ids = input_ids.clone()
+        
+        for _ in range(max_new_tokens):
+            # Forward pass
+            outputs = model(
+                input_ids=generated_ids,
+                attention_mask=torch.ones_like(generated_ids),
+                use_cache=False,
+            )
+            
+            # Get next token (greedy)
+            next_token_logits = outputs.logits[:, -1, :]
+            next_token = torch.argmax(next_token_logits, dim=-1, keepdim=True)
+            
+            # Check for EOS
+            if next_token.item() == tokenizer.eos_token_id:
+                break
+            
+            # Append token
+            generated_ids = torch.cat([generated_ids, next_token], dim=-1)
     
     # Decode only the generated part
-    input_length = inputs['input_ids'].shape[1]
-    generated_ids = outputs[0][input_length:]
-    prediction = tokenizer.decode(generated_ids, skip_special_tokens=True)
+    input_length = input_ids.shape[1]
+    generated_tokens = generated_ids[0][input_length:]
+    prediction = tokenizer.decode(generated_tokens, skip_special_tokens=True)
     
     return prediction.strip()
 
