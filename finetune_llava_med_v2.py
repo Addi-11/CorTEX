@@ -32,7 +32,7 @@ from transformers import (
     TrainingArguments,
     Trainer,
 )
-from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training, PeftModel
 from PIL import Image
 
 # Add LLaVA-Med repo to path
@@ -52,6 +52,10 @@ class ModelArguments:
     model_path: str = field(
         default="/home/azureuser/.cache/huggingface/hub/models--microsoft--llava-med-v1.5-mistral-7b/snapshots/91bb16c122001ddc9cf1fd36ce1dae09448943a2",
         metadata={"help": "Path to the pretrained LLaVA-Med model (or HF hub id)"}
+    )
+    lora_checkpoint: Optional[str] = field(
+        default=None,
+        metadata={"help": "Path to existing LoRA checkpoint to continue training from"}
     )
     use_lora: bool = field(
         default=True,
@@ -222,8 +226,11 @@ class MedInstDataset(Dataset):
             user_message = f"{instruction}\n\n{input_text}"
         elif input_text:
             user_message = input_text
-        else:
+        elif instruction:
             user_message = instruction
+        else:
+            # Fallback: if both instruction and input are empty, use a placeholder
+            user_message = "Please provide a response."
 
         conv = conv_templates[self.conv_mode].copy()
         conv.append_message(conv.roles[0], user_message)
@@ -410,29 +417,39 @@ def load_model_and_tokenizer(model_args: ModelArguments, local_rank: int = -1):
                 param.requires_grad = False
 
     if model_args.use_lora:
-        print("Applying LoRA...")
-
         # Enable gradient checkpointing for memory efficiency
         model.enable_input_require_grads()
 
-        lora_config = LoraConfig(
-            r=model_args.lora_r,
-            lora_alpha=model_args.lora_alpha,
-            lora_dropout=model_args.lora_dropout,
-            target_modules=[
-                "q_proj",
-                "k_proj",
-                "v_proj",
-                "o_proj",
-                "gate_proj",
-                "up_proj",
-                "down_proj",
-            ],
-            bias="none",
-            task_type="CAUSAL_LM",
-        )
-
-        model = get_peft_model(model, lora_config)
+        if model_args.lora_checkpoint:
+            # Load existing LoRA checkpoint and continue training
+            print(f"Loading LoRA checkpoint from {model_args.lora_checkpoint}...")
+            model = PeftModel.from_pretrained(
+                model,
+                model_args.lora_checkpoint,
+                is_trainable=True,  # Enable training on loaded adapter
+            )
+            print("Loaded existing LoRA adapter for continued training")
+        else:
+            # Apply new LoRA configuration
+            print("Applying new LoRA configuration...")
+            lora_config = LoraConfig(
+                r=model_args.lora_r,
+                lora_alpha=model_args.lora_alpha,
+                lora_dropout=model_args.lora_dropout,
+                target_modules=[
+                    "q_proj",
+                    "k_proj",
+                    "v_proj",
+                    "o_proj",
+                    "gate_proj",
+                    "up_proj",
+                    "down_proj",
+                ],
+                bias="none",
+                task_type="CAUSAL_LM",
+            )
+            model = get_peft_model(model, lora_config)
+        
         model.print_trainable_parameters()
 
     return model, tokenizer, image_processor
