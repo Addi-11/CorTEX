@@ -1,9 +1,8 @@
 # model repo
 /LLaVA-Med/
 
-# FULL datasets
-datasets/MedS-Ins/
-datasets/M2datasets/
+# FULL datasets - ignore everything
+datasets/
 
 # extra files
 predict_medinst_multigpu.py
@@ -18,7 +17,8 @@ evaluate_tool_selection_fast.py
 evaluate_tool_selection_sharded.py
 
 # saved models
-llava-med-finetuned*/
+checkpoints/M2LLavaMed-finetuned-text*/
+checkpoints/llava-med-finetuned*/
 checkpoints/llava-med-tool-selection/
 checkpoints/llava-med-tool-selection-v2/
 checkpoints/llava-med-tool-selection-v3/checkpoint-800/
