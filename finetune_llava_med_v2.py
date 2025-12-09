@@ -14,7 +14,12 @@ import os
 import sys
 import json
 import torch
+import pandas as pd
+import matplotlib
+matplotlib.use('Agg')  # Use non-interactive backend
+import matplotlib.pyplot as plt
 
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 os.environ["DISABLE_MLFLOW_INTEGRATION"] = "TRUE"
 import argparse
 import transformers
@@ -53,11 +58,11 @@ class ModelArguments:
         metadata={"help": "Whether to use LoRA for efficient finetuning"}
     )
     lora_r: int = field(
-        default=128,
+        default=64,
         metadata={"help": "LoRA attention dimension (higher = more capacity)"}
     )
     lora_alpha: int = field(
-        default=256,
+        default=128,
         metadata={"help": "LoRA alpha parameter (typically 2x lora_r)"}
     )
     lora_dropout: float = field(
@@ -82,7 +87,7 @@ class ModelArguments:
 @dataclass
 class DataArguments:
     data_path: str = field(
-        default="datasets/MedS-Ins",
+        default="datasets/M2training/text_data.jsonl",
         metadata={"help": "Path to the training data folder (json/jsonl files)"}
     )
     image_root: Optional[str] = field(
@@ -90,7 +95,7 @@ class DataArguments:
         metadata={"help": "Root folder where images referenced in the dataset live"}
     )
     max_length: int = field(
-        default=2048,
+        default=1024,
         metadata={"help": "Maximum sequence length"}
     )
     max_samples: Optional[int] = field(
@@ -150,7 +155,7 @@ class MedInstDataset(Dataset):
             self._load_file(data_path)
         else:
             for filename in sorted(os.listdir(data_path)):
-                if filename.endswith(".json") and not filename.startswith("_"):
+                if (filename.endswith(".json") or filename.endswith(".jsonl") or filename.endswith(".csv")) and not filename.startswith("_"):
                     filepath = os.path.join(data_path, filename)
                     self._load_file(filepath)
 
@@ -160,9 +165,29 @@ class MedInstDataset(Dataset):
         print(f"Loaded {len(self.data)} samples")
 
     def _load_file(self, filepath: str):
-        """Load samples from a JSON/JSONL file."""
+        """Load samples from a JSON/JSONL/CSV file."""
         before = len(self.data)
         try:
+            # Handle CSV files
+            if filepath.endswith('.csv'):
+                df = pd.read_csv(filepath)
+                for _, row in df.iterrows():
+                    sample = {
+                        'instruction': str(row.get('instruction', '')) if pd.notna(row.get('instruction')) else '',
+                        'input': str(row.get('input', '')) if pd.notna(row.get('input')) else '',
+                        'output': str(row.get('output', '')) if pd.notna(row.get('output')) else '',
+                    }
+                    # Add image field if present
+                    if 'image' in row and pd.notna(row.get('image')):
+                        sample['image'] = str(row['image'])
+                    self.data.append(sample)
+                print(
+                    f"  Loaded {filepath}: {len(self.data) - before} samples "
+                    f"(total {len(self.data)})"
+                )
+                return
+            
+            # Handle JSON/JSONL files
             with open(filepath, "r", encoding="utf-8") as f:
                 content = f.read().strip()
 
@@ -297,6 +322,10 @@ class VisionDataCollatorForSeq2Seq:
                 else:
                     pixel_values_list.append(None)
 
+        # Separate labels before padding (need special handling)
+        labels_list = [f.pop("labels") for f in features]
+        
+        # Pad input_ids and attention_mask
         batch = self.tokenizer.pad(
             features,
             padding=True,
@@ -304,6 +333,18 @@ class VisionDataCollatorForSeq2Seq:
             pad_to_multiple_of=self.pad_to_multiple_of,
             return_tensors="pt",
         )
+        
+        # Pad labels separately with -100 (ignore index)
+        max_label_length = batch["input_ids"].shape[1]
+        padded_labels = []
+        for labels in labels_list:
+            padding_length = max_label_length - len(labels)
+            if padding_length > 0:
+                # Pad with -100 so they're ignored in loss
+                padded_labels.append(labels + [-100] * padding_length)
+            else:
+                padded_labels.append(labels[:max_label_length])
+        batch["labels"] = torch.tensor(padded_labels)
 
         if has_any_pixel:
             first = next(p for p in pixel_values_list if p is not None)
@@ -371,7 +412,8 @@ def load_model_and_tokenizer(model_args: ModelArguments, local_rank: int = -1):
     if model_args.use_lora:
         print("Applying LoRA...")
 
-        model = prepare_model_for_kbit_training(model)
+        # Enable gradient checkpointing for memory efficiency
+        model.enable_input_require_grads()
 
         lora_config = LoraConfig(
             r=model_args.lora_r,
@@ -464,7 +506,99 @@ def main():
             indent=2,
         )
 
+    # Plot training progress
+    plot_training_progress(trainer, training_args.output_dir)
+
     print("Training complete!")
+
+
+def plot_training_progress(trainer, output_dir: str):
+    """Plot and save training loss curve from trainer's log history."""
+    log_history = trainer.state.log_history
+    
+    steps = []
+    losses = []
+    learning_rates = []
+    grad_norms = []
+    epochs = []
+    
+    for entry in log_history:
+        if "loss" in entry and "eval_loss" not in entry:
+            steps.append(entry.get("step", 0))
+            losses.append(entry["loss"])
+            epochs.append(entry.get("epoch", 0))
+            if "learning_rate" in entry:
+                learning_rates.append(entry["learning_rate"])
+            if "grad_norm" in entry:
+                grad_norms.append(entry["grad_norm"])
+    
+    if not steps:
+        print("No training logs found to plot")
+        return
+    
+    # Create figure with subplots
+    n_plots = 1 + (1 if learning_rates else 0) + (1 if grad_norms else 0)
+    fig, axes = plt.subplots(n_plots, 1, figsize=(12, 4 * n_plots))
+    if n_plots == 1:
+        axes = [axes]
+    
+    plot_idx = 0
+    
+    # Plot training loss
+    axes[plot_idx].plot(steps, losses, 'b-', linewidth=1.5, label='Training Loss')
+    axes[plot_idx].set_xlabel('Steps')
+    axes[plot_idx].set_ylabel('Loss')
+    axes[plot_idx].set_title('Training Loss over Steps')
+    axes[plot_idx].grid(True, alpha=0.3)
+    axes[plot_idx].legend()
+    
+    # Add smoothed loss
+    if len(losses) > 10:
+        window = min(50, len(losses) // 5)
+        smoothed = pd.Series(losses).rolling(window=window, center=True).mean()
+        axes[plot_idx].plot(steps, smoothed, 'r-', linewidth=2, label=f'Smoothed (window={window})')
+        axes[plot_idx].legend()
+    
+    plot_idx += 1
+    
+    # Plot learning rate
+    if learning_rates and plot_idx < len(axes):
+        axes[plot_idx].plot(steps[:len(learning_rates)], learning_rates, 'g-', linewidth=1.5)
+        axes[plot_idx].set_xlabel('Steps')
+        axes[plot_idx].set_ylabel('Learning Rate')
+        axes[plot_idx].set_title('Learning Rate Schedule')
+        axes[plot_idx].grid(True, alpha=0.3)
+        axes[plot_idx].ticklabel_format(style='scientific', axis='y', scilimits=(0,0))
+        plot_idx += 1
+    
+    # Plot gradient norm
+    if grad_norms and plot_idx < len(axes):
+        axes[plot_idx].plot(steps[:len(grad_norms)], grad_norms, 'm-', linewidth=1.5)
+        axes[plot_idx].set_xlabel('Steps')
+        axes[plot_idx].set_ylabel('Gradient Norm')
+        axes[plot_idx].set_title('Gradient Norm over Steps')
+        axes[plot_idx].grid(True, alpha=0.3)
+        plot_idx += 1
+    
+    plt.tight_layout()
+    
+    # Save plot
+    plot_path = os.path.join(output_dir, "training_plot.png")
+    plt.savefig(plot_path, dpi=150, bbox_inches='tight')
+    plt.close()
+    print(f"Training plot saved to {plot_path}")
+    
+    # Also save training stats
+    stats = {
+        "final_loss": losses[-1] if losses else None,
+        "min_loss": min(losses) if losses else None,
+        "total_steps": steps[-1] if steps else 0,
+        "total_epochs": epochs[-1] if epochs else 0,
+    }
+    stats_path = os.path.join(output_dir, "training_stats.json")
+    with open(stats_path, "w") as f:
+        json.dump(stats, f, indent=2)
+    print(f"Training stats saved to {stats_path}")
 
 
 if __name__ == "__main__":

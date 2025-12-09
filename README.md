@@ -130,13 +130,9 @@ Results and Logs stored in [evaluation-results](./evaluation_results/M1-toolsele
 Alignment ataset present in [Vision Data](./datasets/VisualQA-PMCArticle-Dataset/)
 Training using [Finetune vision model](./Finetune_Llama3_2_(11B)_Vision.ipynb)
 
-
-CUDA_VISIBLE_DEVICES=2 python finetune_llava_med.py \
-    --lora_checkpoint checkpoints/M2Model/Llama/train/checkpoint-30 \
-    --data_path datasets/VisualQA-PMCArticle-Dataset/train/v1_text_data.jsonl \
-    --output_dir checkpoints/llava-med-vision-plus-text \
-    --num_train_epochs 3 \
-    --per_device_train_batch_size 4
+```
+CUDA_VISIBLE_DEVICES=2 python finetune_llava_med_v2.py     --data_path datasets/M2training/text_data.jsonl       --output_dir ./checkpoints/M2LlavaMed-finetuned-text     --num_train_epochs 3     --per_device_train_batch_size 1     --logging_steps 50     --save_strategy "epoch"     --use_lora True   --gradient_accumulation_steps 8   --gradient_checkpointing True
+```
 
 
 CUDA_VISIBLE_DEVICES=2 python finetune_llava_med.py --lora_checkpoint checkpoints/M2Model/Llama/train/checkpoint-30 --data_path datasets/VisualQA-PMCArticle-Dataset/train/v1_text_data.jsonl --output_dir checkpoints/llava-med-vision-plus-text --num_train_epochs 3 --per_device_train_batch_size 4

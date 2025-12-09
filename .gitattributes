@@ -5,3 +5,7 @@ checkpoints/llava-med-tool-selection-v3/checkpoint-1805/*.safetensors filter=lfs
 checkpoints/llava-med-tool-selection-v3/checkpoint-1805/*.pt filter=lfs diff=lfs merge=lfs -text
 checkpoints/M2Model/ filter=lfs diff=lfs merge=lfs -text
 datasets/ filter=lfs diff=lfs merge=lfs -text
+datasets/M2training/ filter=lfs diff=lfs merge=lfs -text
+Finetune_Llama3_2_(11B)_Vision.ipynb filter=lfs diff=lfs merge=lfs -text
+checkpoints/ filter=lfs diff=lfs merge=lfs -text
+checkpoints/llava-med-finetuned-benchmark-step1/ filter=lfs diff=lfs merge=lfs -text
