@@ -17,6 +17,7 @@ evaluate_tool_selection_fast.py
 evaluate_tool_selection_sharded.py
 
 # saved models
+checkpoints/
 checkpoints/M2LLavaMed-finetuned-text*/
 checkpoints/llava-med-finetuned*/
 checkpoints/llava-med-tool-selection/
