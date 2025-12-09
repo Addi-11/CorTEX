@@ -1,0 +1,47 @@
+## Example 1:
+QUESTION:
+Question: A 30-year-old woman, gravida 2, para 1, at 42 weeks' gestation is admitted to the hospital in active labor. Pregnancy has been complicated by gestational diabetes, for which she has been receiving insulin injections. Her first child was delivered by lower segment transverse cesarean section because of a nonreassuring fetal heart rate. Her pulse is 90/min, respirations are 18/min, and blood pressure is 135/80 mm Hg. The fetal heart rate tracing shows a baseline heart rate of 145/min and moderate variation with frequent accelerations and occasional early decelerations. She undergoes an elective repeat lower segment transverse cesarean section with complete removal of the placenta. Shortly after the operation, she starts having heavy uterine bleeding with passage of clots. Examination shows a soft uterus on palpation. Her bleeding continues despite fundal massage and the use of packing, oxytocin, misoprostol, and carboprost. Her pulse rate is now 120/min, respirations are 20/min, and blood pressure is 90/70 mm Hg. Her hemoglobin is 8 g/dL, hematocrit is 24%, platelet count is 120,000 mm3, prothrombin time is 11 seconds, and partial thromboplastin time is 30 seconds. Mass transfusion protocol is activated and a B-Lynch uterine compression suture is placed to control her bleeding. Which of the following is the mostly likely cause of her postpartum complication?
+Options: Lack of uterine muscle contraction / Uterine inversion / Adherent placenta to myometrium / Infection of the endometrial lining of the uterus / Uterine rupture
+
+TOOL RESULTS:
+[euhealthinfo_search_births(alpha=0.5, country=USA, language=English, limit=5, method=hybrid, term_override=postpartum complications, top_k=5)]
+[]
+[euhealthinfo_search_causes_of_death(alpha=0.5, country=USA, language=English, limit=5, method=hybrid, term_override=postpartum complications, top_k=5)]
+[]
+[euhealthinfo_search_hospital_in_patient_data(alpha=0.5, country=USA, language=English, limit=5, method=hybrid, term_override=postpartum complications, top_k=5)]
+[]
+[MedlinePlus_search_topics_by_keyword(db=healthTopics, rettype=topic, term=postpartum complications)]
+{'topics': [{'title': 'Health Problems in Pregnancy', 'meta_desc': 'Every pregnancy has some risk of problems. Your lifestyle, as well as factors like certain conditions and health issues, can raise that risk.', 'url': 'https://medlineplus.gov/healthproblemsinpregnancy.html', 'language': 'English', 'rank': '0', 'also_called': [], 'summary': '<h3>What are health problems in pregnancy?</h3>\n<p>A health problem in <a href="https://medlineplus.gov/pregnancy.html">pregnancy</a> is any disease or condition that could affect your health or the <a href="https://medlineplus.gov/fetalhealthanddevelopment.html">health of your fetus</a>. Some health problems may make it more likely that you will have a high-risk pregnancy. A high-risk pregnancy is one in which you, your fetus, or both are at higher risk for health problems than in a typical pre...', 'groups': [{'@url': 'https://medlineplus.gov/pregnancyandreproduction.html', '@id': '20', '#text': 'Pregnancy and Reproduction'}, {'@url': 'https://m...
+
+## Example 2:
+QUESTION:
+Question: A 68-year-old man presents to the emergency department with leg pain. He states that the pain started suddenly while he was walking outside. The patient has a past medical history of diabetes, hypertension, obesity, and atrial fibrillation. His temperature is 99.3°F (37.4°C), blood pressure is 152/98 mmHg, pulse is 97/min, respirations are 15/min, and oxygen saturation is 99% on room air. Physical exam is notable for a cold and pale left leg. The patient’s sensation is markedly diminished in the left leg when compared to the right, and his muscle strength is 1/5 in his left leg. Which of the following is the best next step in management?
+Options: CT angiogram / Graded exercise and aspirin / Heparin drip / Surgical thrombectomy / Tissue plasminogen activator
+
+TOOL RESULTS:
+[EuropePMC_Guidelines_Search(query=management of deep vein thrombosis, limit=5)]
+[]
+[FDA_get_drug_names_by_clinical_studies(clinical_studies=deep vein thrombosis, indication=treatment, limit=5)]
+{
+    'meta': {'skip': 0, 'limit': 5, 'total': 28807}, 
+    'results': [
+        {'clinical_studies': None, 'indications_and_usage': 'Uses for the treatment of acne', 'openfda.brand_name': ['Quick Action'], 'openfda.generic_name': ['SALICYLIC ACID']}, 
+        {'clinical_studies': 'Kaplan-Meier Curves for Investigator-Assessed Relapse-Free Survival in COMBI-AD in the Adjuvant Treatment of Melanoma Figure 4.......In the METRIC study, patients were not permitted to have more than one prior chemotherapy regimen for advanced or metastatic disease; prior treatment with a BRAF inhibitor or MEK inhibitor was not permitted.......Treatment continued until disease progression or unacceptable toxicity.......The median durations of follow-up prior to initiation of alternative treatment were 4.9 months for patients treated with MEKINIST and 3.1 months for patients treated with chemotherapy.......The COMBI-d study compared dabrafenib plus MEKINIST to dabrafenib plus placebo as first-line treatment for patients with unresectabl...
+
+## Example 3:
+QUESTION:
+Question: Drug A is an experimental compound being investigated for potential use as a protectant against venous thrombosis. Binding assays reveal that the drug’s primary mechanism of action is to block carboxylation of glutamic acid residues in certain serum proteins. Drug A is most similar to which of the following:
+Options: Steptokinase / Heparin / Rivaroxaban / Bivalirudin / Warfarin
+
+TOOL RESULTS:
+[FDA_get_mechanism_of_action_by_drug_name(drug_name=Steptokinase, limit=1)]
+None
+[FDA_get_mechanism_of_action_by_drug_name(drug_name=Heparin, limit=1)]
+{'meta': {'skip': 0, 'limit': 1, 'total': 46}, 'results': [{'openfda.brand_name': ['Heparin Sodium'], 'openfda.generic_name': ['HEPARIN SODIUM'], 'mechanism_of_action': ['12.1 Mechanism of Action Heparin interacts with the naturally occurring plasma protein, Antithrombin III, to induce a conformational change, which markedly enhances the serine protease activity of Antithrombin III, thereby inhibiting the activated coagulation factors involved in the clotting sequence, particularly Xa and IIa. Small amounts of heparin inhibit Factor Xa, and larger amounts inhibit thrombin (Factor IIa). Heparin also prevents the formation of a stable fibrin clot by inhibiting the activation of the fibrin stabilizing factor. Heparin does not have fibrinolytic activity; therefore, it will not lyse existing clots.']}]}
+[FDA_get_mechanism_of_action_by_drug_name(drug_name=Rivaroxaban, limit=1)]
+{'meta': {'skip': 0, 'limit': 1, 'total': 20}, 'results': [{'openfda.brand_name': ['Xarelto', 'XARELTO'], 'openfda.generic_name': ['RIVAROXABAN'], 'mechanism_of_action': ['12.1 Mechanism of Action XARELTO is a selective inhibitor of FXa. It does not require a cofactor (such as Anti-thrombin III) for activity. Rivaroxaban inhibits free FXa and prothrombinase activity. Rivaroxaban has no direct effect on platelet aggregation, but indirectly inhibits platelet aggregation induced by thrombin. By inhibiting FXa, rivaroxaban decreases thrombin generation.']}]}
+[FDA_get_mechanism_of_action_by_drug_name(drug_name=Bivalirudin, limit=1)]
+{'meta': {'skip': 0, 'limit': 1, 'total': 15}, 'results': [{'openfda.brand_name': ['bivalirudin'], 'openfda.generic_name': ['BIVALIRUDIN'], 'mechanism_of_action': ['12.1 Mechanism of Action Bivalirudin directly inhibits thrombin by specifically binding both to the catalytic site and to the anion-binding exosite of circulating and clot-bound thrombin. Thrombin is a serine proteinase that plays a central role in the thrombotic process, acting to cleave fibrinogen into fibrin monomers and to activate Factor XIII to Factor XIIIa, allowing fibrin to develop a covalently cross-linked framework, which stabilizes the thrombus; thrombin also activates Factors V and VIII, promoting further thrombin generation, and activates platelets, stimulating aggregation and granule release. The binding of bivalirudin to thrombin is reversible as thrombin slowly cleaves the bivalirudin-Arg 3 -Pro 4 bond, resulting in recovery of thrombin active site functions. In in vitro studies, bivalirudin inhibited both ...
+[FDA_get_mechanism_of_action_by_drug_name(drug_name=Warfarin, limit=1)]
+{'meta': {'skip': 0, 'limit': 1, 'total': 39}, 'results': [{'openfda.brand_name': ['Warfarin Sodium'], 'openfda.generic_name': ['WARFARIN SODIUM'], 'mechanism_of_action': ['12.1 Mechanism of Action Warfarin acts by inhibiting the synthesis of vitamin K-dependent clotting factors, which include Factors II, VII, IX, and X, and the anticoagulant proteins C and S. Vitamin K is an essential cofactor for the post ribosomal synthesis of the vitamin K-dependent clotting factors. Vitamin K promotes the biosynthesis of γ-carboxyglutamic acid residues in the proteins that are essential for biological activity. Warfarin is thought to interfere with clotting factor synthesis by inhibition of the C1 subunit of vitamin K epoxide reductase (VKORC1) enzyme complex, thereby reducing the regeneration of vitamin K 1 epoxide [see Clinical Pharmacology ( 12.5 )] .']}]}
+Based on the retrieved mechanisms of action, Warfarin acts by inhibiting the synthesis of vitamin K-dependent clotting factors, which includ...

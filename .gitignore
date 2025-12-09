@@ -28,3 +28,7 @@ logs/
 tool_composition*
 results/*
 .env
+datasets/VisualQA-PMCArticle-Dataset/train/llava_med_instruct_60k_inline_mention.json
+datasets/VisualQA-PMCArticle-Dataset/train/llava_med_instruct_10k.json
+datasets/VisualQA-PMCArticle-Dataset/train/llava_med_alignment_500k.json
+datasets/VisualQA-PMCArticle-Dataset/train/llava_med_image_urls.jsonl
