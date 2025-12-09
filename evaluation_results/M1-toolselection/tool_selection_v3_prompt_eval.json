@@ -1,0 +1,1857 @@
+{
+  "metrics": {
+    "total_samples": 1148,
+    "exact_match": 23,
+    "exact_match_pct": 2.0034843205574915,
+    "first_tool_match": 78,
+    "first_tool_match_pct": 6.794425087108014,
+    "any_tool_match": 174,
+    "any_tool_match_pct": 15.156794425087108,
+    "precision": 0.07626757562846187,
+    "recall": 0.053608864929619644,
+    "f1": 0.0629616602180795,
+    "total_gt_tools": 3339,
+    "total_pred_tools": 2347,
+    "correct_tools": 179
+  },
+  "results": [
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "Tool_Finder: {'description': 'Retrieve detailed information on the New York Heart Association Functional Classification for congestive heart failure, including symptoms and functional capacity criteria for each class.', 'limit': 5}\nTool_Finder_LLM: {'description': 'Retrieve detailed information on the New York Heart Association Functional Classification for congestive heart failure, including symptoms and functional capacity criteria for each class.', 'limit': 5}",
+      "prediction": "ClinicalGuide_get_nyha_classification: {'patient_age': 59, 'blood_pressure': 136/92, 'heart_rate': 76, 'edema': 1+, 'heart_sounds': 'regular'}",
+      "gt_tools": [
+        "Tool_Finder",
+        "Tool_Finder_LLM"
+      ],
+      "pred_tools": [
+        "ClinicalGuide_get_nyha_classification"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "get_HPO_ID_by_phenotype: {'query': 'trigeminal neuralgia', 'limit': 5}\nMedlinePlus_search_topics_by_keyword: {'term': 'trigeminal neuralgia', 'db': 'healthTopics', 'rettype': 'brief'}\nget_joint_associated_diseases_by_HPO_ID_list: {'HPO_ID_list': ['HP:0100661'], 'limit': 5}\nBiomarkerDiscoveryWorkflow: {'disease_condition': 'trigeminal neuralgia', 'sample_type': 'blood'}",
+      "prediction": "DiseaseAnalyzerAgent: {'context': 'patient with intermittent stabbing face pain', 'disease_name': 'Trigeminal neuralgia'}",
+      "gt_tools": [
+        "get_HPO_ID_by_phenotype",
+        "MedlinePlus_search_topics_by_keyword",
+        "get_joint_associated_diseases_by_HPO_ID_list",
+        "BiomarkerDiscoveryWorkflow"
+      ],
+      "pred_tools": [
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "FDA_get_pregnancy_effects_info_by_drug_name: Anti-D IgG, Anti-D IgM, Anti-A IgG, Anti-A IgM, Anti-B IgG\nFDA_get_population_use_info_by_drug_name: Anti-D IgG",
+      "prediction": "FDA_get_pregnancy_or_breastfeeding_info_by_drug_name: {'drug_name': 'Anti-A IgG', 'limit': 1}\nFDA_get_pregnancy_or_breastfeeding_info_by_drug_name: {'drug_name': 'Anti-D IgG', 'limit': 1}\nFDA_get_pregnancy_or_breastfeeding_info_by_drug_name: {'drug_name': 'Anti-B IgG', 'limit': 1}\nFDA_get_pregnancy_or_breastfeeding_info_by_drug_name: {'drug_name': 'Anti-D IgM', 'limit': 1}\nFDA_get_pregnancy_or_breastfeeding_info_by_drug_name: {'drug_name': 'Anti-A IgM', 'limit': 1}",
+      "gt_tools": [
+        "FDA_get_pregnancy_effects_info_by_drug_name",
+        "FDA_get_population_use_info_by_drug_name"
+      ],
+      "pred_tools": [
+        "FDA_get_pregnancy_or_breastfeeding_info_by_drug_name",
+        "FDA_get_pregnancy_or_breastfeeding_info_by_drug_name",
+        "FDA_get_pregnancy_or_breastfeeding_info_by_drug_name",
+        "FDA_get_pregnancy_or_breastfeeding_info_by_drug_name",
+        "FDA_get_pregnancy_or_breastfeeding_info_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'glucosuria', 'disease_name': 'glucosuria'}\nkegg_search_pathway: {'keyword': 'glucosuria'}",
+      "prediction": "PubMed_search_articles: {'query': 'yeasts and glucosuria', 'limit': 5}\nEuropePMC_search_articles: {'query': 'yeasts and glucosuria', 'limit': 5}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'fluconazole', 'limit': 10}\nFDA_get_adverse_reactions_by_drug_name: {'drug_name': 'fluconazole', 'limit': 10}\nFDA_get_drug_names_by_indication: {'indication': 'candidiasis', 'limit': 5}\nFDA_get_mechanism_of_action_by_drug_name: Fluconazole\n\nThe patient was started on fluconazole, which is an antifungal medication. The patient's glucosuria resolved after 2 weeks of treatment.",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "kegg_search_pathway"
+      ],
+      "pred_tools": [
+        "PubMed_search_articles",
+        "EuropePMC_search_articles",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_adverse_reactions_by_drug_name",
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_mechanism_of_action_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "Tool_Finder: {'description': 'A tool that provides information on shoulder conditions, including rotator cuff impingement, adhesive capsulitis, biceps tendinopathy, glenohumeral osteoarthritis, and subacromial bursitis, along with their symptoms, diagnosis, and treatment options.', 'limit': 5}\nToolDiscover: {'tool_description': 'A tool that provides information on shoulder conditions, including rotator cuff impingement, adhesive capsulitis, biceps tendinopathy, glenohumeral osteoarthritis, and subacromial bursitis, along with their symptoms, diagnosis, and treatment options.', 'max_iterations': 5}\nTool_Finder_Keyword: {'categories': ['shoulder conditions'], 'description': 'A tool that provides information on shoulder conditions, including rotator cuff impingement, adhesive capsulitis, biceps tendinopathy, glenohumeral osteoarthritis, and subacromial bursitis, along with their symptoms, diagnosis, and treatment options.', 'limit': 5}\nTool_Finder_LLM: {'categories': ['shoulder conditions'], 'description': 'A tool that provides information on shoulder conditions, including rotator cuff impingement, adhesive capsulitis, biceps tendinopathy, glenohumeral osteoarthritis, and subacromial bursitis, along with their symptoms, diagnosis, and treatment options.', 'limit': 5}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'metformin', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'insulin', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'lisinopril', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'hydrochlorothiazide', 'limit': 10}\nDiseaseAnalyzerAgent: {'context': 'patient with shoulder stiffness and decreased range of motion', 'disease_name': 'Shoulder stiffness'}",
+      "gt_tools": [
+        "Tool_Finder",
+        "ToolDiscover",
+        "Tool_Finder_Keyword",
+        "Tool_Finder_LLM"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "DrugInteractionAnalyzerAgent: {'compounds': 'amlodipine, metformin, glimepiride, fluticasone/salmeterol', 'patient_context': 'hypertension, type II diabetes mellitus, asthma'}\nFAERS_search_reports_by_drug_and_indication: {'drugindication': 'hypertension, type II diabetes mellitus, asthma', 'limit': 10, 'medicinalproduct': 'amlodipine, metformin, glimepiride, fluticasone/salmeterol'}",
+      "prediction": "FDA_get_adverse_reactions_by_drug_name: {'drug_name': 'ibuprofen', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'ibuprofen', 'limit': 10}\nFDA_get_drug_names_by_indication: {'indication': 'headache', 'limit': 5}\nDiseaseAnalyzerAgent: {'context': 'patient with headache and dizziness', 'disease_name': 'Headache'}\n\nThe patient's symptoms and the presence of a medication side effect are the most likely cause of the patient's headache and dizziness.",
+      "gt_tools": [
+        "DrugInteractionAnalyzerAgent",
+        "FAERS_search_reports_by_drug_and_indication"
+      ],
+      "pred_tools": [
+        "FDA_get_adverse_reactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_names_by_indication",
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "FDA_get_pregnancy_effects_info_by_drug_name: lithium, valproate",
+      "prediction": "FDA_get_pregnancy_or_breastfeeding_info_by_drug_name: Lithium",
+      "gt_tools": [
+        "FDA_get_pregnancy_effects_info_by_drug_name"
+      ],
+      "pred_tools": [
+        "FDA_get_pregnancy_or_breastfeeding_info_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "ToolDiscover: {'tool_description': 'Calculate ejection fraction based on end-systolic volume and systemic vascular resistance.', 'max_iterations': 5}\nTool_Finder: {'categories': ['cardiology'], 'description': 'Calculate ejection fraction based on end-systolic volume and systemic vascular resistance.', 'limit': 5}, {'categories': ['cardiology'], 'description': 'Calculate ejection fraction using end-systolic volume and systemic vascular resistance in patients with cardiovascular conditions.', 'limit': 5}",
+      "prediction": "FDA_get_drug_names_by_indication: {'indication': 'hypertension', 'limit': 5}\nFDA_get_drug_names_by_indication: {'indication': 'type 2 diabetes mellitus', 'limit': 5}\nDiseaseAnalyzerAgent: {'context': 'patient with hypertension and type 2 diabetes mellitus', 'disease_name': 'Breathlessness and fatigue'}",
+      "gt_tools": [
+        "ToolDiscover",
+        "Tool_Finder"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_drug_names_by_indication",
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "FDA_get_indications_by_drug_name: Ofloxacin, Cefepime, Cefotaxime, Amoxicillin, Cephalexin",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'mifepristone', 'limit': 10}\nFDA_get_drug_names_by_indication: {'indication': 'ear infection', 'limit': 5}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'mifepristone', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'mifepristone', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'mifepristone', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'mifepristone', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'mifepristone', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'mifepristone', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'mifepristone', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'mifepristone', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'mifepristone', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'mifepristone', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'mifepristone', 'limit': 10}\nFDA_get_drug_interactions_by_",
+      "gt_tools": [
+        "FDA_get_indications_by_drug_name"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "FDA_get_drug_names_by_indication: {'indication': 'prevention of inflammation or recurrence of symptoms like gout or pseudogout', 'limit': 5}\nFDA_get_drug_names_by_mechanism_of_action: {'mechanism_info': 'Antibody to soluble factor', 'limit': 5}, {'mechanism_info': 'Inhibitor of microtubule polymerization', 'limit': 5}, {'mechanism_info': 'Inhibitor of proximal tubule reabsorption', 'limit': 5}, {'mechanism_info': 'Inhibitor of xanthine oxidase', 'limit': 5}, {'mechanism_info': 'Recombininant enzyme', 'limit': 5}",
+      "prediction": "FDA_get_mechanism_of_action_by_drug_name: {'drug_name': 'colchicine', 'limit': 1}",
+      "gt_tools": [
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_drug_names_by_mechanism_of_action"
+      ],
+      "pred_tools": [
+        "FDA_get_mechanism_of_action_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "BiomarkerDiscoveryWorkflow: {'properties': {'disease_condition': 'myocardial infarction', 'sample_type': 'blood'}\nFDA_get_lab_tests_by_drug_name: myocardial infarction",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'alteplase', 'limit': 10}\nFDA_get_adverse_reactions_by_drug_name: {'drug_name': 'alteplase', 'limit': 10}\nEuropePMC_search_articles: {'query': 'alteplase side effects and interactions', 'limit': 5}",
+      "gt_tools": [
+        "BiomarkerDiscoveryWorkflow",
+        "FDA_get_lab_tests_by_drug_name"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_adverse_reactions_by_drug_name",
+        "EuropePMC_search_articles"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'ulcerative colitis with positive pANCA test and symptoms of jaundice, fatigue, and pruritus', 'disease_name': 'primary sclerosing cholangitis'}\nTool_Finder_LLM: {'categories': ['histologic findings', 'liver conditions', 'symptoms', 'laboratory results', 'imaging findings'], 'description': 'Retrieve tools that can provide information on histologic findings and liver conditions based on symptoms, laboratory results, and imaging findings.', 'limit': 5}",
+      "prediction": "FDA_get_drug_names_by_indication: {'indication': 'ulcerative colitis', 'limit': 5}\nFDA_get_mechanism_of_action_by_drug_name: Mesalazine\nDiseaseAnalyzerAgent: {'context': 'liver disease in a patient with a history of ulcerative colitis', 'disease_name': 'Primary sclerosing cholangitis'}",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "Tool_Finder_LLM"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_mechanism_of_action_by_drug_name",
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'painful, swollen, and purulent ulcer on the labia majora and mild unilateral painful inguinal lymphadenopathy', 'disease_name': 'sexually transmitted infection'}\nWikiPathways_search: {'query': 'painful, swollen, and purulent ulcer on the labia majora and mild unilateral painful inguinal lymphadenopathy', 'organism': 'Homo sapiens'}\nkegg_search_pathway: {'keyword': 'sexually transmitted infection'}\nGO_get_genes_for_term: {'id': 'painful, swollen, and purulent ulcer on the labia majora and mild unilateral painful inguinal lymphadenopathy', 'rows': 5}\nGO_search_terms: {'query': 'painful, swollen, and purulent ulcer on the labia majora and mild unilateral painful inguinal lymphadenopathy'}\nkegg_find_genes: {'keyword': 'sexually transmitted infection'}\nHPA_search_genes_by_query: {'search_query': 'painful, swollen, and purulent ulcer on the labia majora and mild unilateral painful inguinal lymphadenopathy'}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'allopurinol', 'limit': 10}\nFDA_get_adverse_reactions_by_drug_name: {'drug_name': 'allopurinol', 'limit': 10}\nFDA_get_drug_names_by_indication: {'indication': 'genital ulcers', 'limit': 5}\nOpenTargets_get_associated_targets_by_drug_efoId: {'drug_efoId': 'allopurinol', 'limit': 10}\nOpenTargets_get_associated_drugs_by_drug_efoId: {'drug_efoId': 'allopurinol', 'limit': 5}\nDiseaseAnalyzerAgent: {'context': 'genital ulcers in a patient with a history of gout and obesity', 'disease_name': 'Genital ulcers'}",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "WikiPathways_search",
+        "kegg_search_pathway",
+        "GO_get_genes_for_term",
+        "GO_search_terms",
+        "kegg_find_genes",
+        "HPA_search_genes_by_query"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_adverse_reactions_by_drug_name",
+        "FDA_get_drug_names_by_indication",
+        "OpenTargets_get_associated_targets_by_drug_efoId",
+        "OpenTargets_get_associated_drugs_by_drug_efoId",
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "FDA_get_indications_by_drug_name: Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam",
+      "prediction": "DiseaseAnalyzerAgent: {'context': 'anxiety and insomnia in a patient with a history of drug use', 'disease_name': 'Anxiety and insomnia'}\nFDA_get_indications_by_drug_name: {'drug_name': 'Diazepam', 'limit': 1}\nFDA_get_indications_by_drug_name: {'drug_name': 'Zolpidem', 'limit': 1}\nFDA_get_indications_by_drug_name: {'drug_name': 'Ramelteon', 'limit': 1}\nFDA_get_indications_by_drug_name: {'drug_name': 'Buspirone', 'limit': 1}\nFDA_get_indications_by_drug_name: {'drug_name': 'Alprazolam', 'limit': 1}",
+      "gt_tools": [
+        "FDA_get_indications_by_drug_name"
+      ],
+      "pred_tools": [
+        "DiseaseAnalyzerAgent",
+        "FDA_get_indications_by_drug_name",
+        "FDA_get_indications_by_drug_name",
+        "FDA_get_indications_by_drug_name",
+        "FDA_get_indications_by_drug_name",
+        "FDA_get_indications_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "DrugInteractionAnalyzerAgent: {'compounds': 'nifedipine, prednisolone', 'patient_context': 'hypertension, systemic lupus erythematosus'}",
+      "prediction": "FDA_get_adverse_reactions_by_drug_name: {'drug_name': 'nifedipine', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'nifedipine', 'limit': 10}\nFDA_get_drug_names_by_indication: {'indication': 'complicated cholecystitis', 'limit': 5}\nFDA_get_mechanism_of_action_by_drug_name: Nifedipine\nFDA_get_pharmacokinetics_by_drug_name: Nifedipine\nFDA_get_pharmacodynamics_by_drug_name: Nifedipine\nFDA_get_dosage_and_storage_information_by_drug_name: Nifedipine\n\nThe patient's symptoms and medical history suggest that she may be experiencing an adverse reaction or drug interaction related to her medications. The selected tools will help in understanding the potential effects of the drugs and their interactions, as well as provide information about the patient's condition and treatment options.",
+      "gt_tools": [
+        "DrugInteractionAnalyzerAgent"
+      ],
+      "pred_tools": [
+        "FDA_get_adverse_reactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_mechanism_of_action_by_drug_name",
+        "FDA_get_pharmacokinetics_by_drug_name",
+        "FDA_get_pharmacodynamics_by_drug_name",
+        "FDA_get_dosage_and_storage_information_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "get_clinical_trial_conditions_and_interventions: {'condition_and_intervention': 'Amnioinfusion', 'nct_ids': 5}, {'condition_and_intervention': 'Induced vaginal delivery', 'nct_ids': 5}, {'condition_and_intervention': 'Reassurance', 'nct_ids': 5}, {'condition_and_intervention': 'Repositioning', 'nct_ids': 5}, {'condition_and_intervention': 'Urgent cesarean delivery', 'nct_ids': 5}, {'condition_and_intervention': 'Amnioinfusion', 'nct_ids': ['NCT04852770', 'NCT01728545']}, {'condition_and_intervention': 'Induced vaginal delivery', 'nct_ids': ['NCT04852770', 'NCT01728545']}, {'condition_and_intervention': 'Reassurance', 'nct_ids': ['NCT04852770', 'NCT01728545']}, {'condition_and_intervention': 'Repositioning', 'nct_ids': ['NCT04852770', 'NCT01728545']}, {'condition_and_intervention': 'Urgent cesarean delivery', 'nct_ids': ['NCT04852770', 'NCT01728545']}",
+      "prediction": "ClinicalGuide_search_guidelines: {'query': 'management of labor in a healthy pregnant woman', 'limit': 5}",
+      "gt_tools": [
+        "get_clinical_trial_conditions_and_interventions"
+      ],
+      "pred_tools": [
+        "ClinicalGuide_search_guidelines"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "Tool_Finder_LLM: {'description': 'Identify conditions related to vitamin B12 deficiency, such as pernicious anemia or B12 malabsorption.', 'limit': 5}\nTool_Finder: {'description': 'Identify conditions related to vitamin B12 deficiency, such as pernicious anemia or B12 malabsorption.', 'limit': 5}\nTool_Finder_Keyword: {'description': 'Identify conditions related to vitamin B12 deficiency, such as pernicious anemia or B12 malabsorption.', 'limit': 5}",
+      "prediction": "FDA_get_drug_names_by_indication: {'indication': 'Hashimoto\u2019s thyroiditis', 'limit': 5}\nFDA_get_mechanism_of_action_by_drug_name: Thyroid hormone replacement therapy\nDiseaseAnalyzerAgent: {'context': 'patient with Hashimoto\u2019s thyroiditis and neurological symptoms', 'disease_name': 'Peripheral neuropathy'}",
+      "gt_tools": [
+        "Tool_Finder_LLM",
+        "Tool_Finder",
+        "Tool_Finder_Keyword"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_mechanism_of_action_by_drug_name",
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "ToolDescriptionOptimizer: {'tool_config': {'Displacement': \"Attributing one's own unacceptable thoughts or behaviors to someone else.\", 'Dissociation': 'Disconnecting from reality to avoid dealing with uncomfortable thoughts or situations.', 'Projection': \"Attributing one's own unacceptable thoughts or behaviors to someone else.\", 'Reaction formation': 'Converting an unacceptable thought or behavior into its opposite.', 'Repression': 'Suppressing unacceptable thoughts or memories from conscious awareness.'}",
+      "prediction": "DiseaseAnalyzerAgent: {'context': 'man experiencing marital issues', 'disease_name': 'Relationship issues'}",
+      "gt_tools": [
+        "ToolDescriptionOptimizer"
+      ],
+      "pred_tools": [
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "TRIP_Database_Guidelines_Search: {'query': 'Dilatation and evacuation (D&E)', 'limit': 5}, {'query': 'Oxytocin-induced labor', 'limit': 5}, {'query': 'Manual uterine aspiration', 'limit': 5}, {'query': 'Dilatation and curettage (D & C) after vacuum evacuation', 'limit': 5}, {'query': 'Oral mifepristone + misoprostol', 'limit': 5}, {'query': 'Dilatation and evacuation (D&E)', 'limit': 5, 'search_type': 'guideline'}, {'query': 'Oxytocin-induced labor', 'limit': 5, 'search_type': 'guideline'}, {'query': 'Manual uterine aspiration', 'limit': 5, 'search_type': 'guideline'}, {'query': 'Dilatation and curettage (D & C) after vacuum evacuation', 'limit': 5, 'search_type': 'guideline'}, {'query': 'Oral mifepristone + misoprostol', 'limit': 5, 'search_type': 'guideline'}",
+      "prediction": "Clinical Guidelines_search_topics_by_keyword: {'term': 'elective termination of pregnancy', 'db': 'PubMed'}",
+      "gt_tools": [
+        "TRIP_Database_Guidelines_Search"
+      ],
+      "pred_tools": [
+        "Clinical Guidelines_search_topics_by_keyword"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "Tool_Finder_Keyword: {'categories': ['skin conditions', 'lesions', 'symptoms'], 'description': 'Identify skin conditions or lesions based on their appearance and location.', 'limit': 5}\nTool_Finder: {'description': 'Identify skin conditions or lesions based on their appearance and location.', 'limit': 5}\nTool_Finder_LLM: {'description': 'Identify skin conditions or lesions based on their appearance and location.', 'limit': 5}\ngrep_tools: {'categories': ['skin conditions', 'lesions', 'symptoms'], 'field': 'description', 'limit': 5, 'pattern': 'Identify skin conditions or lesions based on their appearance, location, and symptoms.', 'search_mode': 'regex'}",
+      "prediction": "FDA_get_drug_names_by_indication: {'indication': 'skin lesions', 'limit': 5}",
+      "gt_tools": [
+        "Tool_Finder_Keyword",
+        "Tool_Finder",
+        "Tool_Finder_LLM",
+        "grep_tools"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_names_by_indication"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "ToolDiscover: {'tool_description': 'Tools that provide information on lung function tests such as residual volume and forced expiratory volume, and their clinical interpretations.', 'max_iterations': 5}\nTool_Finder: {'description': 'Tools that provide information on lung function tests such as residual volume and forced expiratory volume, and their clinical interpretations.', 'limit': 5}\nMedicalLiteratureReviewer: {'research_topic': 'lung function tests', 'literature_content': 'residual volume and forced expiratory volume', 'quality_level': 'high', 'review_scope': 'systematic review', 'study_types': ['clinical studies', 'meta-analyses']}\nToolDescriptionOptimizer: {'tool_config': {'description': 'Tools that provide information on lung function tests such as residual volume and forced expiratory volume, and their clinical interpretations.', 'max_iterations': 5}\nTool_Finder_LLM: {'categories': ['lung function tests', 'residual volume', 'forced expiratory volume'], 'description': 'Tools that provide information on lung function tests such as residual volume and forced expiratory volume, and their clinical interpretations.', 'limit': 5}\nMedlinePlus_search_topics_by_keyword: {'term': 'residual volume', 'db': 'healthTopics', 'rettype': 'brief'}, {'term': 'forced expiratory volume', 'db': 'healthTopics', 'rettype': 'brief'}",
+      "prediction": "FDA_get_drug_names_by_indication: {'indication': 'diabetic nephropathy', 'limit': 5}\nDiseaseAnalyzerAgent: {'context': 'patient with diabetes, hypertension, and early stage prostate cancer', 'disease_name': 'diabetic nephropathy'}",
+      "gt_tools": [
+        "ToolDiscover",
+        "Tool_Finder",
+        "MedicalLiteratureReviewer",
+        "ToolDescriptionOptimizer",
+        "Tool_Finder_LLM",
+        "MedlinePlus_search_topics_by_keyword"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_names_by_indication",
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'pleural fluid protein: 5.8 g/dL, LDH: 258 U/L', 'disease_name': 'Congestive heart failure'}\nBiomarkerDiscoveryWorkflow: {'disease_condition': 'Congestive heart failure', 'sample_type': 'pleural fluid'}",
+      "prediction": "FDA_get_drug_names_by_indication: {'indication': 'right-sided pleural effusion', 'limit': 5}\nFDA_get_mechanism_of_action_by_drug_name: Dexamethasone\n\nThe patient was started on dexamethasone, which is a corticosteroid medication. Corticosteroids are often used to reduce inflammation and suppress the immune system. In this case, the patient's symptoms and the presence of a right-sided pleural effusion may be related to the use of dexamethasone. However, it is important to consider other potential causes for the pleural effusion and consult a healthcare professional for a thorough evaluation and proper diagnosis.",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "BiomarkerDiscoveryWorkflow"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_mechanism_of_action_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "ADMETAI_predict_physicochemical_properties: {'smiles': ['fexofenadine', 'diphenhydramine']}, {'smiles': ['fex-ofenadine', 'diphenhydramine']}\nFDA_get_mechanism_of_action_by_drug_name: fexofenadine, diphenhydramine\nADMETAI_predict_solubility_lipophilicity_hydration: {'smiles': ['fexofenadine', 'diphenhydramine']}, {'smiles': ['fex-ofenadine', 'diphenhydramine']}\nADMETAI_predict_BBB_penetrance: {'smiles': ['fexofenadine', 'diphenhydramine']}\nADMETAI_predict_bioavailability: {'smiles': ['fex-ofenadine', 'diphenhydramine']}\nADMETAI_predict_clearance_distribution: {'smiles': ['fexofenadine', 'diphenhydramine']}\nFDA_get_pharmacodynamics_by_drug_name: fexofenadine, diphenhydramine",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'fexofenadine', 'limit': 10}\nFDA_get_mechanism_of_action_by_drug_name: Fexofenadine\n\nThe characteristic of fexofenadine that allows it to be less sedating than diphenhydramine is its relative lipophobicity. This means that fexofenadine is less likely to cross the blood-brain barrier and cause sedation compared to diphenhydramine.",
+      "gt_tools": [
+        "ADMETAI_predict_physicochemical_properties",
+        "FDA_get_mechanism_of_action_by_drug_name",
+        "ADMETAI_predict_solubility_lipophilicity_hydration",
+        "ADMETAI_predict_BBB_penetrance",
+        "ADMETAI_predict_bioavailability",
+        "ADMETAI_predict_clearance_distribution",
+        "FDA_get_pharmacodynamics_by_drug_name"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_mechanism_of_action_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "euhealthinfo_search_causes_of_death: {'alpha': 0.5, 'country': 'United States', 'language': 'English', 'limit': 25, 'method': 'hybrid', 'term_override': 'mesothelioma', 'top_k': 25}\neuhealthinfo_search_cancer_registry: {'alpha': 0.5, 'country': 'United States', 'language': 'English', 'limit': 25, 'method': 'hybrid', 'term_override': 'mesothelioma', 'top_k': 25}\nTool_Finder: {'categories': ['mesothelioma symptoms', 'mesothelioma complications', 'pleural thickening'], 'description': 'Retrieve tools that provide detailed information on the common symptoms and complications of mesothelioma, focusing on pleural thickening and related conditions.', 'limit': 5}\nMedlinePlus_search_topics_by_keyword: {'db': 'healthTopics', 'rettype': 'topic', 'term': 'mesothelioma complications'}",
+      "prediction": "FDA_get_drug_names_by_indication: {'indication': 'mesothelioma', 'limit': 5}\nFDA_get_mechanism_of_action_by_drug_name: Asbestos",
+      "gt_tools": [
+        "euhealthinfo_search_causes_of_death",
+        "euhealthinfo_search_cancer_registry",
+        "Tool_Finder",
+        "MedlinePlus_search_topics_by_keyword"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_mechanism_of_action_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "TRIP_Database_Guidelines_Search: {'query': 'management of esophageal varices', 'limit': 5}\nsearch_clinical_trials: {'condition': 'esophageal varices', 'intervention': 'endoscopic sclerotherapy', 'pageSize': 5}, {'condition': 'esophageal varices', 'intervention': 'endoscopic ligation', 'pageSize': 5}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'Nadolol', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'Metoprolol', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'Ligation', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'Endoscopic sclerotherapy', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'Repeat endoscopy', 'limit': 10}",
+      "gt_tools": [
+        "TRIP_Database_Guidelines_Search",
+        "search_clinical_trials"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "MedlinePlus_get_genetics_condition_by_name: {'condition': 'Chronic lymphocytic leukemia (CLL)', 'format': 'json'}, {'condition': 'Monoclonal B cell lymphocytosis (MBL)', 'format': 'json'}, {'condition': 'Monoclonal gammopathy of undetermined significance (MGUS)', 'format': 'json'}, {'condition': 'Multiple myeloma (MM)', 'format': 'json'}, {'condition': 'Polycythemia vera (PV)', 'format': 'json'}\nadvanced_literature_search_agent: {'query': 'Chronic lymphocytic leukemia (CLL)'}, {'query': 'Monoclonal B cell lymphocytosis (MBL)'}, {'query': 'Monoclonal gammopathy of undetermined significance (MGUS)'}, {'query': 'Multiple myeloma (MM)'}, {'query': 'Polycythemia vera (PV)'}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'acetaminophen', 'limit': 10}",
+      "gt_tools": [
+        "MedlinePlus_get_genetics_condition_by_name",
+        "advanced_literature_search_agent"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "LiteratureSynthesisAgent: {'topic': 'Hypersensitivity reaction', 'literature_data': 'Information on hypersensitivity reactions, including clinical presentations and mechanisms.', 'focus_area': 'General'}, {'topic': 'Asbestos inhalation', 'literature_data': 'Information on asbestos inhalation, including clinical presentations and mechanisms.', 'focus_area': 'General'}, {'topic': 'Neoplastic transformation', 'literature_data': 'Information on neoplastic transformations, including clinical presentations and mechanisms.', 'focus_area': 'General'}, {'topic': 'Opportunistic colonization', 'literature_data': 'Information on opportunistic colonization, including clinical presentations and mechanisms.', 'focus_area': 'General'}, {'topic': 'Abscess formation', 'literature_data': 'Information on abscess formation, including clinical presentations and mechanisms.', 'focus_area': 'General'}\nMedicalLiteratureReviewer: {'focus_area': 'Hypersensitivity reaction', 'literature_content': 'Information on hypersensitivity reactions, including clinical presentations and mechanisms.', 'quality_level': 'high', 'review_scope': 'systematic review', 'study_types': ['case-control studies', 'cohort studies']}, {'focus_area': 'Asbestos inhalation', 'literature_content': 'Information on asbestos inhalation, including clinical presentations and mechanisms.', 'quality_level': 'high', 'review_scope': 'systematic review', 'study_types': ['case-control studies', 'cohort studies']}, {'focus_area': 'Neoplastic transformation', 'literature_content': 'Information on neoplastic transformations, including clinical presentations and mechanisms.', 'quality_level': 'high', 'review_scope': 'systematic review', 'study_types': ['case-control studies', 'cohort studies']}, {'focus_area': 'Opportunistic colonization', 'literature_content': 'Information on opportunistic colonization, including clinical presentations and mechanisms.', 'quality_level': 'high', 'review_scope': 'systematic review', 'study_types': ['case-control studies', 'cohort studies']}, {'focus_area': 'Abscess formation', 'literature_content': 'Information on abscess formation, including clinical presentations and mechanisms.', 'quality_level': 'high', 'review_scope': 'systematic review', 'study_types': ['case-control studies', 'cohort studies']}\nDiseaseAnalyzerAgent: {'disease_name': 'Hypersensitivity reaction'}, {'disease_name': 'Asbestos inhalation'}, {'disease_name': 'Neoplastic transformation'}, {'disease_name': 'Opportunistic colonization'}, {'disease_name': 'Abscess formation'}",
+      "prediction": "FDA_get_drug_names_by_indication: {'indication': 'pulmonary tuberculosis', 'limit': 5}\nFDA_get_mechanism_of_action_by_drug_name: Rifampicin\nDiseaseAnalyzerAgent: {'context': 'patient with a history of pulmonary tuberculosis and current symptoms', 'disease_name': 'Pulmonary tuberculosis'}",
+      "gt_tools": [
+        "LiteratureSynthesisAgent",
+        "MedicalLiteratureReviewer",
+        "DiseaseAnalyzerAgent"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_mechanism_of_action_by_drug_name",
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "gwas_get_study_by_id: {'study_id': '0.049'}\nExperimentalDesignScorer: {'design_description': 'A study with a 95% confidence interval and a p-value of 0.049 to disprove the null hypothesis.', 'hypothesis': 'Low birth weight is related to obesity later in life.'}\nDataAnalysisValidityReviewer: {'analysis_section': 'A study with a 95% confidence interval and a p-value of 0.049 to disprove the null hypothesis.'}",
+      "prediction": "StatisticalAnalysisAgent: {'context': 'researcher's study on low birth weight and obesity', 'confidence_interval': 95, 'p_value': 0.049, 'null_hypothesis': 'low birth weight is not associated with obesity'}",
+      "gt_tools": [
+        "gwas_get_study_by_id",
+        "ExperimentalDesignScorer",
+        "DataAnalysisValidityReviewer"
+      ],
+      "pred_tools": [
+        "StatisticalAnalysisAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "kegg_search_pathway: {'keyword': 'Enterotoxin'}, {'keyword': 'Impaired iron absorption'}, {'keyword': 'Increased serotonin production'}, {'keyword': 'Invasive bacterial infection'}, {'keyword': 'Normal flora destruction'}\nBiomarkerDiscoveryWorkflow: {'disease_condition': 'Enterotoxin', 'sample_type': 'blood'}, {'disease_condition': 'Impaired iron absorption', 'sample_type': 'blood'}, {'disease_condition': 'Increased serotonin production', 'sample_type': 'blood'}, {'disease_condition': 'Invasive bacterial infection', 'sample_type': 'blood'}, {'disease_condition': 'Normal flora destruction', 'sample_type': 'blood'}\nTool_Finder_LLM: {'categories': ['disease mechanisms'], 'description': 'Retrieve tools that can provide detailed symptom and laboratory findings for different mechanisms of disease, such as enterotoxin production, impaired iron absorption, increased serotonin production, invasive bacterial infection, and normal flora destruction.', 'limit': 5}\nDiseaseAnalyzerAgent: {'disease_name': 'Enterotoxin'}, {'disease_name': 'Impaired iron absorption'}, {'disease_name': 'Increased serotonin production'}, {'disease_name': 'Invasive bacterial infection'}, {'disease_name': 'Normal flora destruction'}\nEuropePMC_Guidelines_Search: {'query': 'Enterotoxin', 'limit': 5}, {'query': 'Impaired iron absorption', 'limit': 5}, {'query': 'Increased serotonin production', 'limit': 5}, {'query': 'Invasive bacterial infection', 'limit': 5}, {'query': 'Normal flora destruction', 'limit': 5}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'fluoxetine', 'limit': 10}\nFDA_get_adverse_reactions_by_drug_name: {'drug_name': 'fluoxetine', 'limit': 10}\nFDA_get_drug_names_by_indication: {'indication': 'diarrhea', 'limit': 5}\nFDA_get_mechanism_of_action_by_drug_name: Amoxicillin-clavulanic acid\n\nThe patient's symptoms and laboratory values are consistent with a diagnosis of enterotoxin-associated diarrhea. The patient's serum sodium (Na+) level is elevated, which is a common finding in this condition. The patient's serum potassium (K+) level is low, which is also a common finding in enterotoxin-associated diarrhea. The patient's serum creatinine (Cr) level is elevated, which may indicate kidney dysfunction. The patient's serum amylase (AST) and lipase (ALT) levels are normal, which helps to rule out pancreatitis. The patient's serum calcium (Ca2+) level is normal, which helps to rule out hypocalcemia. The patient's serum bilirubin (BUN) level is elevated, which may indicate liver dysfunction. The patient's serum glucose (Glucose) level is normal, which helps to rule out diabetes. The patient's serum chloride (Cl-) level is normal, which helps to rule out dehydration. The patient's serum iron (Fe) level is normal, which helps to rule out iron deficiency anemia. The patient's serum magnesium (Mg) level is normal, which helps to rule out hypomagnesemia. The patient's serum phosphate (PO4) level is normal, which helps to rule out hypophosphatemia. The patient's serum urea nitrogen (UN) level is normal, which helps to rule out kidney dysfunction. The patient's serum ur",
+      "gt_tools": [
+        "kegg_search_pathway",
+        "BiomarkerDiscoveryWorkflow",
+        "Tool_Finder_LLM",
+        "DiseaseAnalyzerAgent",
+        "EuropePMC_Guidelines_Search"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_adverse_reactions_by_drug_name",
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_mechanism_of_action_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'Ewing sarcoma', 'disease_name': 'Ewing sarcoma'}\nBiomarkerDiscoveryWorkflow: {'disease_condition': 'Ewing sarcoma', 'sample_type': 'biopsy'}",
+      "prediction": "OpenTargets_get_drug_mechanisms_of_action_by_chemblId: Ibuprofen\nFDA_get_drug_interactions_by_drug_name: Ibuprofen\nFDA_get_adverse_reactions_by_drug_name: Ibuprofen\nFDA_get_drug_names_by_indication: {'indication': 'osteosarcoma', 'limit': 5}\nFDA_get_drug_names_by_indication: {'indication': 'chondrosarcoma', 'limit': 5}\nFDA_get_drug_names_by_indication: {'indication': 'osteochondroma', 'limit': 5}\nFDA_get_drug_names_by_indication: {'indication': 'Ewing sarcoma', 'limit': 5}\nFDA_get_drug_names_by_indication: {'indication': 'osteoid osteoma', 'limit': 5}\nDiseaseAnalyzerAgent: {'context': 'bone tumor in a 13-year-old boy', 'disease_name': 'Osteosarcoma'}\nDiseaseAnalyzerAgent: {'context': 'bone tumor in a 13-year-old boy', 'disease_name': 'Chondrosarcoma'}\nDiseaseAnalyzerAgent: {'context': 'bone tumor in a 13-year-old boy', 'disease_name': 'Osteochondroma'}\nDiseaseAnalyzerAgent: {'context': 'bone tumor in a 13-year-old boy', 'disease_name': 'Ewing sarcoma'}\nDiseaseAnalyzerAgent: {'context': 'bone tumor in a 13-year-old boy', 'disease_name': 'Osteoid osteoma'}",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "BiomarkerDiscoveryWorkflow"
+      ],
+      "pred_tools": [
+        "OpenTargets_get_drug_mechanisms_of_action_by_chemblId",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_adverse_reactions_by_drug_name",
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_drug_names_by_indication",
+        "DiseaseAnalyzerAgent",
+        "DiseaseAnalyzerAgent",
+        "DiseaseAnalyzerAgent",
+        "DiseaseAnalyzerAgent",
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "call_agentic_human: {'question': \"Analyze the statement 'Last week I volunteered for the local Cancer Society. Helping other cancer patients just makes me feel better.' in relation to the defense mechanism of suppression.\", 'context': 'The statement should be evaluated for any avoidance of uncomfortable thoughts or feelings related to cancer.', 'type': 'string'}, {'question': \"Analyze the statement 'Oh, doctor, I'm just so grateful to be seeing you. I just know you've cured my cancer. I probably don't even need to check anymore.' in relation to the defense mechanism of suppression.\", 'context': 'The statement should be evaluated for any avoidance of uncomfortable thoughts or feelings related to cancer.', 'type': 'string'}, {'question': \"Analyze the statement 'I'm sorry I was late today. I also didn't get any of the labs you asked for.' in relation to the defense mechanism of suppression.\", 'context': 'The statement should be evaluated for any avoidance of uncomfortable thoughts or feelings related to cancer.', 'type': 'string'}, {'question': \"Analyze the statement 'Ever since I had the colonoscopy, I've been having headaches and backaches and just pain all over! I'm sure it's from the cancer.' in relation to the defense mechanism of suppression.\", 'context': 'The statement should be evaluated for any avoidance of uncomfortable thoughts or feelings related to cancer.', 'type': 'string'}, {'question': \"Analyze the statement 'I really haven't thought about the colonoscopy until today. Worrying before getting the results wasn't going to help anything.' in relation to the defense mechanism of suppression.\", 'context': 'The statement should be evaluated for any avoidance of uncomfortable thoughts or feelings related to cancer.', 'type': 'string'}",
+      "prediction": "ClinicalGuide_search_guidelines: {'query': 'cancer patient follow-up care', 'limit': 5}",
+      "gt_tools": [
+        "call_agentic_human"
+      ],
+      "pred_tools": [
+        "ClinicalGuide_search_guidelines"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "AdverseEventPredictionQuestionGenerator: lovastatin\nFAERS_search_adverse_event_reports: {'medicinalproduct': 'lovastatin', 'limit': 5}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'lovastatin', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'aspirin', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'dopamine', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'morphine', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'nitroglycerin', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'streptokinase', 'limit': 10}\n\nThe most concerning development over the next 24 hours for this patient would be persistent inspiratory crackles.",
+      "gt_tools": [
+        "AdverseEventPredictionQuestionGenerator",
+        "FAERS_search_adverse_event_reports"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "FDA_get_drug_names_by_mechanism_of_action: {'indication': 'mucoactive and anti-oxidative properties', 'limit': 5}\nFDA_get_drug_names_by_clinical_pharmacology: {'clinical_pharmacology': 'mucoactive and anti-oxidative properties', 'limit': 5}\nFDA_get_drug_name_by_pharmacodynamics: {'pharmacodynamics': 'mucoactive and anti-oxidative properties', 'limit': 5}\nFDA_get_drug_names_by_pharmacokinetics: {'pharmacokinetics_info': 'mucoactive and anti-oxidative properties', 'limit': 5}\nGtoPdb_get_targets: {'database_name': 'mucoactive and anti-oxidative properties', 'limit': 5}",
+      "prediction": "FDA_get_mechanism_of_action_by_drug_name: {'drug_name': 'Tiotropium', 'limit': 1}",
+      "gt_tools": [
+        "FDA_get_drug_names_by_mechanism_of_action",
+        "FDA_get_drug_names_by_clinical_pharmacology",
+        "FDA_get_drug_name_by_pharmacodynamics",
+        "FDA_get_drug_names_by_pharmacokinetics",
+        "GtoPdb_get_targets"
+      ],
+      "pred_tools": [
+        "FDA_get_mechanism_of_action_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "UniProt_get_function_by_accession: {'accession': 'immunoglobulin'}, {'accession': 'immunoglobulins'}\nenrichr_gene_enrichment_analysis: {'gene_list': ['immunoglobulin'], 'libs': ['WikiPathways_2024_Human', 'Reactome_Pathways_2024', 'MSigDB_Hallmark_2020', 'GO_Molecular_Function_2023', 'GO_Biological_Process_2023']}\nUniProt_search: {'query': 'immunoglobulins'}, {'query': 'dimeric immunoglobulin'}, {'query': 'dimerically structured immunoglobulin'}\nget_polymer_entity_annotations: {'entity_id': 'immunoglobulins'}\nHPA_get_biological_processes_by_gene: {'gene_name': 'immunoglobulin'}, {'gene_name': 'immunoglobulin', 'filter_processes': True}",
+      "prediction": "Immunoglobulin_get_primary_function_by_type: {'immunoglobulin_type': 'IgG'}",
+      "gt_tools": [
+        "UniProt_get_function_by_accession",
+        "enrichr_gene_enrichment_analysis",
+        "UniProt_search",
+        "get_polymer_entity_annotations",
+        "HPA_get_biological_processes_by_gene"
+      ],
+      "pred_tools": [
+        "Immunoglobulin_get_primary_function_by_type"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "euhealthinfo_search_hospital_in_patient_data: {'alpha': 0.5, 'country': 'US', 'language': 'en', 'limit': 5, 'method': 'hybrid', 'term_override': 'delivering difficult medical diagnoses', 'top_k': 5}\nToolQualityEvaluator: {'evaluation_aspects': ['empathy', 'compassion', 'effective communication'], 'test_cases': ['delivering difficult medical diagnoses', 'communicating with patients in sensitive situations'], 'tool_config': {'description': 'Tools that provide guidance on effective communication with patients, especially in sensitive or difficult medical situations.', 'limit': 5}",
+      "prediction": "FDA_get_drug_names_by_indication: {'indication': 'pancreatic cancer', 'limit': 5}",
+      "gt_tools": [
+        "euhealthinfo_search_hospital_in_patient_data",
+        "ToolQualityEvaluator"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_names_by_indication"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': \"The patient's symptoms include worsening back pain, morning stiffness, painful knees, joint pain and stiffness, and a family history of joint issues and osteoporosis. He is also a smoker.\", 'disease_name': 'rheumatoid arthritis'}\nBiomarkerDiscoveryWorkflow: {'disease_condition': 'rheumatoid arthritis', 'sample_type': 'blood'}",
+      "prediction": "FDA_get_drug_names_by_indication: {'indication': 'arthritis', 'limit': 5}",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "BiomarkerDiscoveryWorkflow"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_names_by_indication"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "euhealthinfo_search_alcohol_tobacco_psychoactive_use: {'alpha': 0.5, 'country': 'United States', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'alcohol consumption and cardiac conditions', 'top_k': 5}\neuhealthinfo_search_hospital_in_patient_data: {'alpha': 0.5, 'country': 'United States', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'alcohol consumption and cardiac conditions', 'top_k': 5}",
+      "prediction": "Clinical Guidelines_search_topics_by_keyword: {'term': 'cardiac arrhythmias', 'db': 'MedlinePlus'}\n\nThe most likely diagnosis is ventricular tachycardia.",
+      "gt_tools": [
+        "euhealthinfo_search_alcohol_tobacco_psychoactive_use",
+        "euhealthinfo_search_hospital_in_patient_data"
+      ],
+      "pred_tools": [
+        "Clinical Guidelines_search_topics_by_keyword"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "BiomarkerDiscoveryWorkflow: {'disease_condition': 'serotonin metabolism disorder', 'sample_type': 'urine'}",
+      "prediction": "FDA_get_adverse_reactions_by_drug_name: {'drug_name': 'lisinopril', 'limit': 10}\nDiseaseAnalyzerAgent: {'context': 'patient with gastrointestinal symptoms and hypertension', 'disease_name': 'Undifferentiated carcinoma of the gastrointestinal tract'}",
+      "gt_tools": [
+        "BiomarkerDiscoveryWorkflow"
+      ],
+      "pred_tools": [
+        "FDA_get_adverse_reactions_by_drug_name",
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "FDA_get_indications_by_drug_name: Amoxicillin, Cefazolin, Ceftriaxone, Levofloxacin, Penicillin",
+      "prediction": "ClinicalGuide_search_guidelines: {'query': 'treatment options for a patient with a productive cough and respiratory distress', 'limit': 5}",
+      "gt_tools": [
+        "FDA_get_indications_by_drug_name"
+      ],
+      "pred_tools": [
+        "ClinicalGuide_search_guidelines"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'autoimmune or inflammatory disease', 'disease_name': 'autoimmune or inflammatory disease'}\nBiomarkerDiscoveryWorkflow: {'disease_condition': 'autoimmune or inflammatory disease', 'sample_type': 'blood'}\nOpenTargets_get_target_id_description_by_name: {'targetName': 'Anti-citrullinated protein antibodies'}, {'targetName': 'Erythrocyte sedimentation rate'}, {'targetName': 'Anti-histone bodies'}, {'targetName': 'Anti-Ro'}, {'targetName': 'Antineutrophil cytoplasmic antibodies'}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'corticosteroid nasal spray', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'oral antibiotics', 'limit': 10}\nEuropePMC_search_articles: {'query': 'corticosteroid nasal spray and oral antibiotics in rheumatoid arthritis', 'limit': 5}\n\nThe patient's symptoms and laboratory findings are consistent with rheumatoid arthritis. However, it is important to consult a healthcare professional for a thorough evaluation and proper diagnosis of the patient's condition.",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "BiomarkerDiscoveryWorkflow",
+        "OpenTargets_get_target_id_description_by_name"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "EuropePMC_search_articles"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'painful mass in the groin, ulcerative lymph nodes, history of unprotected sex, Southeast Asia travel', 'disease_name': 'unknown'}\nget_HPO_ID_by_phenotype: {'query': 'painful mass in the groin, ulcerative lymph nodes, history of unprotected sex, Southeast Asia travel', 'limit': 5}\nOpenTargets_get_disease_ids_by_name: painful mass in the groin, ulcerative lymph nodes, history of unprotected sex, Southeast Asia travel",
+      "prediction": "EuropePMC_search_articles: {'query': 'chlamydia trachomatis and lymph nodes', 'limit': 5}",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "get_HPO_ID_by_phenotype",
+        "OpenTargets_get_disease_ids_by_name"
+      ],
+      "pred_tools": [
+        "EuropePMC_search_articles"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "kegg_get_pathway_info: {'pathway_id': 'hsa00010'}\nHPA_get_contextual_biological_process_analysis: {'context_name': 'acute ischemic stroke', 'gene_name': 'TP53'}\nHPA_get_biological_processes_by_gene: {'gene_name': 'TP53'}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'tissue plasminogen activator', 'limit': 10}\nDiseaseAnalyzerAgent: {'context': 'acute ischemic stroke in a patient', 'disease_name': 'Ischemic stroke'}",
+      "gt_tools": [
+        "kegg_get_pathway_info",
+        "HPA_get_contextual_biological_process_analysis",
+        "HPA_get_biological_processes_by_gene"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name",
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "kegg_get_pathway_info: {'pathway_id': 'urea cycle'}\nReactome_get_pathway_reactions: {'stId': 'urea cycle'}\nWikiPathways_get_pathway: {'wpid': 'urea cycle'}, {'wpid': 'WP4973'}, {'wpid': 'WP497'}, {'wpid': 'WP153'}\nkegg_search_pathway: {'keyword': 'urea cycle'}\nWikiPathways_search: {'query': 'urea cycle'}",
+      "prediction": "FDA_get_pharmacokinetics_by_drug_name: Urea cycle enzymes",
+      "gt_tools": [
+        "kegg_get_pathway_info",
+        "Reactome_get_pathway_reactions",
+        "WikiPathways_get_pathway",
+        "kegg_search_pathway",
+        "WikiPathways_search"
+      ],
+      "pred_tools": [
+        "FDA_get_pharmacokinetics_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "FDA_get_indications_by_drug_name: Cyclosporine, Infliximab, Anakinra, Methotrexate, High-dose prednisone for 60 days",
+      "prediction": "FDA_get_indications_by_drug_name: {'drug_name': 'ibuprofen', 'limit': 5}\nFDA_get_mechanism_of_action_by_drug_name: Ibuprofen\nDiseaseAnalyzerAgent: {'context': 'patient with worsening joint pain and type 2 diabetes mellitus', 'disease_name': 'Rheumatoid arthritis'}",
+      "gt_tools": [
+        "FDA_get_indications_by_drug_name"
+      ],
+      "pred_tools": [
+        "FDA_get_indications_by_drug_name",
+        "FDA_get_mechanism_of_action_by_drug_name",
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": true
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "ToolDescriptionOptimizer: {'max_iterations': 3, 'output_file': 'optimized_tool_description.txt', 'satisfaction_threshold': 8, 'save_to_file': True, 'tool_config': {'description': 'Retrieve tools that can access medical literature or databases to gather detailed information on congenital heart defects, including symptoms, diagnostic features, and typical presentations.', 'limit': 5}\nTool_Finder: {'description': 'Retrieve tools that provide detailed information on congenital heart defects, including symptoms, diagnostic features, and typical presentations.', 'limit': 5}\nTool_Finder_LLM: {'categories': ['congenital heart defects'], 'description': 'Retrieve detailed information on congenital heart defects, including symptoms, diagnostic features, and typical presentations.', 'limit': 5}",
+      "prediction": "FDA_get_drug_names_by_indication: {'indication': 'heart defects', 'limit': 5}\nDiseaseAnalyzerAgent: {'context': 'pediatric patient with heart defects', 'disease_name': 'Heart defects'}",
+      "gt_tools": [
+        "ToolDescriptionOptimizer",
+        "Tool_Finder",
+        "Tool_Finder_LLM"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_names_by_indication",
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "MedicalLiteratureReviewer: {'focus_area': 'disseminated intravascular coagulation', 'literature_content': 'systematic review', 'quality_level': 'high', 'review_scope': 'comprehensive systematic review', 'study_types': ['randomized controlled trials', 'meta-analyses', 'cohort studies', 'case-control studies'], 'research_topic': 'disseminated intravascular coagulation'}\nTRIP_Database_Guidelines_Search: {'query': 'disseminated intravascular coagulation', 'limit': 5}, {'query': 'coagulopathy of trauma', 'limit': 5}, {'query': 'fat embolization', 'limit': 5}\nadvanced_literature_search_agent: {'query': 'disseminated intravascular coagulation', 'agents': 5}, {'query': 'coagulopathy of trauma', 'agents': 5}, {'query': 'fat embolization', 'agents': 5}\neuhealthinfo_search_surveillance: {'country': 'USA', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'disseminated intravascular coagulation', 'top_k': 5}\neuhealthinfo_search_hospital_in_patient_data: {'country': 'USA', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'coagulopathy of trauma', 'top_k': 5}\neuhealthinfo_search_cancer_registry: {'country': 'USA', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'fat embolization', 'top_k': 5}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'Tranexamic acid', 'limit': 10}",
+      "gt_tools": [
+        "MedicalLiteratureReviewer",
+        "TRIP_Database_Guidelines_Search",
+        "advanced_literature_search_agent",
+        "euhealthinfo_search_surveillance",
+        "euhealthinfo_search_hospital_in_patient_data",
+        "euhealthinfo_search_cancer_registry"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "WikiPathways_search: {'query': 'Kingella kingae', 'organism': 'Homo sapiens'}, {'query': 'Staphylococcus aureus', 'organism': 'Homo sapiens'}, {'query': 'Escherichia coli', 'organism': 'Homo sapiens'}, {'query': 'Haemophilus aphrophilus', 'organism': 'Homo sapiens'}, {'query': 'Streptococcus bovis', 'organism': 'Homo sapiens'}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'cefotaxime', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'cefepime', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'cefuroxime', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'cefotin', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'cefazolin', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'cefepime', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'cefotaxime', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'cefuroxime', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'cefotin', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'cefazolin', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'cefepime', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'cefotaxime', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'cefuroxime', 'limit': 10}\nFDA_get_drug_interactions_",
+      "gt_tools": [
+        "WikiPathways_search"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "FDA_get_abuse_info_by_drug_name: Alcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\nFDA_get_abuse_dependence_info_by_drug_name: Alcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'haloperidol', 'limit': 10}",
+      "gt_tools": [
+        "FDA_get_abuse_info_by_drug_name",
+        "FDA_get_abuse_dependence_info_by_drug_name"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "get_tool_info: {'detail_level': 'full', 'tool_names': ['ToolRelationshipDetector', 'get_deeptools_info', 'get_pydeseq2_info', 'get_plip_info', 'DescriptionQualityEvaluator', 'get_flowutils_info', 'MethodologyRigorReviewer', 'TestResultsAnalyzer', 'ToolQualityEvaluator']}",
+      "prediction": "PubMed_search_articles: {'query': 'apnea-hypopnea index and sleep apnea', 'limit': 5}\nEuropePMC_search_articles: {'query': 'apnea-hypopnea index and sleep apnea', 'limit': 5}",
+      "gt_tools": [
+        "get_tool_info"
+      ],
+      "pred_tools": [
+        "PubMed_search_articles",
+        "EuropePMC_search_articles"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "get_tool_info: {'detail_level': 'full', 'tool_names': ['FlowKit', 'FlowUtils', 'FlowIO']}\nget_flowutils_info: {'info_type': 'overview'}",
+      "prediction": "FDA_get_drug_names_by_indication: {'indication': 'chronic obstructive pulmonary disease (COPD)', 'limit': 5}\nDiseaseAnalyzerAgent: {'context': 'patient with cough and shortness of breath', 'disease_name': 'COPD'}",
+      "gt_tools": [
+        "get_tool_info",
+        "get_flowutils_info"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_names_by_indication",
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "euhealthinfo_search_hospital_in_patient_data: {'alpha': 0.5, 'country': 'USA', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': \"patient's medical history\", 'top_k': 5}, {'alpha': 0.5, 'country': 'USA', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'recent surgical procedure', 'top_k': 5}\neuhealthinfo_search_infectious_diseases: {'alpha': 0.5, 'country': 'USA', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'surgical site infection', 'top_k': 5}",
+      "prediction": "FDA_get_adverse_reactions_by_drug_name: {'drug_name': 'cephalexin', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'cephalexin', 'limit': 10}\nFAERS_search_adverse_event_reports: {'drug_name': 'cephalexin', 'limit': 10}\nDiseaseAnalyzerAgent: {'context': 'patient with fever and chills after elective cholecystectomy', 'disease_name': 'Surgical site infection'}",
+      "gt_tools": [
+        "euhealthinfo_search_hospital_in_patient_data",
+        "euhealthinfo_search_infectious_diseases"
+      ],
+      "pred_tools": [
+        "FDA_get_adverse_reactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FAERS_search_adverse_event_reports",
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "DescriptionAnalyzer: {'original_description': 'Tzanck smear', 'test_results': {'input': 'A test used to diagnose conditions like pemphigus that present with blisters.', 'output': 'A test that can confirm the presence of acantholytic cells in blister fluid, indicating pemphigus.'}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'metformin', 'limit': 10}\nFDA_get_adverse_reactions_by_drug_name: {'drug_name': 'metformin', 'limit': 10}\nFDA_get_drug_names_by_indication: {'indication': 'systemic lupus erythematosus', 'limit': 5}\nDiseaseAnalyzerAgent: {'context': 'patient with systemic lupus erythematosus', 'disease_name': 'Systemic lupus erythematosus'}\n\nThe patient's symptoms and clinical presentation are consistent with drug-induced lupus erythematosus (DILE). The presence of anti-nuclear antibodies (ANA) and the patient's history of systemic lupus erythematosus (SLE) further support the diagnosis. However, it is important to consult a healthcare professional for a thorough evaluation and proper diagnosis of the patient's condition.",
+      "gt_tools": [
+        "DescriptionAnalyzer"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_adverse_reactions_by_drug_name",
+        "FDA_get_drug_names_by_indication",
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "euhealthinfo_search_causes_of_death: {'alpha': 0.5, 'country': 'USA', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'gastrointestinal bleeding', 'top_k': 5}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'methadone', 'limit': 10}",
+      "gt_tools": [
+        "euhealthinfo_search_causes_of_death"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "euhealthinfo_search_mental_health: {'alpha': 0.5, 'country': 'USA', 'language': 'English', 'limit': 25, 'method': 'hybrid', 'term_override': 'depressive symptoms', 'top_k': 25}\neuhealthinfo_search_obesity: {'alpha': 0.5, 'country': 'USA', 'language': 'English', 'limit': 25, 'method': 'hybrid', 'term_override': 'eating habits', 'top_k': 25}\nBiomarkerDiscoveryWorkflow: {'disease_condition': 'depressive disorder', 'sample_type': 'blood'}\nget_HPO_ID_by_phenotype: {'query': 'depressive symptoms worse in the morning'}",
+      "prediction": "ClinicalGuide_search_topics_by_keyword: {'term': 'depression', 'db': 'MedlinePlus'}",
+      "gt_tools": [
+        "euhealthinfo_search_mental_health",
+        "euhealthinfo_search_obesity",
+        "BiomarkerDiscoveryWorkflow",
+        "get_HPO_ID_by_phenotype"
+      ],
+      "pred_tools": [
+        "ClinicalGuide_search_topics_by_keyword"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "HPA_search_genes_by_query: {'search_query': 'Alkaline phosphatase'}, {'search_query': 'DNase'}, {'search_query': 'RNase'}, {'search_query': 'Superoxide dismutase'}, {'search_query': 'Telomerase'}",
+      "prediction": "OpenTargets_get_associated_targets_by_disease_efoId: {'disease_efoId': 'LIPOSARCOMA', 'limit': 10}",
+      "gt_tools": [
+        "HPA_search_genes_by_query"
+      ],
+      "pred_tools": [
+        "OpenTargets_get_associated_targets_by_disease_efoId"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "EuropePMC_Guidelines_Search: {'limit': 5, 'query': 'neurological disorder', 'year_from': 2010, 'year_to': 2023}, {'limit': 5, 'query': 'difficulty concentrating, fatigue, weight increase, joint pain', 'year_from': 2010, 'year_to': 2023}\nGIN_Guidelines_Search: {'limit': 5, 'query': 'difficulty concentrating, fatigue, weight increase, joint pain'}\nOpenAlex_Guidelines_Search: {'limit': 5, 'query': 'difficulty concentrating, fatigue, weight increase, joint pain'}\nBiomarkerDiscoveryWorkflow: {'disease_condition': 'difficulty concentrating, fatigue, weight increase, joint pain', 'sample_type': 'blood'}\nMedlinePlus_get_genetics_condition_by_name: {'condition': 'neurological disorder', 'format': 'json'}\nFDA_get_drug_name_by_info_on_conditions_for_doctor_consultation: {'condition': 'neurological disorder', 'limit': 5}\ndrugbank_filter_drugs_by_name: {'condition': 'neurological disorder', 'limit': 5}, {'condition': 'neurological disorder', 'value': 'Amphetamine Sulfate', 'limit': 5}, {'condition': 'neurological disorder', 'value': 'Dextroamphetamine Sulfate', 'limit': 5}\nclinvar_search_variants: {'condition': 'neurological disorder', 'gene': 'BRCA1', 'max_results': 5}\neuhealthinfo_search_hospital_in_patient_data: {'alpha': 0.5, 'country': 'United States', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'neurological disorder'}\nFDA_get_drug_names_by_lab_tests: {'lab_test_info': 'neurological disorder', 'indication': 'neurological disorder', 'limit': 5}",
+      "prediction": "ClinicalGuide_PHQ_9_score: {'patient': '24-year-old woman'}\nClinicalGuide_TSH_level: {'patient': '24-year-old woman'}\nClinicalGuide_carbidopa_levodopa_administration: {'patient': '24-year-old woman'}\nClinicalGuide_anti_CCP_antibodies: {'patient': '24-year-old woman'}\nClinicalGuide_urine_toxicology: {'patient': '24-year-old woman'}",
+      "gt_tools": [
+        "EuropePMC_Guidelines_Search",
+        "GIN_Guidelines_Search",
+        "OpenAlex_Guidelines_Search",
+        "BiomarkerDiscoveryWorkflow",
+        "MedlinePlus_get_genetics_condition_by_name",
+        "FDA_get_drug_name_by_info_on_conditions_for_doctor_consultation",
+        "drugbank_filter_drugs_by_name",
+        "clinvar_search_variants",
+        "euhealthinfo_search_hospital_in_patient_data",
+        "FDA_get_drug_names_by_lab_tests"
+      ],
+      "pred_tools": [
+        "ClinicalGuide_PHQ_9_score",
+        "ClinicalGuide_TSH_level",
+        "ClinicalGuide_carbidopa_levodopa_administration",
+        "ClinicalGuide_anti_CCP_antibodies",
+        "ClinicalGuide_urine_toxicology"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "MedlinePlus_get_genetics_condition_by_name: {'condition': 'micrognathia, broad nasal bridge, short philtrum, small low-set ears, cleft palate, single overriding great vessel', 'format': 'json'}\nHPA_search_genes_by_query: {'search_query': 'micrognathia, broad nasal bridge, short philtrum, small low-set ears, cleft palate, single overriding great vessel'}, {'search_query': 'micrognathia'}, {'search_query': 'broad nasal bridge'}\nget_phenotype_by_HPO_ID: {'id': 'micrognathia'}\nget_HPO_ID_by_phenotype: {'query': 'micrognathia'}, {'query': 'broad nasal bridge'}, {'query': 'short philtrum'}\nget_joint_associated_diseases_by_HPO_ID_list: {'HPO_ID_list': ['HP:0000347']}, {'HPO_ID_list': ['HP:0000431']}, {'HPO_ID_list': ['HP:0000322']}",
+      "prediction": "DiseaseAnalyzerAgent: {'context': 'evaluating the newborn's condition', 'disease_name': 'Congenital heart defects'}",
+      "gt_tools": [
+        "MedlinePlus_get_genetics_condition_by_name",
+        "HPA_search_genes_by_query",
+        "get_phenotype_by_HPO_ID",
+        "get_HPO_ID_by_phenotype",
+        "get_joint_associated_diseases_by_HPO_ID_list"
+      ],
+      "pred_tools": [
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'The patient has a painless mass in the left testicle with high AFP and hCG levels, and biopsy results showing glomeruli-like structures with a central capillary within a mesodermal core, lined by flattened layers of germ cells.', 'disease_name': 'Teratoma'}\nBiomarkerDiscoveryWorkflow: {'disease_condition': 'Teratoma', 'sample_type': 'blood'}",
+      "prediction": "OpenTargets_get_associated_drugs_by_drug_name: {'drug_name': 'cisplatin', 'limit': 5}\nFDA_get_mechanism_of_action_by_drug_name: Cisplatin\nDiseaseAnalyzerAgent: {'context': 'testicular cancer in a 10-year-old boy', 'disease_name': 'Testicular cancer'}",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "BiomarkerDiscoveryWorkflow"
+      ],
+      "pred_tools": [
+        "OpenTargets_get_associated_drugs_by_drug_name",
+        "FDA_get_mechanism_of_action_by_drug_name",
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "NICE_Clinical_Guidelines_Search: {'query': 'immediate debridement and empiric IV antibiotics for severe infections or abscesses', 'limit': 5}\nEuropePMC_Guidelines_Search: {'query': 'immediate debridement and empiric IV antibiotics for severe infections or abscesses', 'limit': 5}\nCMA_Guidelines_Search: {'query': 'immediate debridement and empiric IV antibiotics for severe infections or abscesses', 'limit': 5}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'ipratropium bromide', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'levofloxacin', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'metoprolol', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'metformin', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'nebulized albuterol', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'pulsed methylprednisolone', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'atorvastatin', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'clopidogrel', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'enalapril', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'galantamine', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'ipratropium bromide', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'levofloxacin', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'metoprolol', 'limit': 10}",
+      "gt_tools": [
+        "NICE_Clinical_Guidelines_Search",
+        "EuropePMC_Guidelines_Search",
+        "CMA_Guidelines_Search"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "drugbank_filter_drugs_by_name: {'condition': 'Atropine', 'value': 'Atropine', 'limit': 5}, {'condition': 'Physostigmine', 'value': 'Physostigmine', 'limit': 5}, {'condition': 'Pralidoxime', 'value': 'Pralidoxime', 'limit': 5}, {'condition': 'Pyridostigmine', 'value': 'Pyridostigmine', 'limit': 5}, {'condition': 'Neostigmine', 'value': 'Neostigmine', 'limit': 5}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'Atropine', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'Physostigmine', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'Pralidoxime', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'Pyridostigmine', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'Neostigmine', 'limit': 10}\n\nThe patient's symptoms and the presence of enlarged pupils suggest that she may have ingested a plant containing a toxic substance. The drugs mentioned in the question are used to treat conditions related to the autonomic nervous system, such as myasthenia gravis or organophosphate poisoning. The tool calls help to determine which of these drugs would be most appropriate for this patient based on her symptoms and the potential drug interactions.",
+      "gt_tools": [
+        "drugbank_filter_drugs_by_name"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "AdverseEventPredictionQuestionGenerator: rhinoplasty\nFAERS_search_adverse_event_reports: {'medicinalproduct': 'rhinoplasty'}",
+      "prediction": "FDA_get_drug_names_by_indication: {'indication': 'rhinoplasty', 'limit': 5}",
+      "gt_tools": [
+        "AdverseEventPredictionQuestionGenerator",
+        "FAERS_search_adverse_event_reports"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_names_by_indication"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "LiteratureSynthesisAgent: {'topic': 'anatomy of the shoulder and nerves that innervate the skin areas', 'literature_data': 'The nerves that innervate the skin areas around the shoulder include the suprascapular nerve, axillary nerve, and radial nerve. These nerves provide sensation to specific areas of the skin.'}\neuhealthinfo_search_hospital_in_patient_data: {'alpha': 0.5, 'country': 'shoulder', 'language': 'English', 'limit': 5}",
+      "prediction": "EuropePMC_search_articles: {'query': 'shoulder dislocation', 'limit': 5}",
+      "gt_tools": [
+        "LiteratureSynthesisAgent",
+        "euhealthinfo_search_hospital_in_patient_data"
+      ],
+      "pred_tools": [
+        "EuropePMC_search_articles"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "euhealthinfo_search_alcohol_tobacco_psychoactive_use: {'alpha': 0.5, 'country': 'US', 'language': 'English', 'limit': 25, 'term_override': 'gastric perforation', 'top_k': 25}",
+      "prediction": "FDA_get_drug_names_by_indication: {'indication': 'suicide attempt', 'limit': 5}\nFDA_get_mechanism_of_action_by_drug_name: {'drug_name': 'unknown', 'limit': 10}",
+      "gt_tools": [
+        "euhealthinfo_search_alcohol_tobacco_psychoactive_use"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_mechanism_of_action_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "FDA_get_mechanism_of_action_by_drug_name: stimulant",
+      "prediction": "FDA_get_mechanism_of_action_by_drug_name: Cocaine",
+      "gt_tools": [
+        "FDA_get_mechanism_of_action_by_drug_name"
+      ],
+      "pred_tools": [
+        "FDA_get_mechanism_of_action_by_drug_name"
+      ],
+      "exact_match": true,
+      "first_tool_match": true
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "FDA_get_drug_names_by_indication: {'indication': 'sleep difficulty, anxiety, restless leg syndrome', 'limit': 5}\nFDA_get_drug_names_by_indication_aggregated: {'indication': 'sleep difficulty, anxiety, restless leg syndrome'}",
+      "prediction": "FDA_get_indications_by_drug_name: {'drug_name': 'Amitryptiline', 'limit': 10}\nFDA_get_indications_by_drug_name: {'drug_name': 'Pramipexole', 'limit': 10}\nFDA_get_indications_by_drug_name: {'drug_name': 'Codeine', 'limit': 10}\nFDA_get_indications_by_drug_name: {'drug_name': 'Propranolol', 'limit': 10}\nFDA_get_indications_by_drug_name: {'drug_name': 'Escitalopram', 'limit': 10}",
+      "gt_tools": [
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_drug_names_by_indication_aggregated"
+      ],
+      "pred_tools": [
+        "FDA_get_indications_by_drug_name",
+        "FDA_get_indications_by_drug_name",
+        "FDA_get_indications_by_drug_name",
+        "FDA_get_indications_by_drug_name",
+        "FDA_get_indications_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "euhealthinfo_search_hospital_in_patient_data: {'alpha': 0.5, 'country': 'USA', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'pancreatitis', 'top_k': 5}\neuhealthinfo_search_surveillance: {'alpha': 0.5, 'country': 'USA', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'pancreatitis', 'top_k': 5}\nBiomarkerDiscoveryWorkflow: {'disease_condition': 'pancreatitis', 'sample_type': 'blood'}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'enalapril', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'furosemide', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'simvastatin', 'limit': 10}",
+      "gt_tools": [
+        "euhealthinfo_search_hospital_in_patient_data",
+        "euhealthinfo_search_surveillance",
+        "BiomarkerDiscoveryWorkflow"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "kegg_search_pathway: {'keyword': 'aggressive behavior hyperactivity intellectual disability coarse facies short stature joint stiffness'}, {'keyword': 'lysosomal storage disorder'}\nOpenTargets_get_diseases_phenotypes_by_target_ensembl: {'ensemblId': 'Homo sapiens'}\nget_HPO_ID_by_phenotype: {'query': 'aggressive behavior', 'limit': 1}, {'query': 'hyperactivity', 'limit': 1}, {'query': 'intellectual disability', 'limit': 1}, {'query': 'coarse facies', 'limit': 1}, {'query': 'short stature', 'limit': 1}, {'query': 'joint stiffness', 'limit': 1}\nget_joint_associated_diseases_by_HPO_ID_list: {'HPO_ID_list': ['NBO:0000015', 'MP:0001399', 'HP:0001249', 'HP:0000280', 'HP:0004322', 'HP:0001387']}\nHPA_search_genes_by_query: {'search_query': 'aggressive behavior', 'required': True}, {'search_query': 'hyperactivity', 'required': True}, {'search_query': 'intellectual disability', 'required': True}, {'search_query': 'coarse facies', 'required': True}, {'search_query': 'short stature', 'required': True}, {'search_query': 'joint stiffness', 'required': True}\nGO_search_terms: {'query': 'lysosomal storage disorder'}\nPubChem_search_compounds_by_substructure: {'smiles': 'Cerebroside sulfate', 'required': True}, {'smiles': 'Galactocerebroside', 'required': True}, {'smiles': 'Glucocerebroside', 'required': True}, {'smiles': 'Heparan sulfate', 'required': True}, {'smiles': 'Sphingomyelin', 'required': True}",
+      "prediction": "OpenTargets_get_target_id_description_by_name: {'gene_name': 'GALC'}",
+      "gt_tools": [
+        "kegg_search_pathway",
+        "OpenTargets_get_diseases_phenotypes_by_target_ensembl",
+        "get_HPO_ID_by_phenotype",
+        "get_joint_associated_diseases_by_HPO_ID_list",
+        "HPA_search_genes_by_query",
+        "GO_search_terms",
+        "PubChem_search_compounds_by_substructure"
+      ],
+      "pred_tools": [
+        "OpenTargets_get_target_id_description_by_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "MedlinePlus_get_genetics_condition_by_name: {'condition': 'Down syndrome', 'format': 'json'}\nOpenTargets_get_disease_ids_by_name: Gastric adenocarcinoma, Astrocytoma and cardiac rhabdomyoma, Hepatocellular carcinoma, Esophageal adenocarcinoma, Acute lymphocytic leukemia",
+      "prediction": "DiseaseAnalyzerAgent: {'context': 'patient with Down syndrome', 'disease_name': 'Gastric adenocarcinoma'}",
+      "gt_tools": [
+        "MedlinePlus_get_genetics_condition_by_name",
+        "OpenTargets_get_disease_ids_by_name"
+      ],
+      "pred_tools": [
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "MedicalLiteratureReviewer: {'focus_area': 'typical presentations and associations of thyroid nodules', 'literature_content': 'endemic goiter', 'quality_level': 'high', 'review_scope': 'systematic review', 'study_types': ['case-control studies', 'cohort studies'], 'research_topic': 'endemic goiter'}\nEuropePMC_Guidelines_Search: {'query': 'thyroid nodules', 'limit': 5}",
+      "prediction": "FDA_get_indications_by_drug_name: Thyroid nodule\nFDA_get_mechanism_of_action_by_drug_name: Thyroid nodule\nFDA_get_drug_interactions_by_drug_name: Thyroid nodule\nFDA_get_adverse_reactions_by_drug_name: Thyroid nodule\nFDA_get_contraindications_by_drug_name: Thyroid nodule\nFDA_get_drug_names_by_indication: Thyroid nodule\nFDA_get_boxed_warning_info_by_drug_name: Thyroid nodule\nFDA_get_pregnancy_or_breastfeeding_info_by_drug_name: Thyroid nodule\nFDA_get_pediatric_use_info_by_drug_name: Thyroid nodule\nFDA_get_overdosage_info_by_drug_name: Thyroid nodule\nFDA_get_pharmacokinetics_by_drug_name: Thyroid nodule\nFDA_get_pharmacodynamics_by_drug_name: Thyroid nodule\nFDA_get_clinical_pharmacology_by_drug_name: Thyroid nodule\nFDA_get_dosage_and_storage_information_by_drug_name: Thyroid nodule\nOpenTargets_get_disease_ids_by_name: Thyroid nodule\nOpenTargets_get_target_id_description_by_name: Thyroid nodule\nOpenTargets_get_associated_targets_by_disease_efoId: Thyroid nodule\nOpenTargets_get_associated_drugs_by_disease_efoId: Thyroid nodule\nOpenTargets_get_associated_drugs_by_target_ensemblID: Thyroid nodule\nOpenTargets_get_drug_mechanisms_of_action_by_chemblId: Thyroid nodule\nOpenTargets_",
+      "gt_tools": [
+        "MedicalLiteratureReviewer",
+        "EuropePMC_Guidelines_Search"
+      ],
+      "pred_tools": [
+        "FDA_get_indications_by_drug_name",
+        "FDA_get_mechanism_of_action_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_adverse_reactions_by_drug_name",
+        "FDA_get_contraindications_by_drug_name",
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_boxed_warning_info_by_drug_name",
+        "FDA_get_pregnancy_or_breastfeeding_info_by_drug_name",
+        "FDA_get_pediatric_use_info_by_drug_name",
+        "FDA_get_overdosage_info_by_drug_name",
+        "FDA_get_pharmacokinetics_by_drug_name",
+        "FDA_get_pharmacodynamics_by_drug_name",
+        "FDA_get_clinical_pharmacology_by_drug_name",
+        "FDA_get_dosage_and_storage_information_by_drug_name",
+        "OpenTargets_get_disease_ids_by_name",
+        "OpenTargets_get_target_id_description_by_name",
+        "OpenTargets_get_associated_targets_by_disease_efoId",
+        "OpenTargets_get_associated_drugs_by_disease_efoId",
+        "OpenTargets_get_associated_drugs_by_target_ensemblID",
+        "OpenTargets_get_drug_mechanisms_of_action_by_chemblId"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "HPA_get_biological_processes_by_gene: {'gene_name': 'TH17', 'filter_processes': True}\nenrichr_gene_enrichment_analysis: {'gene_list': ['TH1', 'TH2', 'TH17', 'T0', 'TREGS'], 'libs': ['GO_Biological_Process_2023']}",
+      "prediction": "OpenTargets_get_associated_targets_by_drug_ensemblID: {'drug_name': 'mebendazole', 'limit': 10}\nDiseaseAnalyzerAgent: {'context': 'parasitic infection in a child', 'disease_name': 'Parasitic infection in children'}",
+      "gt_tools": [
+        "HPA_get_biological_processes_by_gene",
+        "enrichr_gene_enrichment_analysis"
+      ],
+      "pred_tools": [
+        "OpenTargets_get_associated_targets_by_drug_ensemblID",
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "get_HPO_ID_by_phenotype: {'query': 'difficulty speaking', 'limit': 5}, {'query': 'word retrieval issues', 'limit': 5}\nget_joint_associated_diseases_by_HPO_ID_list: {'HPO_ID_list': ['HP:0002465', 'HP:0001618'], 'limit': 5}\nTool_Finder_LLM: {'categories': ['neurological disorders', 'word retrieval issues', 'difficulty speaking'], 'description': 'A tool that can provide information on neurological disorders or symptoms related to word retrieval issues and difficulty speaking.', 'limit': 5}",
+      "prediction": "FDA_get_drug_names_by_indication: {'indication': 'hypertension', 'limit': 5}\nFDA_get_mechanism_of_action_by_drug_name: Hydrochlorothiazide",
+      "gt_tools": [
+        "get_HPO_ID_by_phenotype",
+        "get_joint_associated_diseases_by_HPO_ID_list",
+        "Tool_Finder_LLM"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_mechanism_of_action_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "Tool_Finder: {'description': 'A tool that can calculate probabilities from a normal distribution, given the mean and standard error.', 'limit': 5}\nexecute_tool: {'tool_name': 'Tool_RAG', 'arguments': {'description': 'A tool that can calculate probabilities from a normal distribution, given the mean and standard error.', 'limit': 5}\nTool_Finder_LLM: {'categories': ['probability calculation', 'normal distribution', 'mean', 'standard error'], 'description': 'A tool that can calculate probabilities from normal distributions, given the mean and standard error.', 'limit': 5}",
+      "prediction": "StatisticalAnalysisAgent: {'context': 'hemoglobin concentration distribution in the population', 'hemoglobin_mean': 17, 'hemoglobin_standard_error': 0.1, 'hemoglobin_greater_than_18_g_dL': 18}",
+      "gt_tools": [
+        "Tool_Finder",
+        "execute_tool",
+        "Tool_Finder_LLM"
+      ],
+      "pred_tools": [
+        "StatisticalAnalysisAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "Epinephrine: {'epinephrine': '1', 'dose': '1', 'route': '1'}\nPropranolol: {'propranolol': '1', 'dose': '1', 'route': '1'}\nClonazepam: {'clonazepam': '1', 'dose': '1', 'route': '1'}\nCarotid massage: {'carotid_massage': '1', 'dose': '1', 'route': '1'}\nAntibiotics: {'antibiotics': '1', 'dose': '1', 'route': '1'}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'methimazole', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'ibuprofen', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'methimazole', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'ibuprofen', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'methimazole', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'ibuprofen', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'methimazole', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'ibuprofen', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'methimazole', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'ibuprofen', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'methimazole', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'ibuprofen', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'methimazole', 'limit': 10}\nFDA_get_drug_interactions",
+      "gt_tools": [
+        "Epinephrine",
+        "Propranolol",
+        "Clonazepam",
+        "Carotid massage",
+        "Antibiotics"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "Methadone: {'dose': 10, 'route': 'oral'}\nMorphine: {'dose': 10, 'route': 'oral'}\nNaloxone: {'dose': 10, 'route': 'intravenous'}",
+      "prediction": "FDA_get_indications_by_drug_name: {'drug_name': 'lorazepam', 'limit': 5}\nFDA_get_indications_by_drug_name: {'drug_name': 'naltrexone', 'limit': 5}\nFDA_get_indications_by_drug_name: {'drug_name': 'methadone', 'limit': 5}\nFDA_get_indications_by_drug_name: {'drug_name': 'morphine', 'limit': 5}\nFDA_get_indications_by_drug_name: {'drug_name': 'naloxone', 'limit': 5}\n\nThe most appropriate pharmacotherapy for this patient would be lorazepam, which is indicated for the treatment of anxiety.",
+      "gt_tools": [
+        "Methadone",
+        "Morphine",
+        "Naloxone"
+      ],
+      "pred_tools": [
+        "FDA_get_indications_by_drug_name",
+        "FDA_get_indications_by_drug_name",
+        "FDA_get_indications_by_drug_name",
+        "FDA_get_indications_by_drug_name",
+        "FDA_get_indications_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "get_risk_info: {'risk': 'Colorectal cancer', 'condition': 'Ulcerative colitis'}",
+      "prediction": "FDA_get_indications_by_drug_name: {'drug_name': 'mesalazine', 'limit': 5}\nFDA_get_mechanism_of_action_by_drug_name: Mesalazine\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'mesalazine', 'limit': 5}\nFDA_get_adverse_reactions_by_drug_name: {'drug_name': 'mesalazine', 'limit': 5}\nFDA_get_contraindications_by_drug_name: {'drug_name': 'mesalazine', 'limit': 5}\nFDA_get_drug_names_by_indication: {'indication': 'ulcerative colitis', 'limit': 5}\nFDA_get_boxed_warning_info_by_drug_name: {'drug_name': 'mesalazine', 'limit': 5}\nFDA_get_pregnancy_or_breastfeeding_info_by_drug_name: {'drug_name': 'mesalazine', 'limit': 5}\nFDA_get_pediatric_use_info_by_drug_name: {'drug_name': 'mesalazine', 'limit': 5}\nFDA_get_geriatric_use_info_by_drug_name: {'drug_name': 'mesalazine', 'limit': 5}\nFDA_get_overdosage_info_by_drug_name: {'drug_name': 'mesalazine', 'limit': 5}\nFDA_get_pharmacokinetics_by_drug_name: {'drug_name': 'mesalazine', 'limit': 5}\nFDA_get_pharmacodynamics_by_drug_name: {'drug_name': 'mesalazine', 'limit': 5}\nFDA_get_clinical_pharmacology_by_drug_name: {'drug_name': 'mesalazine', 'limit': 5}\nFDA_get_dosage",
+      "gt_tools": [
+        "get_risk_info"
+      ],
+      "pred_tools": [
+        "FDA_get_indications_by_drug_name",
+        "FDA_get_mechanism_of_action_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_adverse_reactions_by_drug_name",
+        "FDA_get_contraindications_by_drug_name",
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_boxed_warning_info_by_drug_name",
+        "FDA_get_pregnancy_or_breastfeeding_info_by_drug_name",
+        "FDA_get_pediatric_use_info_by_drug_name",
+        "FDA_get_geriatric_use_info_by_drug_name",
+        "FDA_get_overdosage_info_by_drug_name",
+        "FDA_get_pharmacokinetics_by_drug_name",
+        "FDA_get_pharmacodynamics_by_drug_name",
+        "FDA_get_clinical_pharmacology_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "Megestrol: {'indication': 'pregnancy termination', 'usage': 'early pregnancy'}\nTamoxifen: {'indication': 'pregnancy termination', 'usage': 'early pregnancy'}\nTerbutaline: {'indication': 'pregnancy termination', 'usage': 'early pregnancy'}\nMifepristone: {'indication': 'pregnancy termination', 'usage': 'early pregnancy'}\nCopper intrauterine device: {'indication': 'pregnancy termination', 'usage': 'early pregnancy'}\nFDA_get_indications_by_drug_name: Megestrol, Tamoxifen, Terbutaline, Mifepristone, Copper intrauterine device",
+      "prediction": "FDA_get_drug_names_by_indication: {'indication': 'medical abortion', 'limit': 5}",
+      "gt_tools": [
+        "Megestrol",
+        "Tamoxifen",
+        "Terbutaline",
+        "Mifepristone",
+        "Copper intrauterine device",
+        "FDA_get_indications_by_drug_name"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_names_by_indication"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "whiff test: {'discharge': 'yellow-green', 'pH': 5.8}\nwet mount examination: {'discharge': 'yellow-green'}",
+      "prediction": "PubMed_search_articles: {'query': 'vaginal discharge and pelvic examination findings', 'limit': 5}",
+      "gt_tools": [
+        "whiff test",
+        "wet mount examination"
+      ],
+      "pred_tools": [
+        "PubMed_search_articles"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "get_drug_induced_autoantibodies: demeclocycline, amoxicillin",
+      "prediction": "FDA_get_adverse_reactions_by_drug_name: {'drug_name': 'demeclocycline', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'demeclocycline', 'limit': 10}\nFDA_get_drug_names_by_indication: {'indication': 'malignancy-associated hyponatremia', 'limit': 5}\nFDA_get_mechanism_of_action_by_drug_name: Demeclocycline\n\nThe most likely cause of the patient's symptoms is a drug-induced allergic reaction.",
+      "gt_tools": [
+        "get_drug_induced_autoantibodies"
+      ],
+      "pred_tools": [
+        "FDA_get_adverse_reactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_mechanism_of_action_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "Vaginal culture: {'description': \"Perform a vaginal culture to identify the cause of the discharge and ensure the neonate's safety.\", 'options': ['Vaginal culture', 'Warm water irrigation of the vagina', 'Reassurance']}\nWarm water irrigation of the vagina: {'description': 'Perform a warm water irrigation of the vagina to clean the area and potentially alleviate symptoms.', 'options': ['Vaginal culture', 'Warm water irrigation of the vagina', 'Reassurance']}\nReassurance: {'description': 'Provide reassurance to the mother and neonate, as the symptoms may be normal for a neonate.', 'options': ['Vaginal culture', 'Warm water irrigation of the vagina', 'Reassurance']}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'azithromycin', 'limit': 10}",
+      "gt_tools": [
+        "Vaginal culture",
+        "Warm water irrigation of the vagina",
+        "Reassurance"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "Synovial fluid analysis: {'description': 'Synovial fluid analysis can help identify inflammatory or infectious conditions affecting the joints.'}\nAnti-cyclic citrullinated peptide (anti-CCP) antibody: {'description': 'Anti-CCP antibody is often used to diagnose rheumatoid arthritis, but it can also be positive in other autoimmune conditions.'}\nRheumatoid factor: {'description': 'Rheumatoid factor is commonly used to diagnose rheumatoid arthritis, but it can also be positive in other autoimmune conditions.'}\nCT scan: {'description': 'A CT scan can help identify structural abnormalities or other conditions affecting the cervical spine.'}\nX-ray of cervical spine: {'description': 'An X-ray of the cervical spine can help identify structural abnormalities or other conditions affecting the cervical spine.'}",
+      "prediction": "DiseaseAnalyzerAgent: {'context': 'patient with recurrent wrist and neck pain, erythematous and tender metacarpophalangeal joints, and a family history of fibromyalgia', 'disease_name': 'Fibromyalgia'}",
+      "gt_tools": [
+        "Synovial fluid analysis",
+        "Anti-cyclic citrullinated peptide (anti-CCP) antibody",
+        "Rheumatoid factor",
+        "CT scan",
+        "X-ray of cervical spine"
+      ],
+      "pred_tools": [
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "get_preventive_measures_for_kidney_stones: {'risk_factor': 'calcium oxalate stones', 'preventive_measure': 'decreasing calcium intake'}, {'risk_factor': 'calcium oxalate stones', 'preventive_measure': 'decreasing sodium intake'}, {'risk_factor': 'calcium oxalate stones', 'preventive_measure': 'increasing consumption of nuts and seeds'}, {'risk_factor': 'calcium oxalate stones', 'preventive_measure': 'loop diuretic pharmacotherapy'}, {'risk_factor': 'calcium oxalate stones', 'preventive_measure': 'urine acidification with cranberry juice'}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'loop diuretic', 'limit': 10}",
+      "gt_tools": [
+        "get_preventive_measures_for_kidney_stones"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "get_drug_names_by_indication: {'indication': 'malaria prophylaxis', 'population': 'pregnant women'}, {'indication': 'malaria prophylaxis', 'population': 'general'}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'folic acid', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'iron supplement', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'doxycycline', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'primaquine', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'mefloquine', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'chloroquine', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'proguanil', 'limit': 10}\n\nAnswer: The most suitable drug for pre-exposure prophylaxis against malaria in this case is doxycycline.",
+      "gt_tools": [
+        "get_drug_names_by_indication"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "Answer"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "get_side_effects_by_drug_name: Metformin, Simvastatin, Aspirin, Glyburide, Lisinopril",
+      "prediction": "FDA_get_adverse_reactions_by_drug_name: {'drug_name': ['metformin', 'simvastatin', 'aspirin', 'glyburide', 'lisinopril'], 'limit': 10}",
+      "gt_tools": [
+        "get_side_effects_by_drug_name"
+      ],
+      "pred_tools": [
+        "FDA_get_adverse_reactions_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "TSH: {'TSH': 'elevated'}\nT3: {'T3': 'elevated'}\nT4: {'T4': 'elevated'}\nerythropoietin: {'erythropoietin': 'elevated'}",
+      "prediction": "FDA_get_drug_names_by_indication: {'indication': 'weight gain', 'limit': 5}\nFDA_get_adverse_reactions_by_drug_name: {'drug_name': 'weight gain', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'weight gain', 'limit': 10}\nFDA_get_drug_names_by_indication: {'indication': 'constipation', 'limit': 5}\nFDA_get_adverse_reactions_by_drug_name: {'drug_name': 'constipation', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'constipation', 'limit': 10}\nFDA_get_drug_names_by_indication: {'indication': 'fatigue', 'limit': 5}\nFDA_get_adverse_reactions_by_drug_name: {'drug_name': 'fatigue', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'fatigue', 'limit': 10}\nFDA_get_drug_names_by_indication: {'indication': 'weight loss', 'limit': 5}\nFDA_get_adverse_reactions_by_drug_name: {'drug_name': 'weight loss', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'weight loss', 'limit': 10}\nFDA_get_drug_names_by_indication: {'indication': 'diabetes mellitus', 'limit': 5}\nFDA_get_adverse_reactions_by_drug_name: {'drug_name': 'diabetes mellitus', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug",
+      "gt_tools": [
+        "TSH",
+        "T3",
+        "T4",
+        "erythropoietin"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_adverse_reactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_adverse_reactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_adverse_reactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_adverse_reactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_adverse_reactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "FDA_get_indications_by_drug_name: Amitryptiline, Pramipexole, Codeine, Propranolol, Escitalopram",
+      "prediction": "FDA_get_indications_by_drug_name: {'drug_name': 'Amitryptiline', 'limit': 10}\nFDA_get_indications_by_drug_name: {'drug_name': 'Pramipexole', 'limit': 10}\nFDA_get_indications_by_drug_name: {'drug_name': 'Codeine', 'limit': 10}\nFDA_get_indications_by_drug_name: {'drug_name': 'Propranolol', 'limit': 10}\nFDA_get_indications_by_drug_name: {'drug_name': 'Escitalopram', 'limit': 10}",
+      "gt_tools": [
+        "FDA_get_indications_by_drug_name"
+      ],
+      "pred_tools": [
+        "FDA_get_indications_by_drug_name",
+        "FDA_get_indications_by_drug_name",
+        "FDA_get_indications_by_drug_name",
+        "FDA_get_indications_by_drug_name",
+        "FDA_get_indications_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": true
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'pancreatitis', 'disease_name': 'pancreatitis'}\nTool_Finder_LLM: {'categories': ['pancreatitis'], 'description': \"A tool that can analyze medical symptoms and laboratory findings to determine the underlying cause of a patient's condition, specifically focusing on pancreatic conditions.\", 'limit': 5}\nFDA_get_drug_names_by_indication: {'indication': 'pancreatitis'}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'enalapril', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'furosemide', 'limit': 10}\nFDA_get_drug_interactions_by_drug_name: {'drug_name': 'simvastatin', 'limit': 10}",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "Tool_Finder_LLM",
+        "FDA_get_drug_names_by_indication"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "GO_get_genes_for_term: {'id': 'lysosomal storage disorder', 'rows': 5}, {'id': 'lysosomal storage disorder', 'taxon': 'Human', 'rows': 5}\nGO_search_terms: {'query': 'lysosomal storage disorder'}\nPubChem_search_compounds_by_substructure: {'smiles': 'Cerebroside sulfate'}, {'smiles': 'Galactocerebroside'}, {'smiles': 'Glucocerebroside'}, {'smiles': 'Heparan sulfate'}, {'smiles': 'Sphingomyelin'}\nHPA_search_genes_by_query: {'search_query': 'aggressive behavior'}",
+      "prediction": "OpenTargets_get_target_id_description_by_name: {'gene_name': 'GALC'}",
+      "gt_tools": [
+        "GO_get_genes_for_term",
+        "GO_search_terms",
+        "PubChem_search_compounds_by_substructure",
+        "HPA_search_genes_by_query"
+      ],
+      "pred_tools": [
+        "OpenTargets_get_target_id_description_by_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "HPA_search_genes_by_query: {'search_query': 'Down syndrome'}\nOpenTargets_get_diseases_phenotypes_by_target_ensembl: {'ensemblId': 'ENSG00000171587'}, {'ensemblId': 'ENSG00000177103'}, {'ensemblId': 'ENSG00000157538'}, {'ensemblId': 'ENSG00000159200'}, {'ensemblId': 'ENSG00000159263'}",
+      "prediction": "DiseaseAnalyzerAgent: {'context': 'patient with Down syndrome', 'disease_name': 'Gastric adenocarcinoma'}",
+      "gt_tools": [
+        "HPA_search_genes_by_query",
+        "OpenTargets_get_diseases_phenotypes_by_target_ensembl"
+      ],
+      "pred_tools": [
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'Endemic goiter', 'disease_name': 'Endemic goiter'}, {'context': 'Follicular carcinoma', 'disease_name': 'Follicular carcinoma'}, {'context': 'Graves\u2019 disease', 'disease_name': 'Graves\u2019 disease'}, {'context': 'Hashimoto thyroiditis', 'disease_name': 'Hashimoto thyroiditis'}, {'context': 'Papillary carcinoma', 'disease_name': 'Papillary carcinoma'}\nget_joint_associated_diseases_by_HPO_ID_list: {'HPO_ID_list': ['solitary nodule in the thyroid gland'], 'limit': 5}\neuhealthinfo_search_causes_of_death: {'term_override': 'Endemic goiter'}, {'term_override': 'Follicular carcinoma'}, {'term_override': 'Graves\u2019 disease'}, {'term_override': 'Hashimoto thyroiditis'}, {'term_override': 'Papillary carcinoma'}\nget_clinical_trial_eligibility_criteria: {'eligibility_criteria': 'Endemic goiter'}, {'eligibility_criteria': 'Follicular carcinoma'}, {'eligibility_criteria': 'Graves\u2019 disease'}, {'eligibility_criteria': 'Hashimoto thyroiditis'}, {'eligibility_criteria': 'Papillary carcinoma'}",
+      "prediction": "FDA_get_indications_by_drug_name: Thyroid nodule\nFDA_get_mechanism_of_action_by_drug_name: Thyroid nodule\nFDA_get_drug_interactions_by_drug_name: Thyroid nodule\nFDA_get_adverse_reactions_by_drug_name: Thyroid nodule\nFDA_get_contraindications_by_drug_name: Thyroid nodule\nFDA_get_drug_names_by_indication: Thyroid nodule\nFDA_get_boxed_warning_info_by_drug_name: Thyroid nodule\nFDA_get_pregnancy_or_breastfeeding_info_by_drug_name: Thyroid nodule\nFDA_get_pediatric_use_info_by_drug_name: Thyroid nodule\nFDA_get_overdosage_info_by_drug_name: Thyroid nodule\nFDA_get_pharmacokinetics_by_drug_name: Thyroid nodule\nFDA_get_pharmacodynamics_by_drug_name: Thyroid nodule\nFDA_get_clinical_pharmacology_by_drug_name: Thyroid nodule\nFDA_get_dosage_and_storage_information_by_drug_name: Thyroid nodule\nOpenTargets_get_disease_ids_by_name: Thyroid nodule\nOpenTargets_get_target_id_description_by_name: Thyroid nodule\nOpenTargets_get_associated_targets_by_disease_efoId: Thyroid nodule\nOpenTargets_get_associated_drugs_by_disease_efoId: Thyroid nodule\nOpenTargets_get_associated_drugs_by_target_ensemblID: Thyroid nodule\nOpenTargets_get_drug_mechanisms_of_action_by_chemblId: Thyroid nodule\nOpenTargets_",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "get_joint_associated_diseases_by_HPO_ID_list",
+        "euhealthinfo_search_causes_of_death",
+        "get_clinical_trial_eligibility_criteria"
+      ],
+      "pred_tools": [
+        "FDA_get_indications_by_drug_name",
+        "FDA_get_mechanism_of_action_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name",
+        "FDA_get_adverse_reactions_by_drug_name",
+        "FDA_get_contraindications_by_drug_name",
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_boxed_warning_info_by_drug_name",
+        "FDA_get_pregnancy_or_breastfeeding_info_by_drug_name",
+        "FDA_get_pediatric_use_info_by_drug_name",
+        "FDA_get_overdosage_info_by_drug_name",
+        "FDA_get_pharmacokinetics_by_drug_name",
+        "FDA_get_pharmacodynamics_by_drug_name",
+        "FDA_get_clinical_pharmacology_by_drug_name",
+        "FDA_get_dosage_and_storage_information_by_drug_name",
+        "OpenTargets_get_disease_ids_by_name",
+        "OpenTargets_get_target_id_description_by_name",
+        "OpenTargets_get_associated_targets_by_disease_efoId",
+        "OpenTargets_get_associated_drugs_by_disease_efoId",
+        "OpenTargets_get_associated_drugs_by_target_ensemblID",
+        "OpenTargets_get_drug_mechanisms_of_action_by_chemblId"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'parasitic infection', 'disease_name': 'pinworm infection'}\nenrichr_gene_enrichment_analysis: {'gene_list': ['TH1', 'TH2', 'TH17', 'T0', 'TREGS'], 'libs': ['WikiPathways_2024_Human', 'Reactome_Pathways_2024', 'MSigDB_Hallmark_2020', 'GO_Molecular_Function_2023', 'GO_Biological_Process_2023']}",
+      "prediction": "OpenTargets_get_associated_targets_by_drug_ensemblID: {'drug_name': 'mebendazole', 'limit': 10}\nDiseaseAnalyzerAgent: {'context': 'parasitic infection in a child', 'disease_name': 'Parasitic infection in children'}",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "enrichr_gene_enrichment_analysis"
+      ],
+      "pred_tools": [
+        "OpenTargets_get_associated_targets_by_drug_ensemblID",
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "get_nilearn_info: None",
+      "prediction": "FDA_get_drug_names_by_indication: {'indication': 'hypertension', 'limit': 5}\nFDA_get_mechanism_of_action_by_drug_name: Hydrochlorothiazide",
+      "gt_tools": [
+        "get_nilearn_info"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_mechanism_of_action_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "BiomarkerDiscoveryWorkflow: {'disease_condition': 'liver conditions', 'sample_type': 'blood'}\neuhealthinfo_search_causes_of_death: {'country': 'liver conditions', 'language': 'en', 'limit': 5}\nclinvar_search_variants: {'gene': 'liver conditions', 'max_results': 5}\nMedlinePlus_get_genetics_condition_by_name: {'condition': 'liver conditions', 'format': 'json'}\ngwas_get_associations_for_study: {'accession_id': 'liver conditions', 'page': 5}\nFDA_get_drug_names_by_lab_tests: {'lab_test_info': 'liver conditions', 'limit': 5}\ndrugbank_filter_drugs_by_name: liver conditions\nFDA_get_drug_name_by_info_on_conditions_for_doctor_consultation: {'condition': 'liver conditions', 'limit': 5}\neuhealthinfo_search_diabetes_mellitus_epidemiology_registry: {'country': 'liver conditions', 'language': 'en', 'limit': 5}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'eyedrops', 'limit': 10}",
+      "gt_tools": [
+        "BiomarkerDiscoveryWorkflow",
+        "euhealthinfo_search_causes_of_death",
+        "clinvar_search_variants",
+        "MedlinePlus_get_genetics_condition_by_name",
+        "gwas_get_associations_for_study",
+        "FDA_get_drug_names_by_lab_tests",
+        "drugbank_filter_drugs_by_name",
+        "FDA_get_drug_name_by_info_on_conditions_for_doctor_consultation",
+        "euhealthinfo_search_diabetes_mellitus_epidemiology_registry"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "ENCODE_search_experiments: {'assay_title': 'bacterial transformation', 'limit': 5}",
+      "prediction": "OpenTargets_get_associated_targets_by_drug_efoId: {'drug_efoId': 'Hemophilus influenzae type B', 'limit': 10}\nDiseaseAnalyzerAgent: {'context': 'studying bacterial adaptations to the environment', 'disease_name': 'Hemophilus influenzae type B infection'}",
+      "gt_tools": [
+        "ENCODE_search_experiments"
+      ],
+      "pred_tools": [
+        "OpenTargets_get_associated_targets_by_drug_efoId",
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "FDA_get_adverse_reactions_by_drug_name: colesevelam\nFDA_get_drug_interactions_by_drug_name: colesevelam",
+      "prediction": "FDA_get_adverse_reactions_by_drug_name: {'drug_name': 'colesevelam', 'limit': 10}",
+      "gt_tools": [
+        "FDA_get_adverse_reactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name"
+      ],
+      "pred_tools": [
+        "FDA_get_adverse_reactions_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": true
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "ADMETAI_predict_clearance_distribution: {'smiles': ['14.3', '2']}\nFDA_get_dosage_and_storage_information_by_drug_name: new oral anticoagulant\nFDA_get_clinical_pharmacology_by_drug_name: new oral anticoagulant",
+      "prediction": "ClinicalPharmacology_get_maintenance_dose: {'drug_half_life': 2, 'drug_volume_of_distribution': 14.3, 'drug_bioavailability': 0.5, 'drug_plasma_concentration': 15, 'dose_interval': 8}",
+      "gt_tools": [
+        "ADMETAI_predict_clearance_distribution",
+        "FDA_get_dosage_and_storage_information_by_drug_name",
+        "FDA_get_clinical_pharmacology_by_drug_name"
+      ],
+      "pred_tools": [
+        "ClinicalPharmacology_get_maintenance_dose"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "Tool_Finder_LLM: {'description': 'Retrieve tools that provide detailed information about the symptoms and treatment of Clostridium botulinum.', 'limit': 5}",
+      "prediction": "PubMed_search_articles: {'query': 'Clostridium botulinum in newborns', 'limit': 5}\nPubMed_search_articles: {'query': 'Clostridium tetani in newborns', 'limit': 5}\nPubMed_search_articles: {'query': 'Escherichia coli in newborns', 'limit': 5}\nPubMed_search_articles: {'query': 'Group B streptococcus in newborns', 'limit': 5}\nPubMed_search_articles: {'query': 'Listeria monocytogenes in newborns', 'limit': 5}",
+      "gt_tools": [
+        "Tool_Finder_LLM"
+      ],
+      "pred_tools": [
+        "PubMed_search_articles",
+        "PubMed_search_articles",
+        "PubMed_search_articles",
+        "PubMed_search_articles",
+        "PubMed_search_articles"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "MedlinePlus_get_genetics_gene_by_name: {'gene': 'menin 1', 'format': 'json'}\nMedlePlus_get_genetics_condition_by_name: {'condition': 'menin 1 gene mutation', 'format': 'json'}\nHPA_search_genes_by_query: {'search_query': 'menin 1'}\nHPA_get_gene_tsv_data_by_ensembl_id: {'ensembl_id': 'ENSG00000133895'}",
+      "prediction": "OpenTargets_get_disease_ids_by_name: {'disease_name': 'Vibrio cholera infection', 'limit': 1}\nOpenTargets_get_disease_ids_by_name: {'disease_name': 'VIPoma', 'limit': 1}\nOpenTargets_get_disease_ids_by_name: {'disease_name': 'Rotavirus', 'limit': 1}\nOpenTargets_get_disease_ids_by_name: {'disease_name': 'Campylobacter jejuni', 'limit': 1}\nOpenTargets_get_disease_ids_by_name: {'disease_name': 'Somatostatinoma', 'limit': 1}\n\nThe most likely diagnosis in this patient is Vibrio cholera infection.",
+      "gt_tools": [
+        "MedlinePlus_get_genetics_gene_by_name",
+        "MedlePlus_get_genetics_condition_by_name",
+        "HPA_search_genes_by_query",
+        "HPA_get_gene_tsv_data_by_ensembl_id"
+      ],
+      "pred_tools": [
+        "OpenTargets_get_disease_ids_by_name",
+        "OpenTargets_get_disease_ids_by_name",
+        "OpenTargets_get_disease_ids_by_name",
+        "OpenTargets_get_disease_ids_by_name",
+        "OpenTargets_get_disease_ids_by_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "TRIP_Database_Guidelines_Search: {'query': 'rheumatic fever', 'limit': 5}, {'query': 'rheumatic fever symptoms', 'limit': 5}\nNICE_Clinical_Guidelines_Search: {'query': 'rheumatic fever', 'limit': 5}, {'query': 'rheumatic fever symptoms', 'limit': 5}\nEuropePMC_Guidelines_Search: {'query': 'rheumatic fever', 'limit': 5}, {'query': 'rheumatic fever symptoms', 'limit': 5}",
+      "prediction": "DiseaseAnalyzerAgent: {'context': 'patient with subcutaneous nodules and joint inflammation', 'disease_name': 'Rheumatoid arthritis'}",
+      "gt_tools": [
+        "TRIP_Database_Guidelines_Search",
+        "NICE_Clinical_Guidelines_Search",
+        "EuropePMC_Guidelines_Search"
+      ],
+      "pred_tools": [
+        "DiseaseAnalyzerAgent"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "FDA_get_lab_tests_by_drug_name: clozapine\nFDA_get_drug_names_by_lab_test_interference: {'indication': 'clozapine', 'lab_test_interference': 'common side effects', 'limit': 5}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'clozapine', 'limit': 10}",
+      "gt_tools": [
+        "FDA_get_lab_tests_by_drug_name",
+        "FDA_get_drug_names_by_lab_test_interference"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.\n\nGiven a medical question, you must select ONE OR MORE tools from the available biomedic...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'Miliary tuberculosis', 'disease_name': 'Miliary tuberculosis'}, {'context': 'Human immunodeficiency virus infection', 'disease_name': 'Human immunodeficiency virus infection'}, {'context': 'Hypertrophic cardiomyopathy', 'disease_name': 'Hypertrophic cardiomyopathy'}, {'context': 'Adrenocortical insufficiency', 'disease_name': 'Adrenocortical insufficiency'}, {'context': 'Pheochromocytoma', 'disease_name': 'Pheochromocytoma'}\nTool_Finder_Keyword: {'description': 'Retrieve tools that can provide detailed descriptions of diseases or infections, including symptoms and conditions.', 'limit': 5}\nOpenTargets_get_disease_id_description_by_name: {'diseaseName': 'Miliary tuberculosis'}, {'diseaseName': 'Human immunodeficiency virus infection'}, {'diseaseName': 'Hypertrophic cardiomyopathy'}, {'diseaseName': 'Adrenocortical insufficiency'}, {'diseaseName': 'Pheochromocytoma'}",
+      "prediction": "FDA_get_drug_interactions_by_drug_name: {'drug_name': 'cefotaxime', 'limit': 10}",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "Tool_Finder_Keyword",
+        "OpenTargets_get_disease_id_description_by_name"
+      ],
+      "pred_tools": [
+        "FDA_get_drug_interactions_by_drug_name"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    }
+  ],
+  "tool_stats": {
+    "predicted": {
+      "FDA_get_drug_interactions_by_drug_name": 1162,
+      "FDA_get_drug_names_by_indication": 680,
+      "DiseaseAnalyzerAgent": 382,
+      "FDA_get_mechanism_of_action_by_drug_name": 322,
+      "FDA_get_adverse_reactions_by_drug_name": 247,
+      "FDA_get_indications_by_drug_name": 214,
+      "FDA_get_contraindications_by_drug_name": 121,
+      "PubMed_search_articles": 74,
+      "ClinicalGuide_search_guidelines": 52,
+      "EuropePMC_search_articles": 49,
+      "OpenTargets_get_disease_ids_by_name": 42,
+      "Clinical Guidelines_search_topics_by_keyword": 39,
+      "ClinicalGuide_search_topics_by_keyword": 38,
+      "OpenTargets_get_target_id_description_by_name": 31,
+      "FDA_get_pharmacokinetics_by_drug_name": 29,
+      "FDA_get_pregnancy_or_breastfeeding_info_by_drug_name": 27,
+      "FDA_get_pharmacodynamics_by_drug_name": 27,
+      "FAERS_search_adverse_event_reports": 27,
+      "OpenTargets_get_drug_mechanisms_of_action_by_chemblId": 26,
+      "FDA_get_dosage_and_storage_information_by_drug_name": 23,
+      "OpenTargets_get_associated_targets_by_drug_name": 23,
+      "OpenTargets_get_associated_targets_by_drug_efoId": 22,
+      "OpenTargets_get_associated_targets_by_disease_efoId": 22,
+      "FDA_get_clinical_pharmacology_by_drug_name": 22,
+      "Clinical Guidelines Tools": 21,
+      "Question": 18,
+      "FDA_get_pediatric_use_info_by_drug_name": 17,
+      "FDA_get_overdosage_info_by_drug_name": 17,
+      "Options": 17,
+      "FDA_get_boxed_warning_info_by_drug_name": 16,
+      "Tool Calls": 15,
+      "OpenTargets_get_associated_drugs_by_disease_efoId": 12,
+      "TRIP_Database_Guidelines_Search": 11,
+      "Answer": 10,
+      "OpenTargets_get_associated_drug_mechanisms_of_action_by_chemblId": 10,
+      "OpenTargets_get_associated_drugs_by_target_ensemblID": 7,
+      "FDA_get_geriatric_use_info_by_drug_name": 7,
+      "MedlinePlus_search_topics_by_keyword": 5,
+      "ClinicalGuidelines_search_topics_by_keyword": 5,
+      "ClinicalLab_get_laboratory_values": 5,
+      "OpenTargets_get_associated_drugs_by_drug_name": 4,
+      "FDA_get_vaccine_indications_by_drug_name": 4,
+      "StatisticalAnalysisAgent": 3,
+      "OpenTargets_get_associated_targets_by_drug_ensemblID": 3,
+      "ClinicalGuideLines_search_topics_by_keyword": 3,
+      "OpenTargets_get_disease_description_by_efoId": 3,
+      "Literature Tools": 3,
+      "The correct answer is": 3,
+      "OpenTargets_get_associated_drugs_by_drug_efoId": 2,
+      "Pap smear": 2
+    },
+    "correct": {
+      "DiseaseAnalyzerAgent": 88,
+      "FDA_get_mechanism_of_action_by_drug_name": 34,
+      "FDA_get_indications_by_drug_name": 15,
+      "FDA_get_drug_names_by_indication": 15,
+      "FDA_get_adverse_reactions_by_drug_name": 11,
+      "FDA_get_contraindications_by_drug_name": 6,
+      "OpenTargets_get_target_id_description_by_name": 4,
+      "FDA_get_drug_interactions_by_drug_name": 2,
+      "FDA_get_dosage_and_storage_information_by_drug_name": 1,
+      "FDA_get_pregnancy_or_breastfeeding_info_by_drug_name": 1,
+      "FDA_get_pharmacodynamics_by_drug_name": 1,
+      "TRIP_Database_Guidelines_Search": 1
+    },
+    "total": {
+      "DiseaseAnalyzerAgent": 183,
+      "Tool_Finder": 126,
+      "TRIP_Database_Guidelines_Search": 125,
+      "Tool_Finder_LLM": 118,
+      "Tool_Finder_Keyword": 116,
+      "BiomarkerDiscoveryWorkflow": 105,
+      "EuropePMC_Guidelines_Search": 94,
+      "MedicalLiteratureReviewer": 86,
+      "MedlinePlus_get_genetics_condition_by_name": 85,
+      "ToolDiscover": 76,
+      "MedlinePlus_search_topics_by_keyword": 75,
+      "FDA_get_indications_by_drug_name": 75,
+      "NICE_Clinical_Guidelines_Search": 68,
+      "GIN_Guidelines_Search": 63,
+      "get_HPO_ID_by_phenotype": 54,
+      "FDA_get_drug_names_by_indication": 53,
+      "LiteratureSynthesisAgent": 53,
+      "FDA_get_mechanism_of_action_by_drug_name": 50,
+      "euhealthinfo_search_causes_of_death": 50,
+      "CMA_Guidelines_Search": 47,
+      "HPA_search_genes_by_query": 42,
+      "WikiPathways_search": 40,
+      "OpenAlex_Guidelines_Search": 40,
+      "get_joint_associated_diseases_by_HPO_ID_list": 36,
+      "euhealthinfo_search_infectious_diseases": 34,
+      "FDA_get_pharmacodynamics_by_drug_name": 33,
+      "kegg_search_pathway": 29,
+      "euhealthinfo_search_hospital_in_patient_data": 27,
+      "ClinicalTrialDesignAgent": 27,
+      "OpenTargets_get_target_id_description_by_name": 25,
+      "WHO_Guidelines_Search": 24,
+      "get_tool_info": 23,
+      "euhealthinfo_search_diabetes_mellitus_epidemiology_registry": 23,
+      "ToolDescriptionOptimizer": 22,
+      "euhealthinfo_search_cancer_registry": 22,
+      "HPA_get_biological_processes_by_gene": 22,
+      "FDA_get_clinical_pharmacology_by_drug_name": 20,
+      "DrugInteractionAnalyzerAgent": 19,
+      "GO_get_genes_for_term": 19,
+      "search_clinical_trials": 19,
+      "advanced_literature_search_agent": 19,
+      "list_tools": 19,
+      "get_clinical_trial_conditions_and_interventions": 18,
+      "HPA_get_contextual_biological_process_analysis": 18,
+      "DescriptionAnalyzer": 18,
+      "get_phenotype_by_HPO_ID": 18,
+      "clinvar_search_variants": 17,
+      "FAERS_search_adverse_event_reports": 16,
+      "AdverseEventPredictionQuestionGenerator": 15,
+      "MedlinePlus_get_genetics_gene_by_name": 15
+    }
+  }
+}

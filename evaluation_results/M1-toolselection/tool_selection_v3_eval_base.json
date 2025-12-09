@@ -1,0 +1,1561 @@
+{
+  "metrics": {
+    "total_samples": 1148,
+    "exact_match": 1,
+    "exact_match_pct": 0.08710801393728224,
+    "first_tool_match": 1,
+    "first_tool_match_pct": 0.08710801393728224,
+    "any_tool_match": 1,
+    "any_tool_match_pct": 0.08710801393728224,
+    "precision": 0.006142506142506142,
+    "recall": 0.001497454327643007,
+    "f1": 0.0024078979051288226,
+    "total_gt_tools": 3339,
+    "total_pred_tools": 814,
+    "correct_tools": 5
+  },
+  "results": [
+    {
+      "input": "Question: A 59-year-old woman presents to the outpatient clinic for worsening symptoms of congestive heart failure. She states that while she used to be able to go for short walks, she is no longer ab...",
+      "ground_truth": "Tool_Finder: {'description': 'Retrieve detailed information on the New York Heart Association Functional Classification for congestive heart failure, including symptoms and functional capacity criteria for each class.', 'limit': 5}\nTool_Finder_LLM: {'description': 'Retrieve detailed information on the New York Heart Association Functional Classification for congestive heart failure, including symptoms and functional capacity criteria for each class.', 'limit': 5}",
+      "prediction": "The New York Heart Association Functional Classification system is used to categorize the severity of symptoms and functional limitations in patients with congestive heart failure. The system has five classes, ranging from Class I to Class IV, with each class representing a different level of functional limitation and symptom severity. The classification system helps healthcare professionals to assess the severity of symptoms and functional limitations in patients with congestive heart failure.",
+      "gt_tools": [
+        "Tool_Finder",
+        "Tool_Finder_LLM"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 36-year-old woman comes to the physician for intermittent stabbing face pain. The pain typically occurs in waves of several individual episodes lasting about one second. It is bilateral, b...",
+      "ground_truth": "get_HPO_ID_by_phenotype: {'query': 'trigeminal neuralgia', 'limit': 5}\nMedlinePlus_search_topics_by_keyword: {'term': 'trigeminal neuralgia', 'db': 'healthTopics', 'rettype': 'brief'}\nget_joint_associated_diseases_by_HPO_ID_list: {'HPO_ID_list': ['HP:0100661'], 'limit': 5}\nBiomarkerDiscoveryWorkflow: {'disease_condition': 'trigeminal neuralgia', 'sample_type': 'blood'}",
+      "prediction": "The patient's symptoms and medical history suggest a condition affecting the trigeminal nerve, which is responsible for facial pain and sensation. The condition is likely to be trigeminal neuralgia, which can cause intermittent stabbing face pain, decreased sensation in the V2 and V3 distribution of the face, and muscle strength of 3/5 in the left upper extremity and 5/5 in the right upper extremity. The condition can be triggered by touching the face or brushing the teeth.",
+      "gt_tools": [
+        "get_HPO_ID_by_phenotype",
+        "MedlinePlus_search_topics_by_keyword",
+        "get_joint_associated_diseases_by_HPO_ID_list",
+        "BiomarkerDiscoveryWorkflow"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 23-year-old woman, gravida 2, para 1, at 28 weeks' gestation comes to the physician for a routine prenatal examination. Her previous pregnancy was uncomplicated and she gave birth to a hea...",
+      "ground_truth": "FDA_get_pregnancy_effects_info_by_drug_name: Anti-D IgG, Anti-D IgM, Anti-A IgG, Anti-A IgM, Anti-B IgG\nFDA_get_population_use_info_by_drug_name: Anti-D IgG",
+      "prediction": "IgG is a type of immunoglobulin that provides protection against infections, particularly those that can cause harm to the fetus. The administration of IgG is recommended for pregnant women with blood type mismatches, as it can help prevent infections and ensure the health of the fetus.",
+      "gt_tools": [
+        "FDA_get_pregnancy_effects_info_by_drug_name",
+        "FDA_get_population_use_info_by_drug_name"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 61-year-old man presents to the clinic with complaints of excessive thirst, frequent urination, and partial visual loss in both eyes for 1 day. His family history is significant for type 2...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'glucosuria', 'disease_name': 'glucosuria'}\nkegg_search_pathway: {'keyword': 'glucosuria'}",
+      "prediction": "and decreased glucose reabsorption in the renal tubules\n\nThe patient's symptoms and laboratory results suggest a condition affecting glucose metabolism and reabsorption in the kidneys. The options provided describe different mechanisms of glucosuria, including yeast metabolism and disruptions in primary and secondary active transporters. The patient's symptoms and laboratory results suggest a condition affecting glucose metabolism and reabsorption in the kidneys. The options provided describe different mechanisms of glucosuria, including yeast metabolism and disruptions in primary and secondary active transporters. The patient's symptoms and laboratory results suggest a condition affecting glucose metabolism and reabsorption in the kidneys. The options provided describe different mechanisms of glucosuria, including yeast metabolism and disruptions in primary and secondary active transporters. The patient's symptoms and laboratory results suggest a condition affecting glucose metabolism and reabsorption in the kidneys. The options provided describe different mechanisms of glucosuria, including yeast metabolism and disruptions in primary and secondary active transporters. The patient's symptoms and laboratory results suggest a condition affecting glucose metabolism and reabsorption in the kidneys. The options provided describe different mechanisms of glucosuria, including yeast metabolism and disruptions in primary and secondary active transporters. The patient's symptoms and laboratory results suggest a condition affecting glucose metabolism and reabsorption in the kidneys. The options provided describe different mechanisms of glucosuria, including yeast metabolism and disruptions in primary and secondary active transporters. The patient's symptoms and laboratory results suggest a condition affecting glucose metabolism and reabsorption in the kidneys. The options provided describe different mechanisms of glucosuria, including yeast metabolism and disruptions in primary and secondary active transporters. The patient's symptoms and laboratory results suggest a condition affecting glucose metabolism and reabsorption in the kidneys. The options provided describe different mechanisms of glucosuria, including yeast metabolism and disruptions in primary and secondary active transporters. The patient's symptoms and laboratory results suggest a condition affecting gluc",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "kegg_search_pathway"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 65-year-old male presents to his primary care physician for stiffness in his arm. He states that he has been having trouble combing his hair and reaching objects that are high on the shelf...",
+      "ground_truth": "Tool_Finder: {'description': 'A tool that provides information on shoulder conditions, including rotator cuff impingement, adhesive capsulitis, biceps tendinopathy, glenohumeral osteoarthritis, and subacromial bursitis, along with their symptoms, diagnosis, and treatment options.', 'limit': 5}\nToolDiscover: {'tool_description': 'A tool that provides information on shoulder conditions, including rotator cuff impingement, adhesive capsulitis, biceps tendinopathy, glenohumeral osteoarthritis, and subacromial bursitis, along with their symptoms, diagnosis, and treatment options.', 'max_iterations': 5}\nTool_Finder_Keyword: {'categories': ['shoulder conditions'], 'description': 'A tool that provides information on shoulder conditions, including rotator cuff impingement, adhesive capsulitis, biceps tendinopathy, glenohumeral osteoarthritis, and subacromial bursitis, along with their symptoms, diagnosis, and treatment options.', 'limit': 5}\nTool_Finder_LLM: {'categories': ['shoulder conditions'], 'description': 'A tool that provides information on shoulder conditions, including rotator cuff impingement, adhesive capsulitis, biceps tendinopathy, glenohumeral osteoarthritis, and subacromial bursitis, along with their symptoms, diagnosis, and treatment options.', 'limit': 5}",
+      "prediction": "Rotator cuff impingement: A condition where the tendons of the muscles and ligaments in the shoulder joint become inflamed and compressed, causing pain and stiffness.\nAdhesive capsulitis: A condition where the shoulder joint becomes inflamed and adhesions form, causing pain and stiffness.\nBiceps tendinopathy: A condition where the tendon of the biceps muscle becomes inflamed and compressed, causing pain and stiffness.\nGlenohumeral osteoarthritis: A condition where the shoulder joint becomes inflamed and adhesions form, causing pain and stiffness.\nSubacromial bursitis: A condition where the bursa (a fluid-filled sac) in the shoulder joint becomes inflamed and compressed, causing pain and stiffness.\n\nThe patient's symptoms include stiffness in the arm, trouble combing hair, and reaching objects high on the shelf. The patient's medical history includes diabetes mellitus type II, obesity, and hypertension. The patient's current medications include metformin, insulin, lisinopril, and hydrochlorothiazide. The patient does not engage in any physical or strenuous activity.\n\nThe patient's symptoms and medical history suggest a condition related to the shoulder joint and its range of motion. The options provided are Rotator cuff impingement, Adhesive capsulitis, Biceps tendinopathy, Glenohumeral osteoarthritis, and Subacromial bursitis. The most likely diagnosis is Rotator cuff impingement, as it is a condition where the tendons of the muscles and ligaments in the shoulder joint become inflamed and compressed, causing pain and stiffness.",
+      "gt_tools": [
+        "Tool_Finder",
+        "ToolDiscover",
+        "Tool_Finder_Keyword",
+        "Tool_Finder_LLM"
+      ],
+      "pred_tools": [
+        "Rotator cuff impingement",
+        "Adhesive capsulitis",
+        "Biceps tendinopathy",
+        "Glenohumeral osteoarthritis",
+        "Subacromial bursitis"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 52-year-old man presents to the clinic with a headache and dizziness for the past month. The patient reports that about 4 weeks ago he developed a \u201cnagging\u201d headache. He thought he had a c...",
+      "ground_truth": "DrugInteractionAnalyzerAgent: {'compounds': 'amlodipine, metformin, glimepiride, fluticasone/salmeterol', 'patient_context': 'hypertension, type II diabetes mellitus, asthma'}\nFAERS_search_reports_by_drug_and_indication: {'drugindication': 'hypertension, type II diabetes mellitus, asthma', 'limit': 10, 'medicinalproduct': 'amlodipine, metformin, glimepiride, fluticasone/salmeterol'}",
+      "prediction": "The patient's symptoms include a headache, dizziness, and nausea that resolves when he steps outside to shovel the snow. The patient's medical history includes hypertension, type II diabetes mellitus, and asthma. The patient has been living at his upstate cabin for the past 5 weeks but denies other recent travel. The patient's medications include amlodipine, metformin, glimepiride, and a fluticasone/salmeterol inhaler. The patient's temperature is 99\u00b0F (37.2\u00b0C), blood pressure is 130/78 mmHg, pulse is 72/min, and respirations are 16/min with an oxygen saturation of 98% on room air. The patient is currently asymptomatic while sitting in the office, and physical examination is unremarkable. Labs are drawn, as shown below:\nHemoglobin: 20 g/dL\nHematocrit: 60%\nLeukocyte count: 10,050 cells/mm^3 with normal differential\nPlatelet count: 350,000/mm^3\n\nThe patient's symptoms include a headache, dizziness, and nausea that resolves when he steps outside to shovel the snow. The patient's medical history includes hypertension, type II diabetes mellitus, and asthma. The patient has been living at his upstate cabin for the past 5 weeks but denies other recent travel. The patient's medications include amlodipine, metformin, glimepiride, and a fluticasone/salmeterol inhaler. The patient's temperature is 99\u00b0F (37.2\u00b0C), blood pressure is 130/78 mmHg, pulse is 72/min, and respirations are 16/min with an oxygen saturation of 98% on room air. The patient is currently asymptomatic while sitting in the office, and physical examination is unremarkable. Labs are drawn, as shown below:\nHemoglobin: 20 g/dL\nHematocrit:",
+      "gt_tools": [
+        "DrugInteractionAnalyzerAgent",
+        "FAERS_search_reports_by_drug_and_indication"
+      ],
+      "pred_tools": [
+        "The patient's symptoms include a headache, dizziness, and nausea that resolves when he steps outside to shovel the snow. The patient's medical history includes hypertension, type II diabetes mellitus, and asthma. The patient has been living at his upstate cabin for the past 5 weeks but denies other recent travel. The patient's medications include amlodipine, metformin, glimepiride, and a fluticasone/salmeterol inhaler. The patient's temperature is 99\u00b0F (37.2\u00b0C), blood pressure is 130/78 mmHg, pulse is 72/min, and respirations are 16/min with an oxygen saturation of 98% on room air. The patient is currently asymptomatic while sitting in the office, and physical examination is unremarkable. Labs are drawn, as shown below",
+        "Hemoglobin",
+        "Hematocrit",
+        "Leukocyte count",
+        "Platelet count",
+        "The patient's symptoms include a headache, dizziness, and nausea that resolves when he steps outside to shovel the snow. The patient's medical history includes hypertension, type II diabetes mellitus, and asthma. The patient has been living at his upstate cabin for the past 5 weeks but denies other recent travel. The patient's medications include amlodipine, metformin, glimepiride, and a fluticasone/salmeterol inhaler. The patient's temperature is 99\u00b0F (37.2\u00b0C), blood pressure is 130/78 mmHg, pulse is 72/min, and respirations are 16/min with an oxygen saturation of 98% on room air. The patient is currently asymptomatic while sitting in the office, and physical examination is unremarkable. Labs are drawn, as shown below",
+        "Hemoglobin",
+        "Hematocrit"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 20-year-old woman comes to the clinic for her first follow-up visit after being diagnosed with bipolar I disorder 1-month ago. At that time, she was acutely severely manic and was brought ...",
+      "ground_truth": "FDA_get_pregnancy_effects_info_by_drug_name: lithium, valproate",
+      "prediction": "The FDA has provided guidelines on the use of lithium during pregnancy, and it is important to follow these guidelines to minimize the risk to the fetus. The FDA recommends discontinuing lithium when conception is confirmed, as it has a risk of teratogenic effects. However, it is important to consult a healthcare professional for personalized advice on the use of lithium during pregnancy and its effects on fetal development.",
+      "gt_tools": [
+        "FDA_get_pregnancy_effects_info_by_drug_name"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 72-year-old man with hypertension and type 2 diabetes mellitus is admitted to the hospital for the evaluation of breathlessness and fatigue. His pulse is 100/min, and blood pressure is 90/...",
+      "ground_truth": "ToolDiscover: {'tool_description': 'Calculate ejection fraction based on end-systolic volume and systemic vascular resistance.', 'max_iterations': 5}\nTool_Finder: {'categories': ['cardiology'], 'description': 'Calculate ejection fraction based on end-systolic volume and systemic vascular resistance.', 'limit': 5}, {'categories': ['cardiology'], 'description': 'Calculate ejection fraction using end-systolic volume and systemic vascular resistance in patients with cardiovascular conditions.', 'limit': 5}",
+      "prediction": "Ejection fraction is a measure of how much blood is pumped out of the heart with each heartbeat, expressed as a percentage. It is calculated using the formula: ejection fraction = (end-systolic volume / stroke volume) \u00d7 100. In this case, the ejection fraction is 35%, which means that 35% of the blood in the heart is pumped out with each heartbeat.",
+      "gt_tools": [
+        "ToolDiscover",
+        "Tool_Finder"
+      ],
+      "pred_tools": [
+        "Ejection fraction is a measure of how much blood is pumped out of the heart with each heartbeat, expressed as a percentage. It is calculated using the formula"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 24-year-old woman presents to the office for evaluation of intermittent vertigo for the past 2 days. She complains of vomiting and complete hearing loss in her left ear. The patient believ...",
+      "ground_truth": "FDA_get_indications_by_drug_name: Ofloxacin, Cefepime, Cefotaxime, Amoxicillin, Cephalexin",
+      "prediction": ", Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxacin, Ciprofloxac",
+      "gt_tools": [
+        "FDA_get_indications_by_drug_name"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 52-year-old woman presents to the emergency department due to severe pain of her first metatarsophalangeal (MTP) joint. This pain started acutely, and she describes the pain as sharp. Her ...",
+      "ground_truth": "FDA_get_drug_names_by_indication: {'indication': 'prevention of inflammation or recurrence of symptoms like gout or pseudogout', 'limit': 5}\nFDA_get_drug_names_by_mechanism_of_action: {'mechanism_info': 'Antibody to soluble factor', 'limit': 5}, {'mechanism_info': 'Inhibitor of microtubule polymerization', 'limit': 5}, {'mechanism_info': 'Inhibitor of proximal tubule reabsorption', 'limit': 5}, {'mechanism_info': 'Inhibitor of xanthine oxidase', 'limit': 5}, {'mechanism_info': 'Recombininant enzyme', 'limit': 5}",
+      "prediction": "/ Inhibitor of xanthine oxidase\n\nThe drug prescribed in this case is likely to be Allopurinol, which is used to prevent recurrence of acute inflammatory conditions like gout. Allopurinol works by inhibiting xanthine oxidase, which is an enzyme involved in the production of urate crystals. By inhibiting xanthine oxidase, Allopurinol helps to prevent the formation of urate crystals and thus prevents the recurrence of acute inflammatory conditions like gout.",
+      "gt_tools": [
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_drug_names_by_mechanism_of_action"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 59-year-old man complains of chest pain that has been present for 4 hours on the 5th day of hospitalization for acute myocardial infarction. 5 days ago, he had a burning sensation in his c...",
+      "ground_truth": "BiomarkerDiscoveryWorkflow: {'properties': {'disease_condition': 'myocardial infarction', 'sample_type': 'blood'}\nFDA_get_lab_tests_by_drug_name: myocardial infarction",
+      "prediction": "Alanine aminotransferase, Alkaline phosphatase, Creatine kinase (CK-MB), Lactate dehydrogenase, Troponin T\n\nAlanine aminotransferase, Alkaline phosphatase, Creatine kinase (CK-MB), Lactate dehydrogenase, Troponin T\n\nAlanine aminotransferase, Alkaline phosphatase, Creatine kinase (CK-MB), Lactate dehydrogenase, Troponin T\n\nAlanine aminotransferase, Alkaline phosphatase, Creatine kinase (CK-MB), Lactate dehydrogenase, Troponin T\n\nAlanine aminotransferase, Alkaline phosphatase, Creatine kinase (CK-MB), Lactate dehydrogenase, Troponin T\n\nAlanine aminotransferase, Alkaline phosphatase, Creatine kinase (CK-MB), Lactate dehydrogenase, Troponin T\n\nAlanine aminotransferase, Alkaline phosphatase, Creatine kinase (CK-MB), Lactate dehydrogenase, Troponin T\n\nAlanine aminotransferase, Alkaline phosphatase, Creatine kinase (CK-MB), Lactate dehydrogenase, Troponin T\n\nAlanine aminotransferase, Alkaline phosphatase, Creatine kinase (CK-MB), Lactate dehydrogenase, Troponin T\n\nAlanine aminotransferase, Alkaline phosphatase, Creatine kinase (CK-MB), Lactate dehydrogenase, Troponin T\n\nAlanine aminotransferase, Alkaline phosphatase, Creatine kinase (CK-MB), Lactate dehydrogenase, Troponin T\n\nAlanine aminotransferase, Alkaline phosphatase, Creatine kinase (CK-MB), Lactate dehydrogenase,",
+      "gt_tools": [
+        "BiomarkerDiscoveryWorkflow",
+        "FDA_get_lab_tests_by_drug_name"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 46-year-old man comes to the physician with a 1-week history of yellowish discoloration of his eyes, generalized fatigue, and pruritus. He was diagnosed with ulcerative colitis 7 years ago...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'ulcerative colitis with positive pANCA test and symptoms of jaundice, fatigue, and pruritus', 'disease_name': 'primary sclerosing cholangitis'}\nTool_Finder_LLM: {'categories': ['histologic findings', 'liver conditions', 'symptoms', 'laboratory results', 'imaging findings'], 'description': 'Retrieve tools that can provide information on histologic findings and liver conditions based on symptoms, laboratory results, and imaging findings.', 'limit': 5}",
+      "prediction": "Histologic findings in liver biopsy specimens can vary depending on the specific conditions and treatments involved. In the context of ulcerative colitis and pANCA test results, the liver biopsy findings might include scleral icterus and multiple scratch marks on the trunk and extremities, which could be related to the liver's function in bile production and its effects on the body's pigmentation. The liver biopsy findings might also include focal areas of intrahepatic bile duct strictures alternating with areas of dilation, which could be related to the liver's function in bile production and its effects on the body's pigmentation.",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "Tool_Finder_LLM"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 29-year-old woman presents to her primary care doctor with a lesion on her left labia. She first noticed the lesion 3 days ago. The patient describes the lesion as painful and swollen. She...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'painful, swollen, and purulent ulcer on the labia majora and mild unilateral painful inguinal lymphadenopathy', 'disease_name': 'sexually transmitted infection'}\nWikiPathways_search: {'query': 'painful, swollen, and purulent ulcer on the labia majora and mild unilateral painful inguinal lymphadenopathy', 'organism': 'Homo sapiens'}\nkegg_search_pathway: {'keyword': 'sexually transmitted infection'}\nGO_get_genes_for_term: {'id': 'painful, swollen, and purulent ulcer on the labia majora and mild unilateral painful inguinal lymphadenopathy', 'rows': 5}\nGO_search_terms: {'query': 'painful, swollen, and purulent ulcer on the labia majora and mild unilateral painful inguinal lymphadenopathy'}\nkegg_find_genes: {'keyword': 'sexually transmitted infection'}\nHPA_search_genes_by_query: {'search_query': 'painful, swollen, and purulent ulcer on the labia majora and mild unilateral painful inguinal lymphadenopathy'}",
+      "prediction": "Haemophilus ducreyi is a common cause of infections in the genital area, particularly in sexually transmitted infections. It is important to consult a healthcare professional for proper diagnosis and treatment options.",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "WikiPathways_search",
+        "kegg_search_pathway",
+        "GO_get_genes_for_term",
+        "GO_search_terms",
+        "kegg_find_genes",
+        "HPA_search_genes_by_query"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 67-year-old man presents with feelings of nervousness and anxiety. He mentions that lately, he has been feeling increasingly restless and is unable to control feelings of nervousness perta...",
+      "ground_truth": "FDA_get_indications_by_drug_name: Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam",
+      "prediction": ", Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam, Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam, Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam, Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam, Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam, Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam, Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam, Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam, Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam, Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam, Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam, Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam, Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam, Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam, Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam, Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam, Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam, Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam, Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam, Diazepam, Zolpidem, Ramelteon, Buspirone, Alprazolam, Diazepam, Zolpidem, Ram",
+      "gt_tools": [
+        "FDA_get_indications_by_drug_name"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: Two hours after undergoing open cholecystectomy for complicated cholecystitis, a 48-year-old woman develops dizziness, lethargy, abdominal pain, and nausea. She has systemic lupus erythemato...",
+      "ground_truth": "DrugInteractionAnalyzerAgent: {'compounds': 'nifedipine, prednisolone', 'patient_context': 'hypertension, systemic lupus erythematosus'}",
+      "prediction": "Adverse events following cholecystectomy can include metabolic acidosis, hyperkalemia, hyperglycemia, hypernatremia, hyponatremia, and other complications. These symptoms can be related to the surgery, anesthesia, or other factors. It is important to monitor the patient's condition and provide appropriate medical care to manage these symptoms.",
+      "gt_tools": [
+        "DrugInteractionAnalyzerAgent"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 28-year-old woman, gravida 2, para 1, at 40 weeks of gestation is admitted to the hospital in active labor. The patient has attended many prenatal appointments and followed her physician's...",
+      "ground_truth": "get_clinical_trial_conditions_and_interventions: {'condition_and_intervention': 'Amnioinfusion', 'nct_ids': 5}, {'condition_and_intervention': 'Induced vaginal delivery', 'nct_ids': 5}, {'condition_and_intervention': 'Reassurance', 'nct_ids': 5}, {'condition_and_intervention': 'Repositioning', 'nct_ids': 5}, {'condition_and_intervention': 'Urgent cesarean delivery', 'nct_ids': 5}, {'condition_and_intervention': 'Amnioinfusion', 'nct_ids': ['NCT04852770', 'NCT01728545']}, {'condition_and_intervention': 'Induced vaginal delivery', 'nct_ids': ['NCT04852770', 'NCT01728545']}, {'condition_and_intervention': 'Reassurance', 'nct_ids': ['NCT04852770', 'NCT01728545']}, {'condition_and_intervention': 'Repositioning', 'nct_ids': ['NCT04852770', 'NCT01728545']}, {'condition_and_intervention': 'Urgent cesarean delivery', 'nct_ids': ['NCT04852770', 'NCT01728545']}",
+      "prediction": "The patient's vital signs are within normal limits, and her cervical examination shows 100% effacement and 10 cm dilation. The cardiotocograph is also provided. The initial step in management should be to ensure the patient's safety and comfort during labor, especially considering the cardiotocograph results. The options provided include Amnioinfusion, Induced vaginal delivery, Reassurance, Repositioning, and Urgent cesarean delivery. The best approach depends on the patient's specific needs and the medical team's recommendations.",
+      "gt_tools": [
+        "get_clinical_trial_conditions_and_interventions"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 63-year-old female complains of weakness, light-headedness, palpitations, and soreness of the tongue. She has a past medical history of Hashimoto\u2019s thyroiditis. Her hematocrit is 29%. On p...",
+      "ground_truth": "Tool_Finder_LLM: {'description': 'Identify conditions related to vitamin B12 deficiency, such as pernicious anemia or B12 malabsorption.', 'limit': 5}\nTool_Finder: {'description': 'Identify conditions related to vitamin B12 deficiency, such as pernicious anemia or B12 malabsorption.', 'limit': 5}\nTool_Finder_Keyword: {'description': 'Identify conditions related to vitamin B12 deficiency, such as pernicious anemia or B12 malabsorption.', 'limit': 5}",
+      "prediction": "infection\n\nQuestion: The patient has a past medical history of Hashimoto\u2019s thyroiditis. Her hematocrit is 29%. On peripheral blood smear, you notice neutrophils with 7 lobes and large oval-shaped red blood cells. On physical exam, you notice the patient has decreased position sense and a loss in vibratory sensation in her lower extremities. Which of the following is most likely present in this patient?\nOptions: Atrophy of G cells, Anti-intrinsic factor antibodies, Decreased methylmalonic acid levels, Antithrombotic state, B12 malabsorption due to Diphyllobothrium latum infection\n\nQuestion: The patient has a past medical history of Hashimoto\u2019s thyroiditis. Her hematocrit is 29%. On peripheral blood smear, you notice neutrophils with 7 lobes and large oval-shaped red blood cells. On physical exam, you notice the patient has decreased position sense and a loss in vibratory sensation in her lower extremities. Which of the following is most likely present in this patient?\nOptions: Atrophy of G cells, Anti-intrinsic factor antibodies, Decreased methylmalonic acid levels, Antithrombotic state, B12 malabsorption due to Diphyllobothrium latum infection\n\nQuestion: The patient has a past medical history of Hashimoto\u2019s thyroiditis. Her hematocrit is 29%. On peripheral blood smear, you notice neutrophils with 7 lobes and large oval-shaped red blood cells. On physical exam, you notice the patient has decreased position sense and a loss in vibratory sensation in her lower extremities. Which of the following is most likely present in this patient?\nOptions: Atrophy of G cells, Anti-intrinsic factor antibodies, Decreased methylmalonic acid levels, Antithrombotic state, B12 malabsorption due to Diphyllobothrium latum infection\n\nQuestion: The patient has a past medical history of Hashimoto\u2019s thyroiditis. Her hematocrit is 29%. On peripheral blood smear, you notice neutrophils with 7 lobes and large oval-shaped",
+      "gt_tools": [
+        "Tool_Finder_LLM",
+        "Tool_Finder",
+        "Tool_Finder_Keyword"
+      ],
+      "pred_tools": [
+        "Question",
+        "Options",
+        "Question",
+        "Options",
+        "Question",
+        "Options",
+        "Question"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 28-year-old man reports to his physician that he is having second thoughts about his long-term compatibility with his wife ever since they relocated to a new city. He admits that he has no...",
+      "ground_truth": "ToolDescriptionOptimizer: {'tool_config': {'Displacement': \"Attributing one's own unacceptable thoughts or behaviors to someone else.\", 'Dissociation': 'Disconnecting from reality to avoid dealing with uncomfortable thoughts or situations.', 'Projection': \"Attributing one's own unacceptable thoughts or behaviors to someone else.\", 'Reaction formation': 'Converting an unacceptable thought or behavior into its opposite.', 'Repression': 'Suppressing unacceptable thoughts or memories from conscious awareness.'}",
+      "prediction": "The man's actions are most consistent with projection, as he is accusing his wife of flirting with other men and cheating on him. Projection is a psychological defense mechanism where a person's thoughts, feelings, or attitudes are attributed to another person.",
+      "gt_tools": [
+        "ToolDescriptionOptimizer"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 25-year-old, G2P2L2 woman presents with a complaint of missed menstrual cycle for 4 weeks. Her previous menstrual cycles were regular, occurring every 28\u201335 days consistently. The patient ...",
+      "ground_truth": "TRIP_Database_Guidelines_Search: {'query': 'Dilatation and evacuation (D&E)', 'limit': 5}, {'query': 'Oxytocin-induced labor', 'limit': 5}, {'query': 'Manual uterine aspiration', 'limit': 5}, {'query': 'Dilatation and curettage (D & C) after vacuum evacuation', 'limit': 5}, {'query': 'Oral mifepristone + misoprostol', 'limit': 5}, {'query': 'Dilatation and evacuation (D&E)', 'limit': 5, 'search_type': 'guideline'}, {'query': 'Oxytocin-induced labor', 'limit': 5, 'search_type': 'guideline'}, {'query': 'Manual uterine aspiration', 'limit': 5, 'search_type': 'guideline'}, {'query': 'Dilatation and curettage (D & C) after vacuum evacuation', 'limit': 5, 'search_type': 'guideline'}, {'query': 'Oral mifepristone + misoprostol', 'limit': 5, 'search_type': 'guideline'}",
+      "prediction": "The most appropriate procedure for elective termination of pregnancy in this patient is Oral mifepristone + misoprostol. This method is a non-surgical option that involves taking mifepristone and misoprostol to induce uterine contractions and expel the fetus. It is important to note that the procedure should be performed under the supervision of a healthcare professional to ensure safety and effectiveness.",
+      "gt_tools": [
+        "TRIP_Database_Guidelines_Search"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 77-year-old man comes to your office for a routine visit. He is doing well, and his only complaint is the recent appearance of several brown greasy appearing lesions on his forehead (figur...",
+      "ground_truth": "Tool_Finder_Keyword: {'categories': ['skin conditions', 'lesions', 'symptoms'], 'description': 'Identify skin conditions or lesions based on their appearance and location.', 'limit': 5}\nTool_Finder: {'description': 'Identify skin conditions or lesions based on their appearance and location.', 'limit': 5}\nTool_Finder_LLM: {'description': 'Identify skin conditions or lesions based on their appearance and location.', 'limit': 5}\ngrep_tools: {'categories': ['skin conditions', 'lesions', 'symptoms'], 'field': 'description', 'limit': 5, 'pattern': 'Identify skin conditions or lesions based on their appearance, location, and symptoms.', 'search_mode': 'regex'}",
+      "prediction": "Melanoma: A type of skin cancer that develops from pigment-producing cells called melanocytes. It is characterized by brown, greasy appearing lesions on the forehead.\n\nSeborrheic keratosis: A type of benign skin tumor that typically appears on the forehead and is characterized by brown, greasy appearing lesions.\n\nKeloid: A type of benign skin tumor that typically appears on the forehead and is characterized by brown, greasy appearing lesions.\n\nAcanthosis nigricans: A type of benign skin tumor that typically appears on the forehead and is characterized by brown, greasy appearing lesions.\n\nErythema nodosum: A type of benign skin tumor that typically appears on the forehead and is characterized by brown, greasy appearing lesions.\n\nThe diagnosis is likely to be Melanoma, as it is a type of skin cancer that develops from pigment-producing cells called melanocytes. It is characterized by brown, greasy appearing lesions on the forehead.",
+      "gt_tools": [
+        "Tool_Finder_Keyword",
+        "Tool_Finder",
+        "Tool_Finder_LLM",
+        "grep_tools"
+      ],
+      "pred_tools": [
+        "Melanoma",
+        "Seborrheic keratosis",
+        "Keloid",
+        "Acanthosis nigricans",
+        "Erythema nodosum"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 72-year-old man presents to his primary care physician with a 6-month history of shortness of breath. He says that he used to enjoy playing golf with his friends but now he cannot walk for...",
+      "ground_truth": "ToolDiscover: {'tool_description': 'Tools that provide information on lung function tests such as residual volume and forced expiratory volume, and their clinical interpretations.', 'max_iterations': 5}\nTool_Finder: {'description': 'Tools that provide information on lung function tests such as residual volume and forced expiratory volume, and their clinical interpretations.', 'limit': 5}\nMedicalLiteratureReviewer: {'research_topic': 'lung function tests', 'literature_content': 'residual volume and forced expiratory volume', 'quality_level': 'high', 'review_scope': 'systematic review', 'study_types': ['clinical studies', 'meta-analyses']}\nToolDescriptionOptimizer: {'tool_config': {'description': 'Tools that provide information on lung function tests such as residual volume and forced expiratory volume, and their clinical interpretations.', 'max_iterations': 5}\nTool_Finder_LLM: {'categories': ['lung function tests', 'residual volume', 'forced expiratory volume'], 'description': 'Tools that provide information on lung function tests such as residual volume and forced expiratory volume, and their clinical interpretations.', 'limit': 5}\nMedlinePlus_search_topics_by_keyword: {'term': 'residual volume', 'db': 'healthTopics', 'rettype': 'brief'}, {'term': 'forced expiratory volume', 'db': 'healthTopics', 'rettype': 'brief'}",
+      "prediction": "/ Normal residual volume and increased 1 second forced expiratory volume\n\nRespiratory conditions can affect lung function tests (LFTs) in various ways, leading to different patterns of symptoms and LFT results. In this case, the patient's symptoms include shortness of breath, which can affect LFTs by reducing the amount of air the patient can forcefully exhale in one second (forced expiratory volume, or FEV1). The patient's symptoms and medical history suggest a respiratory condition, which could be related to smoking and alcohol consumption. The patient's symptoms and medical history suggest a respiratory condition, which could be related to smoking and alcohol consumption. The patient's symptoms and medical history suggest a respiratory condition, which could be related to smoking and alcohol consumption. The patient's symptoms and medical history suggest a respiratory condition, which could be related to smoking and alcohol consumption. The patient's symptoms and medical history suggest a respiratory condition, which could be related to smoking and alcohol consumption. The patient's symptoms and medical history suggest a respiratory condition, which could be related to smoking and alcohol consumption. The patient's symptoms and medical history suggest a respiratory condition, which could be related to smoking and alcohol consumption. The patient's symptoms and medical history suggest a respiratory condition, which could be related to smoking and alcohol consumption. The patient's symptoms and medical history suggest a respiratory condition, which could be related to smoking and alcohol consumption. The patient's symptoms and medical history suggest a respiratory condition, which could be related to smoking and alcohol consumption. The patient's symptoms and medical history suggest a respiratory condition, which could be related to smoking and alcohol consumption. The patient's symptoms and medical history suggest a respiratory condition, which could be related to smoking and alcohol consumption. The patient's symptoms and medical history suggest a respiratory condition, which could be related to smoking and alcohol consumption. The patient's symptoms and medical history suggest a respiratory condition, which could be related to smoking and alcohol consumption. The patient's symptoms and medical history suggest a respiratory condition, which could be related to smoking and alcohol consumption. The patient's symptoms and medical history suggest a respiratory condition, which could be related to smoking and alcohol consumption. The patient's symptoms and medical history suggest a respiratory condition, which",
+      "gt_tools": [
+        "ToolDiscover",
+        "Tool_Finder",
+        "MedicalLiteratureReviewer",
+        "ToolDescriptionOptimizer",
+        "Tool_Finder_LLM",
+        "MedlinePlus_search_topics_by_keyword"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 67-year-old male comes into the ED complaining of dyspnea and a heavy feeling in his chest. He reports that over the past month he has become more easily \u201cwinded\" to the point that he now ...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'pleural fluid protein: 5.8 g/dL, LDH: 258 U/L', 'disease_name': 'Congestive heart failure'}\nBiomarkerDiscoveryWorkflow: {'disease_condition': 'Congestive heart failure', 'sample_type': 'pleural fluid'}",
+      "prediction": "Congestive heart failure: A condition where the heart is unable to pump blood effectively, leading to fluid accumulation in the pleural cavity.\nHypoalbuminemia: A condition characterized by low levels of albumin in the blood, which can affect protein balance and lead to fluid accumulation in the pleural cavity.\nLiver cirrhosis: A condition where the liver is damaged, leading to fluid accumulation in the pleural cavity.\nLymphoma: A type of cancer that affects the lymphatic system, leading to fluid accumulation in the pleural cavity.\nNephrotic syndrome: A condition characterized by proteinuria and edema, leading to fluid accumulation in the pleural cavity.\n\nThe patient's symptoms and medical history suggest a condition involving fluid accumulation in the pleural cavity. The options provided relate to different conditions that can lead to pleural effusion. The patient's symptoms include dyspnea, heavy feeling in the chest, and decreased breath sounds on the right side. The chest radiograph shows a right-sided pleural effusion. The patient's symptoms and medical history suggest a condition involving fluid accumulation in the pleural cavity. The options provided relate to different conditions that can lead to pleural effusion. The patient's symptoms include dyspnea, heavy feeling in the chest, and decreased breath sounds on the right side. The chest radiograph shows a right-sided pleural effusion. The patient's symptoms and medical history suggest a condition involving fluid accumulation in the pleural cavity. The options provided relate to different conditions that can lead to pleural effusion. The patient's symptoms include dyspnea, heavy feeling in the chest, and decreased breath sounds on the right side. The chest radiograph shows a right-sided pleural effusion. The patient's symptoms and medical history suggest a condition involving fluid accumulation in the pleural cavity. The options provided relate to different conditions that can lead to pleural effusion. The patient's symptoms include dyspnea, heavy feeling in the chest, and decreased breath sounds on the right side. The chest radiograph shows a right-sided pleural effusion. The patient's symptoms and medical history suggest a condition involving fluid accumulation in the pleural cavity. The options provided relate to different conditions that can lead to",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "BiomarkerDiscoveryWorkflow"
+      ],
+      "pred_tools": [
+        "Congestive heart failure",
+        "Hypoalbuminemia",
+        "Liver cirrhosis",
+        "Lymphoma",
+        "Nephrotic syndrome"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 22-year-old woman presents to her primary care physician in April for seasonal allergies. She has suffered from seasonal allergies for the past 2 years and takes diphenhydramine as needed ...",
+      "ground_truth": "ADMETAI_predict_physicochemical_properties: {'smiles': ['fexofenadine', 'diphenhydramine']}, {'smiles': ['fex-ofenadine', 'diphenhydramine']}\nFDA_get_mechanism_of_action_by_drug_name: fexofenadine, diphenhydramine\nADMETAI_predict_solubility_lipophilicity_hydration: {'smiles': ['fexofenadine', 'diphenhydramine']}, {'smiles': ['fex-ofenadine', 'diphenhydramine']}\nADMETAI_predict_BBB_penetrance: {'smiles': ['fexofenadine', 'diphenhydramine']}\nADMETAI_predict_bioavailability: {'smiles': ['fex-ofenadine', 'diphenhydramine']}\nADMETAI_predict_clearance_distribution: {'smiles': ['fexofenadine', 'diphenhydramine']}\nFDA_get_pharmacodynamics_by_drug_name: fexofenadine, diphenhydramine",
+      "prediction": "Fexodenadine is a beta-adrenergic antagonist, which means it has a different mechanism of action compared to diphenhydramine, which is an alpha-adrenergic antagonist. Beta-adrenergic antagonists are generally less sedating than alpha-adrenergic antagonists.",
+      "gt_tools": [
+        "ADMETAI_predict_physicochemical_properties",
+        "FDA_get_mechanism_of_action_by_drug_name",
+        "ADMETAI_predict_solubility_lipophilicity_hydration",
+        "ADMETAI_predict_BBB_penetrance",
+        "ADMETAI_predict_bioavailability",
+        "ADMETAI_predict_clearance_distribution",
+        "FDA_get_pharmacodynamics_by_drug_name"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 55-year-old male visited his primary care physician complaining of chest pain and progressive shortness of breath worsened by exertion. His vital signs were within normal limits. He report...",
+      "ground_truth": "euhealthinfo_search_causes_of_death: {'alpha': 0.5, 'country': 'United States', 'language': 'English', 'limit': 25, 'method': 'hybrid', 'term_override': 'mesothelioma', 'top_k': 25}\neuhealthinfo_search_cancer_registry: {'alpha': 0.5, 'country': 'United States', 'language': 'English', 'limit': 25, 'method': 'hybrid', 'term_override': 'mesothelioma', 'top_k': 25}\nTool_Finder: {'categories': ['mesothelioma symptoms', 'mesothelioma complications', 'pleural thickening'], 'description': 'Retrieve tools that provide detailed information on the common symptoms and complications of mesothelioma, focusing on pleural thickening and related conditions.', 'limit': 5}\nMedlinePlus_search_topics_by_keyword: {'db': 'healthTopics', 'rettype': 'topic', 'term': 'mesothelioma complications'}",
+      "prediction": "Mesothelioma is a type of cancer that affects the pleura, which is the thin layer of tissue that covers the lungs and lines the chest cavity. Asbestos exposure is a common cause of mesothelioma, and it is known to have a latency period of 10-40 years. This means that mesothelioma can develop years after the initial exposure to asbestos.\n\nThe presence of mesothelioma in a patient with a history of working in a naval shipyard suggests that they may also have other respiratory conditions or asbestos-related diseases. Some of these conditions include:\n\n1. Pneumothorax: A condition where air accumulates in the pleural space, causing the lung to collapse.\n2. Pleural effusion: A buildup of fluid in the pleural space, which can cause difficulty breathing and chest pain.\n3. Systemic inflammatory response syndrome: A condition characterized by inflammation and immune response in the body.\n4. Bronchioalveolar carcinoma: A type of cancer that affects the bronchi and bronchioles, which are part of the respiratory system.\n5. Bronchiectasis: A condition where the bronchi and bronchioles become permanently damaged, leading to chronic inflammation and infection.\n\nIt is important to note that the presence of these conditions may vary depending on the individual patient's history and exposure to asbestos.",
+      "gt_tools": [
+        "euhealthinfo_search_causes_of_death",
+        "euhealthinfo_search_cancer_registry",
+        "Tool_Finder",
+        "MedlinePlus_search_topics_by_keyword"
+      ],
+      "pred_tools": [
+        "The presence of mesothelioma in a patient with a history of working in a naval shipyard suggests that they may also have other respiratory conditions or asbestos-related diseases. Some of these conditions include",
+        "1. Pneumothorax",
+        "2. Pleural effusion",
+        "3. Systemic inflammatory response syndrome",
+        "4. Bronchioalveolar carcinoma",
+        "5. Bronchiectasis"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 56-year-old man recently diagnosed with cirrhosis secondary to alcohol use presents to the clinic for a follow up evaluation. He states that he has abstained from alcohol and attends a sup...",
+      "ground_truth": "TRIP_Database_Guidelines_Search: {'query': 'management of esophageal varices', 'limit': 5}\nsearch_clinical_trials: {'condition': 'esophageal varices', 'intervention': 'endoscopic sclerotherapy', 'pageSize': 5}, {'condition': 'esophageal varices', 'intervention': 'endoscopic ligation', 'pageSize': 5}",
+      "prediction": "Endoscopic sclerotherapy is a minimally invasive procedure used to treat small esophageal varices with red spots. It involves injecting a chemical agent into the blood supply to the varices, which helps to prevent bleeding. Ligation is another option, which involves tying off the blood supply to the varices. Metoprolol and Nadolol are medications that can be used to prevent bleeding in esophageal varices. Repeat endoscopy is also an option, which involves monitoring the patient's condition and performing additional endoscopies as needed to prevent bleeding.",
+      "gt_tools": [
+        "TRIP_Database_Guidelines_Search",
+        "search_clinical_trials"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 75-year-old man presents to the physician for his annual blood pressure visit and blood work. He has no complaints other than occasional knee pain. The past medical history includes hypert...",
+      "ground_truth": "MedlinePlus_get_genetics_condition_by_name: {'condition': 'Chronic lymphocytic leukemia (CLL)', 'format': 'json'}, {'condition': 'Monoclonal B cell lymphocytosis (MBL)', 'format': 'json'}, {'condition': 'Monoclonal gammopathy of undetermined significance (MGUS)', 'format': 'json'}, {'condition': 'Multiple myeloma (MM)', 'format': 'json'}, {'condition': 'Polycythemia vera (PV)', 'format': 'json'}\nadvanced_literature_search_agent: {'query': 'Chronic lymphocytic leukemia (CLL)'}, {'query': 'Monoclonal B cell lymphocytosis (MBL)'}, {'query': 'Monoclonal gammopathy of undetermined significance (MGUS)'}, {'query': 'Multiple myeloma (MM)'}, {'query': 'Polycythemia vera (PV)'}",
+      "prediction": "The patient's symptoms include knee osteoarthritis and occasional acetaminophen use for pain control. The laboratory results show an absolute lymphocyte count of 50,000/mm3. The patient's age is 75 years old, and the temperature is 36.8\u2103. The physical examination shows no abnormalities other than a reduced range of motion and crepitus in both knees.\n\nThe diagnosis is likely to be Chronic lymphocytic leukemia (CLL), Monoclonal B cell lymphocytosis (MBL), Monoclonal gammopathy of undetermined significance (MGUS), Multiple myeloma (MM), or Polycythemia vera (PV). The patient's symptoms and laboratory results are consistent with these diagnoses. However, it is important to consult a healthcare professional for a thorough evaluation and proper diagnosis.",
+      "gt_tools": [
+        "MedlinePlus_get_genetics_condition_by_name",
+        "advanced_literature_search_agent"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 60-year-old man comes to the physician because of a 2-month history of cough productive of yellow sputum with occasional streaks of blood. He has a history of pulmonary tuberculosis. He is...",
+      "ground_truth": "LiteratureSynthesisAgent: {'topic': 'Hypersensitivity reaction', 'literature_data': 'Information on hypersensitivity reactions, including clinical presentations and mechanisms.', 'focus_area': 'General'}, {'topic': 'Asbestos inhalation', 'literature_data': 'Information on asbestos inhalation, including clinical presentations and mechanisms.', 'focus_area': 'General'}, {'topic': 'Neoplastic transformation', 'literature_data': 'Information on neoplastic transformations, including clinical presentations and mechanisms.', 'focus_area': 'General'}, {'topic': 'Opportunistic colonization', 'literature_data': 'Information on opportunistic colonization, including clinical presentations and mechanisms.', 'focus_area': 'General'}, {'topic': 'Abscess formation', 'literature_data': 'Information on abscess formation, including clinical presentations and mechanisms.', 'focus_area': 'General'}\nMedicalLiteratureReviewer: {'focus_area': 'Hypersensitivity reaction', 'literature_content': 'Information on hypersensitivity reactions, including clinical presentations and mechanisms.', 'quality_level': 'high', 'review_scope': 'systematic review', 'study_types': ['case-control studies', 'cohort studies']}, {'focus_area': 'Asbestos inhalation', 'literature_content': 'Information on asbestos inhalation, including clinical presentations and mechanisms.', 'quality_level': 'high', 'review_scope': 'systematic review', 'study_types': ['case-control studies', 'cohort studies']}, {'focus_area': 'Neoplastic transformation', 'literature_content': 'Information on neoplastic transformations, including clinical presentations and mechanisms.', 'quality_level': 'high', 'review_scope': 'systematic review', 'study_types': ['case-control studies', 'cohort studies']}, {'focus_area': 'Opportunistic colonization', 'literature_content': 'Information on opportunistic colonization, including clinical presentations and mechanisms.', 'quality_level': 'high', 'review_scope': 'systematic review', 'study_types': ['case-control studies', 'cohort studies']}, {'focus_area': 'Abscess formation', 'literature_content': 'Information on abscess formation, including clinical presentations and mechanisms.', 'quality_level': 'high', 'review_scope': 'systematic review', 'study_types': ['case-control studies', 'cohort studies']}\nDiseaseAnalyzerAgent: {'disease_name': 'Hypersensitivity reaction'}, {'disease_name': 'Asbestos inhalation'}, {'disease_name': 'Neoplastic transformation'}, {'disease_name': 'Opportunistic colonization'}, {'disease_name': 'Abscess formation'}",
+      "prediction": "Asbestos inhalation is a common cause of pulmonary tuberculosis and can lead to radiopaque masses in the lungs. Hypersensitivity reaction, Neoplastic transformation, Opportunistic colonization, and Abscess formation are also possible causes of radiopaque masses in the lungs.",
+      "gt_tools": [
+        "LiteratureSynthesisAgent",
+        "MedicalLiteratureReviewer",
+        "DiseaseAnalyzerAgent"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A researcher hypothesizes that low birth weight is related to obesity later in life. He conducts a study with a 95% confidence interval with a p-value of 0.049 to disprove his null hypothesi...",
+      "ground_truth": "gwas_get_study_by_id: {'study_id': '0.049'}\nExperimentalDesignScorer: {'design_description': 'A study with a 95% confidence interval and a p-value of 0.049 to disprove the null hypothesis.', 'hypothesis': 'Low birth weight is related to obesity later in life.'}\nDataAnalysisValidityReviewer: {'analysis_section': 'A study with a 95% confidence interval and a p-value of 0.049 to disprove the null hypothesis.'}",
+      "prediction": "The study was conducted with a 95% confidence interval and a p-value of 0.049 to disprove the null hypothesis. The null hypothesis was that low birth weight is not related to obesity later in life. The study found that low birth weight is associated with obesity, leading to the rejection of the null hypothesis.\n\nType 1 error: A type 1 error occurs when a study concludes that there is a relationship between two variables when, in fact, there is no relationship. This type of error is often associated with studies that are conducted with a high level of statistical significance and a low p-value.\n\nType 2 error: A type 2 error occurs when a study concludes that there is no relationship between two variables when, in fact, there is a relationship. This type of error is often associated with studies that are conducted with a low level of statistical significance and a high p-value.\n\nIn this case, the study was conducted with a 95% confidence interval and a p-value of 0.049 to disprove the null hypothesis. The null hypothesis was that low birth weight is not related to obesity later in life. The study found that low birth weight is associated with obesity, leading to the rejection of the null hypothesis.\n\nType 1 error: A type 1 error occurs when a study concludes that there is a relationship between two variables when, in fact, there is no relationship. This type of error is often associated with studies that are conducted with a high level of statistical significance and a low p-value.\n\nType 2 error: A type 2 error occurs when a study concludes that there is no relationship between two variables when, in fact, there is a relationship. This type of error is often associated with studies that are conducted with a low level of statistical significance and a high p-value.\n\nIn this case, the study was conducted with a 95% confidence interval and a p-value of 0.049 to disprove the null hypothesis. The null hypothesis was that low birth weight is not related to obesity later in life. The study found that low birth weight is associated with obesity, leading to the rejection of the null hypothesis.\n\nType 1 error: A type 1 error occurs when a study concludes that there is a relationship between two",
+      "gt_tools": [
+        "gwas_get_study_by_id",
+        "ExperimentalDesignScorer",
+        "DataAnalysisValidityReviewer"
+      ],
+      "pred_tools": [
+        "Type 1 error",
+        "Type 2 error",
+        "Type 1 error",
+        "Type 2 error",
+        "Type 1 error"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 52-year-old woman presents to her primary care physician for abdominal pain and diarrhea. The patient states that she has been experiencing watery diarrhea for weeks now. During this same ...",
+      "ground_truth": "kegg_search_pathway: {'keyword': 'Enterotoxin'}, {'keyword': 'Impaired iron absorption'}, {'keyword': 'Increased serotonin production'}, {'keyword': 'Invasive bacterial infection'}, {'keyword': 'Normal flora destruction'}\nBiomarkerDiscoveryWorkflow: {'disease_condition': 'Enterotoxin', 'sample_type': 'blood'}, {'disease_condition': 'Impaired iron absorption', 'sample_type': 'blood'}, {'disease_condition': 'Increased serotonin production', 'sample_type': 'blood'}, {'disease_condition': 'Invasive bacterial infection', 'sample_type': 'blood'}, {'disease_condition': 'Normal flora destruction', 'sample_type': 'blood'}\nTool_Finder_LLM: {'categories': ['disease mechanisms'], 'description': 'Retrieve tools that can provide detailed symptom and laboratory findings for different mechanisms of disease, such as enterotoxin production, impaired iron absorption, increased serotonin production, invasive bacterial infection, and normal flora destruction.', 'limit': 5}\nDiseaseAnalyzerAgent: {'disease_name': 'Enterotoxin'}, {'disease_name': 'Impaired iron absorption'}, {'disease_name': 'Increased serotonin production'}, {'disease_name': 'Invasive bacterial infection'}, {'disease_name': 'Normal flora destruction'}\nEuropePMC_Guidelines_Search: {'query': 'Enterotoxin', 'limit': 5}, {'query': 'Impaired iron absorption', 'limit': 5}, {'query': 'Increased serotonin production', 'limit': 5}, {'query': 'Invasive bacterial infection', 'limit': 5}, {'query': 'Normal flora destruction', 'limit': 5}",
+      "prediction": "The patient's symptoms include watery diarrhea, constant thirst, and low energy levels. The laboratory results show an increased serotonin production, which is associated with the diagnosis of Enterotoxin.",
+      "gt_tools": [
+        "kegg_search_pathway",
+        "BiomarkerDiscoveryWorkflow",
+        "Tool_Finder_LLM",
+        "DiseaseAnalyzerAgent",
+        "EuropePMC_Guidelines_Search"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 13-year-old boy is brought to the physician because of progressive left leg pain for 2 months, which has started to interfere with his sleep. His mother has been giving him ibuprofen at ni...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'Ewing sarcoma', 'disease_name': 'Ewing sarcoma'}\nBiomarkerDiscoveryWorkflow: {'disease_condition': 'Ewing sarcoma', 'sample_type': 'biopsy'}",
+      "prediction": "Osteosarcoma is a type of bone cancer that affects the long bones, typically in adolescents. It is characterized by the presence of small round blue cells and multiple lytic lesions in the bone.\n\nChondrosarcoma is a type of bone cancer that affects the long bones, typically in adolescents. It is characterized by the presence of small round blue cells and multiple lytic lesions in the bone.\n\nOsteochondroma is a type of bone cancer that affects the long bones, typically in adolescents. It is characterized by the presence of small round blue cells and multiple lytic lesions in the bone.\n\nEwing sarcoma is a type of bone cancer that affects the long bones, typically in adolescents. It is characterized by the presence of small round blue cells and multiple lytic lesions in the bone.\n\nOsteoid osteoma is a type of bone cancer that affects the long bones, typically in adolescents. It is characterized by the presence of small round blue cells and multiple lytic lesions in the bone.\n\nThe diagnosis is likely to be Ewing sarcoma, as it is characterized by the presence of small round blue cells and multiple lytic lesions in the bone.",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "BiomarkerDiscoveryWorkflow"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 55-year-old male with a history of stage I colon cancer status-post left hemicolectomy presents to your office for follow-up. You intend to discuss the results from his recent surveillance...",
+      "ground_truth": "call_agentic_human: {'question': \"Analyze the statement 'Last week I volunteered for the local Cancer Society. Helping other cancer patients just makes me feel better.' in relation to the defense mechanism of suppression.\", 'context': 'The statement should be evaluated for any avoidance of uncomfortable thoughts or feelings related to cancer.', 'type': 'string'}, {'question': \"Analyze the statement 'Oh, doctor, I'm just so grateful to be seeing you. I just know you've cured my cancer. I probably don't even need to check anymore.' in relation to the defense mechanism of suppression.\", 'context': 'The statement should be evaluated for any avoidance of uncomfortable thoughts or feelings related to cancer.', 'type': 'string'}, {'question': \"Analyze the statement 'I'm sorry I was late today. I also didn't get any of the labs you asked for.' in relation to the defense mechanism of suppression.\", 'context': 'The statement should be evaluated for any avoidance of uncomfortable thoughts or feelings related to cancer.', 'type': 'string'}, {'question': \"Analyze the statement 'Ever since I had the colonoscopy, I've been having headaches and backaches and just pain all over! I'm sure it's from the cancer.' in relation to the defense mechanism of suppression.\", 'context': 'The statement should be evaluated for any avoidance of uncomfortable thoughts or feelings related to cancer.', 'type': 'string'}, {'question': \"Analyze the statement 'I really haven't thought about the colonoscopy until today. Worrying before getting the results wasn't going to help anything.' in relation to the defense mechanism of suppression.\", 'context': 'The statement should be evaluated for any avoidance of uncomfortable thoughts or feelings related to cancer.', 'type': 'string'}",
+      "prediction": "The patient's statements are consistent with the defense mechanism of suppression, as they indicate a sense of relief and normalization after the colonoscopy results were discussed. This suggests that the patient is not dwelling on the cancer or the colonoscopy results, which is a positive sign of recovery and normalization.",
+      "gt_tools": [
+        "call_agentic_human"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 67-year-old man is brought to the emergency department with severe, crushing, retrosternal chest pain for the last 45 minutes. The pain radiates to his left shoulder and is associated with...",
+      "ground_truth": "AdverseEventPredictionQuestionGenerator: lovastatin\nFAERS_search_adverse_event_reports: {'medicinalproduct': 'lovastatin', 'limit': 5}",
+      "prediction": "The patient's symptoms and medical history suggest a severe anteroseptal infarction. The most concerning development over the next 24 hours would be persistent ST-segment elevation, which indicates a complication of the infarction. This could be a sign of myocardial infarction complications, such as arrhythmias or heart failure.",
+      "gt_tools": [
+        "AdverseEventPredictionQuestionGenerator",
+        "FAERS_search_adverse_event_reports"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 65-year-old male presents to his pulmonologist for a follow-up visit. He has a history of chronic progressive dyspnea over the past five years. He uses oxygen at home and was seen in the e...",
+      "ground_truth": "FDA_get_drug_names_by_mechanism_of_action: {'indication': 'mucoactive and anti-oxidative properties', 'limit': 5}\nFDA_get_drug_names_by_clinical_pharmacology: {'clinical_pharmacology': 'mucoactive and anti-oxidative properties', 'limit': 5}\nFDA_get_drug_name_by_pharmacodynamics: {'pharmacodynamics': 'mucoactive and anti-oxidative properties', 'limit': 5}\nFDA_get_drug_names_by_pharmacokinetics: {'pharmacokinetics_info': 'mucoactive and anti-oxidative properties', 'limit': 5}\nGtoPdb_get_targets: {'database_name': 'mucoactive and anti-oxidative properties', 'limit': 5}",
+      "prediction": "The primary mechanism of action of the medication in the lungs is Osmotic hydration of airway lumen. This means that the medication helps to reduce airway surface tension, making it easier for the patient to breathe.",
+      "gt_tools": [
+        "FDA_get_drug_names_by_mechanism_of_action",
+        "FDA_get_drug_names_by_clinical_pharmacology",
+        "FDA_get_drug_name_by_pharmacodynamics",
+        "FDA_get_drug_names_by_pharmacokinetics",
+        "GtoPdb_get_targets"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: The only immunoglobulin found as a dimer has what primary function?\nOptions: Protect against invasive helminth infection / Protect against viral infections / Provide an initial humoral immun...",
+      "ground_truth": "UniProt_get_function_by_accession: {'accession': 'immunoglobulin'}, {'accession': 'immunoglobulins'}\nenrichr_gene_enrichment_analysis: {'gene_list': ['immunoglobulin'], 'libs': ['WikiPathways_2024_Human', 'Reactome_Pathways_2024', 'MSigDB_Hallmark_2020', 'GO_Molecular_Function_2023', 'GO_Biological_Process_2023']}\nUniProt_search: {'query': 'immunoglobulins'}, {'query': 'dimeric immunoglobulin'}, {'query': 'dimerically structured immunoglobulin'}\nget_polymer_entity_annotations: {'entity_id': 'immunoglobulins'}\nHPA_get_biological_processes_by_gene: {'gene_name': 'immunoglobulin'}, {'gene_name': 'immunoglobulin', 'filter_processes': True}",
+      "prediction": "Immunoglobulin dimers are used to provide specific recognition to circulating antigens in the bloodstream, which can help protect against invasive helminth infection, viral infections, and other pathogens.",
+      "gt_tools": [
+        "UniProt_get_function_by_accession",
+        "enrichr_gene_enrichment_analysis",
+        "UniProt_search",
+        "get_polymer_entity_annotations",
+        "HPA_get_biological_processes_by_gene"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 72-year-old woman with a 40 pack-year history of smoking presents to your office with jaundice. After a thorough workup, you determine that the patient has pancreatic cancer. Which of the ...",
+      "ground_truth": "euhealthinfo_search_hospital_in_patient_data: {'alpha': 0.5, 'country': 'US', 'language': 'en', 'limit': 5, 'method': 'hybrid', 'term_override': 'delivering difficult medical diagnoses', 'top_k': 5}\nToolQualityEvaluator: {'evaluation_aspects': ['empathy', 'compassion', 'effective communication'], 'test_cases': ['delivering difficult medical diagnoses', 'communicating with patients in sensitive situations'], 'tool_config': {'description': 'Tools that provide guidance on effective communication with patients, especially in sensitive or difficult medical situations.', 'limit': 5}",
+      "prediction": "Consider the best approach for ensuring privacy and comfort for the patient during the conversation, as well as the best approach for ensuring clarity and understanding of the diagnosis.",
+      "gt_tools": [
+        "euhealthinfo_search_hospital_in_patient_data",
+        "ToolQualityEvaluator"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 42-year-old man presents to establish care with a family physician after having progressively worsening back pain. He has recently migrated from Sweden and has not had any checkups in the ...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': \"The patient's symptoms include worsening back pain, morning stiffness, painful knees, joint pain and stiffness, and a family history of joint issues and osteoporosis. He is also a smoker.\", 'disease_name': 'rheumatoid arthritis'}\nBiomarkerDiscoveryWorkflow: {'disease_condition': 'rheumatoid arthritis', 'sample_type': 'blood'}",
+      "prediction": "and analysis\n\nThe next best step in managing the patient's symptoms is to consult a healthcare professional for a thorough evaluation and proper diagnosis. This may include testing for serum Ca and PTH, as well as considering a prescription for calcium and vitamin D. It is important to consult a healthcare professional for a proper diagnosis and management plan.",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "BiomarkerDiscoveryWorkflow"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A previously healthy 28-year-old man comes to the emergency department because of dizziness and palpitations for 2 days. Prior to the onset of the symptoms, he attended a bachelor party wher...",
+      "ground_truth": "euhealthinfo_search_alcohol_tobacco_psychoactive_use: {'alpha': 0.5, 'country': 'United States', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'alcohol consumption and cardiac conditions', 'top_k': 5}\neuhealthinfo_search_hospital_in_patient_data: {'alpha': 0.5, 'country': 'United States', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'alcohol consumption and cardiac conditions', 'top_k': 5}",
+      "prediction": "Hypertrophic obstructive cardiomoyopathy: A condition characterized by thickening of the heart muscle, which can obstruct blood flow and cause symptoms like dizziness and palpitations.\n\nParoxysmal atrial fibrillation: A condition characterized by sudden attacks of atrial fibrillation, which can cause symptoms like dizziness and palpitations.\n\nBrugada syndrome: A condition characterized by a type of arrhythmia that can cause symptoms like dizziness and palpitations.\n\nVentricular tachycardia: A condition characterized by a rapid heart rate, which can cause symptoms like dizziness and palpitations.\n\nSick sinus syndrome: A condition characterized by a slow heart rate, which can cause symptoms like dizziness and palpitations.\n\nThe diagnosis is likely to be Paroxysmal atrial fibrillation, as it is characterized by sudden attacks of atrial fibrillation and can cause symptoms like dizziness and palpitations.",
+      "gt_tools": [
+        "euhealthinfo_search_alcohol_tobacco_psychoactive_use",
+        "euhealthinfo_search_hospital_in_patient_data"
+      ],
+      "pred_tools": [
+        "Hypertrophic obstructive cardiomoyopathy",
+        "Paroxysmal atrial fibrillation",
+        "Brugada syndrome",
+        "Ventricular tachycardia",
+        "Sick sinus syndrome"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 45-year-old woman comes to the physician because of fatigue, abdominal cramps, watery diarrhea, and a weight loss of 4 kg (8.8 lb) over the last 4 months. She has recently avoided drinking...",
+      "ground_truth": "BiomarkerDiscoveryWorkflow: {'disease_condition': 'serotonin metabolism disorder', 'sample_type': 'urine'}",
+      "prediction": "The patient's symptoms and laboratory findings suggest a condition involving increased urine 5-hydroxyindoleacetic acid. This condition is likely related to a specific type of cancer, as increased urine 5-hydroxyindoleacetic acid is a characteristic finding in certain types of cancer. The patient's symptoms and laboratory findings suggest a condition involving increased urine 5-hydroxyindoleacetic acid. Further evaluation of this patient will most likely show which of the following:\n\nOptions: Proximal muscle wasting, Achlorhydria, Adrenal medullary mass, Multiple peptic ulcers, Pulmonic valve stenosis\n\nThe patient's symptoms and laboratory findings suggest a condition involving increased urine 5-hydroxyindoleacetic acid. This condition is likely related to a specific type of cancer, as increased urine 5-hydroxyindoleacetic acid is a characteristic finding in certain types of cancer. The patient's symptoms and laboratory findings suggest a condition involving increased urine 5-hydroxyindoleacetic acid. Further evaluation of this patient will most likely show which of the following:\n\nOptions: Proximal muscle wasting, Achlorhydria, Adrenal medullary mass, Multiple peptic ulcers, Pulmonic valve stenosis\n\nThe patient's symptoms and laboratory findings suggest a condition involving increased urine 5-hydroxyindoleacetic acid. This condition is likely related to a specific type of cancer, as increased urine 5-hydroxyindoleacetic acid is a characteristic finding in certain types of cancer. The patient's symptoms and laboratory findings suggest a condition involving increased urine 5-hydroxyindoleacetic acid. Further evaluation of this patient will most likely show which of the following:\n\nOptions: Proximal muscle wasting, Achlorhydria, Adrenal medullary mass, Multiple peptic ulcers, Pulmonic valve stenosis\n\nThe patient's symptoms and laboratory findings suggest a condition involving increased urine 5-hydroxyindoleacetic acid. This condition is likely related to a specific type of cancer, as increased urine 5-hydroxyindoleacetic acid is a characteristic finding in certain types of cancer. The patient's symptoms",
+      "gt_tools": [
+        "BiomarkerDiscoveryWorkflow"
+      ],
+      "pred_tools": [
+        "The patient's symptoms and laboratory findings suggest a condition involving increased urine 5-hydroxyindoleacetic acid. This condition is likely related to a specific type of cancer, as increased urine 5-hydroxyindoleacetic acid is a characteristic finding in certain types of cancer. The patient's symptoms and laboratory findings suggest a condition involving increased urine 5-hydroxyindoleacetic acid. Further evaluation of this patient will most likely show which of the following",
+        "Options",
+        "The patient's symptoms and laboratory findings suggest a condition involving increased urine 5-hydroxyindoleacetic acid. This condition is likely related to a specific type of cancer, as increased urine 5-hydroxyindoleacetic acid is a characteristic finding in certain types of cancer. The patient's symptoms and laboratory findings suggest a condition involving increased urine 5-hydroxyindoleacetic acid. Further evaluation of this patient will most likely show which of the following",
+        "Options",
+        "The patient's symptoms and laboratory findings suggest a condition involving increased urine 5-hydroxyindoleacetic acid. This condition is likely related to a specific type of cancer, as increased urine 5-hydroxyindoleacetic acid is a characteristic finding in certain types of cancer. The patient's symptoms and laboratory findings suggest a condition involving increased urine 5-hydroxyindoleacetic acid. Further evaluation of this patient will most likely show which of the following",
+        "Options"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 66-year-old man presents to the emergency department due to a productive cough. His cough has been increasing in frequency and severity over the course of 3 days, and his sputum production...",
+      "ground_truth": "FDA_get_indications_by_drug_name: Amoxicillin, Cefazolin, Ceftriaxone, Levofloxacin, Penicillin",
+      "prediction": ", Benzathine, Vaccine, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 2",
+      "gt_tools": [
+        "FDA_get_indications_by_drug_name"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 55-year-old man presents with bloody nasal secretions and shortness of breath. He reports he has lost 4 kg (8.8 lb) in the last two months with no changes in his diet. He has also been suf...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'autoimmune or inflammatory disease', 'disease_name': 'autoimmune or inflammatory disease'}\nBiomarkerDiscoveryWorkflow: {'disease_condition': 'autoimmune or inflammatory disease', 'sample_type': 'blood'}\nOpenTargets_get_target_id_description_by_name: {'targetName': 'Anti-citrullinated protein antibodies'}, {'targetName': 'Erythrocyte sedimentation rate'}, {'targetName': 'Anti-histone bodies'}, {'targetName': 'Anti-Ro'}, {'targetName': 'Antineutrophil cytoplasmic antibodies'}",
+      "prediction": "Anti-citrullinated protein antibodies, Erythrocyte sedimentation rate, Anti-histone bodies, Anti-Ro, Antineutrophil cytoplasmic antibodies are all markers that can help confirm the diagnosis of a specific condition. These markers can provide valuable information about the patient's immune response and inflammation, which can help in diagnosing conditions like lupus or other inflammatory conditions.",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "BiomarkerDiscoveryWorkflow",
+        "OpenTargets_get_target_id_description_by_name"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 25-year-old woman presents to her primary care provider for evaluation of a \"painful mass in my left groin.\" She says that her symptoms began 4 days ago as a painful mass that slowly enlar...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'painful mass in the groin, ulcerative lymph nodes, history of unprotected sex, Southeast Asia travel', 'disease_name': 'unknown'}\nget_HPO_ID_by_phenotype: {'query': 'painful mass in the groin, ulcerative lymph nodes, history of unprotected sex, Southeast Asia travel', 'limit': 5}\nOpenTargets_get_disease_ids_by_name: painful mass in the groin, ulcerative lymph nodes, history of unprotected sex, Southeast Asia travel",
+      "prediction": "The patient's symptoms and medical history suggest a sexually transmitted infection (STI) with complications. The options provided are related to diagnostic findings and laboratory results for STI-related conditions. The patient's condition is likely to be a gonorrhea infection with complications, as it is associated with the formation of abscesses and ulceration in the groin area. The options provided are related to diagnostic findings and laboratory results for gonorrhea infection with complications.",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "get_HPO_ID_by_phenotype",
+        "OpenTargets_get_disease_ids_by_name"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 70-year-old hypertensive and hyperlipidemic woman comes to the emergency department with chief complaints of acute onset of impaired speech and comprehension with a right-sided weakness fo...",
+      "ground_truth": "kegg_get_pathway_info: {'pathway_id': 'hsa00010'}\nHPA_get_contextual_biological_process_analysis: {'context_name': 'acute ischemic stroke', 'gene_name': 'TP53'}\nHPA_get_biological_processes_by_gene: {'gene_name': 'TP53'}",
+      "prediction": "production\n\nThese processes are typically associated with ischemic stroke and penumbral tissue salvage. The specific processes involved in penumbral tissue salvage may vary depending on the location and extent of the ischemic stroke, but they generally involve cellular processes that can be reversed or repaired with timely intervention.",
+      "gt_tools": [
+        "kegg_get_pathway_info",
+        "HPA_get_contextual_biological_process_analysis",
+        "HPA_get_biological_processes_by_gene"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: During the normal catabolism of protein, urea and ammonia are produced as waste products. If these waste products are not cleared by the liver and kidneys, hyperammonemia can occur, leading ...",
+      "ground_truth": "kegg_get_pathway_info: {'pathway_id': 'urea cycle'}\nReactome_get_pathway_reactions: {'stId': 'urea cycle'}\nWikiPathways_get_pathway: {'wpid': 'urea cycle'}, {'wpid': 'WP4973'}, {'wpid': 'WP497'}, {'wpid': 'WP153'}\nkegg_search_pathway: {'keyword': 'urea cycle'}\nWikiPathways_search: {'query': 'urea cycle'}",
+      "prediction": "The rate limiting step in the urea cycle is the first reaction, which involves NH3, HCO3-, ATP, and carbamoyl phosphate. This reaction is responsible for converting ammonia and carbonic acid into carbamoyl phosphate, which is then used in subsequent reactions to produce urea.",
+      "gt_tools": [
+        "kegg_get_pathway_info",
+        "Reactome_get_pathway_reactions",
+        "WikiPathways_get_pathway",
+        "kegg_search_pathway",
+        "WikiPathways_search"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 46-year-old man presents with worsening pain in multiple joints for the past 2 weeks. He says the pain is most severe in the proximal parts of his fingers and his wrists, but it has now sp...",
+      "ground_truth": "FDA_get_indications_by_drug_name: Cyclosporine, Infliximab, Anakinra, Methotrexate, High-dose prednisone for 60 days",
+      "prediction": ", followed by a taper to a lower dose\n\nCyclosporine, Infliximab, Anakinra, Methotrexate, High-dose prednisone for 60 days, followed by a taper to a lower dose are all options for treating inflammatory pain and autoimmune conditions. High-dose prednisone for 60 days, followed by a taper to a lower dose, is a corticosteroid medication that can help reduce inflammation and pain. The other medications mentioned are all used for treating inflammatory pain and autoimmune conditions. The choice of medication depends on the patient's specific condition and symptoms.",
+      "gt_tools": [
+        "FDA_get_indications_by_drug_name"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 2-year-old girl is brought in to the office by her parents. They state that their daughter has recently been more irritable than usual, and she occasionally becomes pale and blue. Her pare...",
+      "ground_truth": "ToolDescriptionOptimizer: {'max_iterations': 3, 'output_file': 'optimized_tool_description.txt', 'satisfaction_threshold': 8, 'save_to_file': True, 'tool_config': {'description': 'Retrieve tools that can access medical literature or databases to gather detailed information on congenital heart defects, including symptoms, diagnostic features, and typical presentations.', 'limit': 5}\nTool_Finder: {'description': 'Retrieve tools that provide detailed information on congenital heart defects, including symptoms, diagnostic features, and typical presentations.', 'limit': 5}\nTool_Finder_LLM: {'categories': ['congenital heart defects'], 'description': 'Retrieve detailed information on congenital heart defects, including symptoms, diagnostic features, and typical presentations.', 'limit': 5}",
+      "prediction": "The diagnosis is likely to be Tetralogy of Fallot, as it is the most common congenital heart defect in children. It is characterized by a combination of symptoms and signs, including a systolic ejection murmur, which is best heard at the upper left sternal border.",
+      "gt_tools": [
+        "ToolDescriptionOptimizer",
+        "Tool_Finder",
+        "Tool_Finder_LLM"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: An 18-year-old male is brought in by fire rescue. The patient was an unrestrained passenger in a motor vehicle crash and was ejected from the vehicle after collision. Upon arrival to the tra...",
+      "ground_truth": "MedicalLiteratureReviewer: {'focus_area': 'disseminated intravascular coagulation', 'literature_content': 'systematic review', 'quality_level': 'high', 'review_scope': 'comprehensive systematic review', 'study_types': ['randomized controlled trials', 'meta-analyses', 'cohort studies', 'case-control studies'], 'research_topic': 'disseminated intravascular coagulation'}\nTRIP_Database_Guidelines_Search: {'query': 'disseminated intravascular coagulation', 'limit': 5}, {'query': 'coagulopathy of trauma', 'limit': 5}, {'query': 'fat embolization', 'limit': 5}\nadvanced_literature_search_agent: {'query': 'disseminated intravascular coagulation', 'agents': 5}, {'query': 'coagulopathy of trauma', 'agents': 5}, {'query': 'fat embolization', 'agents': 5}\neuhealthinfo_search_surveillance: {'country': 'USA', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'disseminated intravascular coagulation', 'top_k': 5}\neuhealthinfo_search_hospital_in_patient_data: {'country': 'USA', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'coagulopathy of trauma', 'top_k': 5}\neuhealthinfo_search_cancer_registry: {'country': 'USA', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'fat embolization', 'top_k': 5}",
+      "prediction": "Fat embolization: A condition where fat particles enter the bloodstream and travel to the lungs, causing respiratory distress.\nAir embolism: A condition where air enters the bloodstream and travels to the lungs, causing respiratory distress.\nTension pneumothorax: A condition where air accumulates in the pleural space, causing compression of the lung and respiratory distress.\nDisseminated intravascular coagulation: A condition where blood clots form in the venous system and travel to the lungs, causing respiratory distress.\nCoagulopathy of trauma: A condition where blood clotting is impaired due to trauma, causing respiratory distress.\n\nThe patient's symptoms and radiographs suggest multiple injuries, including swelling and bleeding. The diagnosis is likely to be a condition involving swelling and bleeding in the body, which can be caused by various types of embolism. The diagnosis is best explained by Coagulopathy of trauma, as it involves impaired blood clotting due to trauma.",
+      "gt_tools": [
+        "MedicalLiteratureReviewer",
+        "TRIP_Database_Guidelines_Search",
+        "advanced_literature_search_agent",
+        "euhealthinfo_search_surveillance",
+        "euhealthinfo_search_hospital_in_patient_data",
+        "euhealthinfo_search_cancer_registry"
+      ],
+      "pred_tools": [
+        "Fat embolization",
+        "Air embolism",
+        "Tension pneumothorax",
+        "Disseminated intravascular coagulation",
+        "Coagulopathy of trauma"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 60-year-old man presents to his local walk-in clinic with 1 week of fever, chills, night sweats, anorexia, malaise, progressive shortness of breath, and sharp chest pain. He is found with ...",
+      "ground_truth": "WikiPathways_search: {'query': 'Kingella kingae', 'organism': 'Homo sapiens'}, {'query': 'Staphylococcus aureus', 'organism': 'Homo sapiens'}, {'query': 'Escherichia coli', 'organism': 'Homo sapiens'}, {'query': 'Haemophilus aphrophilus', 'organism': 'Homo sapiens'}, {'query': 'Streptococcus bovis', 'organism': 'Homo sapiens'}",
+      "prediction": "Streptococcus bovis is the most likely causative agent of endocarditis, as it is commonly associated with this condition.",
+      "gt_tools": [
+        "WikiPathways_search"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 31-year-old man with a history of schizophrenia is brought to the emergency department by police after being found agitated and attempting to steal from a grocery store. His past medical h...",
+      "ground_truth": "FDA_get_abuse_info_by_drug_name: Alcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\nFDA_get_abuse_dependence_info_by_drug_name: Alcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana",
+      "prediction": "Alcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, Cocaine, Diphenhydramine, Haloperidol, Marijuana\n\nAlcohol, C",
+      "gt_tools": [
+        "FDA_get_abuse_info_by_drug_name",
+        "FDA_get_abuse_dependence_info_by_drug_name"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 40-year-old obese man presents to his primary care provider with a history of excessive daytime somnolence and easy fatigability. Upon further questioning, it is found that although his sl...",
+      "ground_truth": "get_tool_info: {'detail_level': 'full', 'tool_names': ['ToolRelationshipDetector', 'get_deeptools_info', 'get_pydeseq2_info', 'get_plip_info', 'DescriptionQualityEvaluator', 'get_flowutils_info', 'MethodologyRigorReviewer', 'TestResultsAnalyzer', 'ToolQualityEvaluator']}",
+      "prediction": "The patient's symptoms and sleep patterns suggest a condition involving apnea and hypopnea during sleep. The polysomnogram results provide more detailed information on the frequency and timing of these events, which can help in understanding the patient's condition.",
+      "gt_tools": [
+        "get_tool_info"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 70-year-old man presents with cough and progressively worsening shortness of breath for the last 6 months. He feels short of breath even without exertion and states he \u2018got winded\u2019 while w...",
+      "ground_truth": "get_tool_info: {'detail_level': 'full', 'tool_names': ['FlowKit', 'FlowUtils', 'FlowIO']}\nget_flowutils_info: {'info_type': 'overview'}",
+      "prediction": "Anatomical dead space refers to the air that is trapped in the respiratory system and cannot be exhaled, which can increase the expiratory flow rate. Lung compliance is the ability of the lung to expand and contract, which can also affect the expiratory flow rate. Physiological dead space is the air that is inhaled but not used by the body, which can increase the expiratory flow rate. Radial traction on airway wall is the force exerted on the airway wall due to the pressure of the air in the respiratory system, which can also affect the expiratory flow rate. Small airway wall thickness is the thickness of the airway walls, which can influence the expiratory flow rate.\n\nThe patient's symptoms and physical examination findings suggest a respiratory condition that affects the ability to exhale and the symptoms like cough and shortness of breath. The chest X-ray image provides a visual representation of the patient's respiratory condition, which can help healthcare professionals to better understand the patient's symptoms and physical examination findings.",
+      "gt_tools": [
+        "get_tool_info",
+        "get_flowutils_info"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: Two hours following an elective cholecystectomy, a 43-year-old woman has fever and chills. The patient received cephalexin for antibiotic prophylaxis and one unit of packed red blood cells d...",
+      "ground_truth": "euhealthinfo_search_hospital_in_patient_data: {'alpha': 0.5, 'country': 'USA', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': \"patient's medical history\", 'top_k': 5}, {'alpha': 0.5, 'country': 'USA', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'recent surgical procedure', 'top_k': 5}\neuhealthinfo_search_infectious_diseases: {'alpha': 0.5, 'country': 'USA', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'surgical site infection', 'top_k': 5}",
+      "prediction": "Adverse effect of medication: cephalexin\nMalignant hyperthermia: none\nSurgical site infection: none\nUrinary tract infection: none\nTransfusion reaction: none\n\nThe patient's symptoms are likely due to a transfusion reaction, as it is the only option that is not related to the other causes mentioned. Transfusion reactions can occur when a patient's blood type is different from the blood type of the donor, leading to a reaction in the body.",
+      "gt_tools": [
+        "euhealthinfo_search_hospital_in_patient_data",
+        "euhealthinfo_search_infectious_diseases"
+      ],
+      "pred_tools": [
+        "Adverse effect of medication",
+        "Malignant hyperthermia",
+        "Surgical site infection",
+        "Urinary tract infection",
+        "Transfusion reaction"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 38-year-old woman with a history of systemic lupus erythematosus, obesity, and hyperlipidemia presents to her primary care physician for evaluation of new bilateral blisters on her hands. ...",
+      "ground_truth": "DescriptionAnalyzer: {'original_description': 'Tzanck smear', 'test_results': {'input': 'A test used to diagnose conditions like pemphigus that present with blisters.', 'output': 'A test that can confirm the presence of acantholytic cells in blister fluid, indicating pemphigus.'}",
+      "prediction": "Anti-nuclear antibody titer 1:320\nAnti-dsDNA titers\nC-reactive protein\nAnti-hemidesmosome titers\nUrine porphyrin levels\nTzanck smear\n\nAnti-nuclear antibody titer 1:320\nAnti-dsDNA titers\nC-reactive protein\nAnti-hemidesmosome titers\nUrine porphyrin levels\nTzanck smear\n\nAnti-nuclear antibody titer 1:320\nAnti-dsDNA titers\nC-reactive protein\nAnti-hemidesmosome titers\nUrine porphyrin levels\nTzanck smear\n\nAnti-nuclear antibody titer 1:320\nAnti-dsDNA titers\nC-reactive protein\nAnti-hemidesmosome titers\nUrine porphyrin levels\nTzanck smear\n\nAnti-nuclear antibody titer 1:320\nAnti-dsDNA titers\nC-reactive protein\nAnti-hemidesmosome titers\nUrine porphyrin levels\nTzanck smear\n\nAnti-nuclear antibody titer 1:320\nAnti-dsDNA titers\nC-reactive protein\nAnti-hemidesmosome titers\nUrine porphyrin levels\nTzanck smear\n\nAnti-nuclear antibody titer 1:320\nAnti-dsDNA titers\nC-reactive protein\nAnti-hemidesmosome titers\nUrine porphyrin levels\nTzanck smear\n\nAnti-nuclear antibody titer 1:320\nAnti-dsDNA titers\nC-reactive protein\nAnti-hemidesmosome titers\nUrine porphyrin levels\nTzanck smear\n\nAnti-nuclear antibody titer 1:320\nAnti-dsDNA titers\nC-reactive protein\nAnti-hemidesmos",
+      "gt_tools": [
+        "DescriptionAnalyzer"
+      ],
+      "pred_tools": [
+        "Anti-nuclear antibody titer 1",
+        "Anti-nuclear antibody titer 1",
+        "Anti-nuclear antibody titer 1",
+        "Anti-nuclear antibody titer 1",
+        "Anti-nuclear antibody titer 1",
+        "Anti-nuclear antibody titer 1",
+        "Anti-nuclear antibody titer 1",
+        "Anti-nuclear antibody titer 1",
+        "Anti-nuclear antibody titer 1"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A previously healthy 52-year-old woman is brought to the emergency department after sustaining burns over 45% of her body in a house fire. On arrival, she is in acute distress but is fully o...",
+      "ground_truth": "euhealthinfo_search_causes_of_death: {'alpha': 0.5, 'country': 'USA', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'gastrointestinal bleeding', 'top_k': 5}",
+      "prediction": "The patient's symptoms and the underlying causes of the tarry black stools are likely related to decreased gastric blood flow and increased stomach acid production. These factors can lead to gastric ulceration and bleeding, resulting in tarry black stools.",
+      "gt_tools": [
+        "euhealthinfo_search_causes_of_death"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 45-year-old man presents to his primary care provider after feeling sad and depressed for the past several months. His wife divorced him about 6 months ago and took the kids and moved out ...",
+      "ground_truth": "euhealthinfo_search_mental_health: {'alpha': 0.5, 'country': 'USA', 'language': 'English', 'limit': 25, 'method': 'hybrid', 'term_override': 'depressive symptoms', 'top_k': 25}\neuhealthinfo_search_obesity: {'alpha': 0.5, 'country': 'USA', 'language': 'English', 'limit': 25, 'method': 'hybrid', 'term_override': 'eating habits', 'top_k': 25}\nBiomarkerDiscoveryWorkflow: {'disease_condition': 'depressive disorder', 'sample_type': 'blood'}\nget_HPO_ID_by_phenotype: {'query': 'depressive symptoms worse in the morning'}",
+      "prediction": "Depressive symptoms can vary in severity and timing, and they can include feelings of sadness, depression, and loss of interest in activities. In this case, the patient's symptoms are worse in the morning, which is a common feature of depressive disorders.",
+      "gt_tools": [
+        "euhealthinfo_search_mental_health",
+        "euhealthinfo_search_obesity",
+        "BiomarkerDiscoveryWorkflow",
+        "get_HPO_ID_by_phenotype"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 45-year-old man presents to a surgeon with painless swelling over his right leg. He noticed the swelling 6 months ago, but he ignored it because it was painless. However, he is now concern...",
+      "ground_truth": "HPA_search_genes_by_query: {'search_query': 'Alkaline phosphatase'}, {'search_query': 'DNase'}, {'search_query': 'RNase'}, {'search_query': 'Superoxide dismutase'}, {'search_query': 'Telomerase'}",
+      "prediction": "Liposarcoma is a type of cancer that affects fat cells, and it is characterized by the presence of specific enzymes and pathways. These enzymes and pathways are involved in the regulation of cell growth, differentiation, and survival in fat cells. The exact enzymes and pathways involved in liposarcoma may vary, but some of the ones mentioned in the context include Alkaline phosphatase, DNase, RNase, Superoxide dismutase, and Telomerase.",
+      "gt_tools": [
+        "HPA_search_genes_by_query"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 24-year-old woman presents to her primary care physician for a wellness visit. She says that she has been generally healthy but has noticed difficulty concentrating, becoming increasingly ...",
+      "ground_truth": "EuropePMC_Guidelines_Search: {'limit': 5, 'query': 'neurological disorder', 'year_from': 2010, 'year_to': 2023}, {'limit': 5, 'query': 'difficulty concentrating, fatigue, weight increase, joint pain', 'year_from': 2010, 'year_to': 2023}\nGIN_Guidelines_Search: {'limit': 5, 'query': 'difficulty concentrating, fatigue, weight increase, joint pain'}\nOpenAlex_Guidelines_Search: {'limit': 5, 'query': 'difficulty concentrating, fatigue, weight increase, joint pain'}\nBiomarkerDiscoveryWorkflow: {'disease_condition': 'difficulty concentrating, fatigue, weight increase, joint pain', 'sample_type': 'blood'}\nMedlinePlus_get_genetics_condition_by_name: {'condition': 'neurological disorder', 'format': 'json'}\nFDA_get_drug_name_by_info_on_conditions_for_doctor_consultation: {'condition': 'neurological disorder', 'limit': 5}\ndrugbank_filter_drugs_by_name: {'condition': 'neurological disorder', 'limit': 5}, {'condition': 'neurological disorder', 'value': 'Amphetamine Sulfate', 'limit': 5}, {'condition': 'neurological disorder', 'value': 'Dextroamphetamine Sulfate', 'limit': 5}\nclinvar_search_variants: {'condition': 'neurological disorder', 'gene': 'BRCA1', 'max_results': 5}\neuhealthinfo_search_hospital_in_patient_data: {'alpha': 0.5, 'country': 'United States', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'neurological disorder'}\nFDA_get_drug_names_by_lab_tests: {'lab_test_info': 'neurological disorder', 'indication': 'neurological disorder', 'limit': 5}",
+      "prediction": "test\n\nThe patient's symptoms include difficulty concentrating, fatigue, weight gain, constipation, joint pain, and palpitations. These symptoms can be associated with various conditions, including autoimmune disorders like rheumatoid arthritis and neurological disorders like Parkinson disease. The patient's symptoms and medical history suggest a condition that requires further evaluation and medical management.",
+      "gt_tools": [
+        "EuropePMC_Guidelines_Search",
+        "GIN_Guidelines_Search",
+        "OpenAlex_Guidelines_Search",
+        "BiomarkerDiscoveryWorkflow",
+        "MedlinePlus_get_genetics_condition_by_name",
+        "FDA_get_drug_name_by_info_on_conditions_for_doctor_consultation",
+        "drugbank_filter_drugs_by_name",
+        "clinvar_search_variants",
+        "euhealthinfo_search_hospital_in_patient_data",
+        "FDA_get_drug_names_by_lab_tests"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 3466-g (7-lb, 10-oz) female newborn is delivered at 38 weeks' gestation to a 32-year-old woman, gravida 2, para 1. Apgar scores are 7 and 8, at 1 and 5 minutes, respectively. The mother ha...",
+      "ground_truth": "MedlinePlus_get_genetics_condition_by_name: {'condition': 'micrognathia, broad nasal bridge, short philtrum, small low-set ears, cleft palate, single overriding great vessel', 'format': 'json'}\nHPA_search_genes_by_query: {'search_query': 'micrognathia, broad nasal bridge, short philtrum, small low-set ears, cleft palate, single overriding great vessel'}, {'search_query': 'micrognathia'}, {'search_query': 'broad nasal bridge'}\nget_phenotype_by_HPO_ID: {'id': 'micrognathia'}\nget_HPO_ID_by_phenotype: {'query': 'micrognathia'}, {'query': 'broad nasal bridge'}, {'query': 'short philtrum'}\nget_joint_associated_diseases_by_HPO_ID_list: {'HPO_ID_list': ['HP:0000347']}, {'HPO_ID_list': ['HP:0000431']}, {'HPO_ID_list': ['HP:0000322']}",
+      "prediction": "MedlinePlus Genetics provides information on genetic conditions and their associated symptoms, including chromosome 5p deletion. This condition is associated with a cleft palate and other craniofacial abnormalities. The condition is characterized by the deletion of a specific region of chromosome 5p, which affects the development of the palate and other facial structures.\n\nMedlinePlus Genetics also provides information on genetic conditions and their associated symptoms, including chromosome 5p deletion. This condition is associated with a cleft palate and other craniofacial abnormalities. The condition is characterized by the deletion of a specific region of chromosome 5p, which affects the development of the palate and other facial structures.\n\nMedlinePlus Genetics provides information on genetic conditions and their associated symptoms, including chromosome 5p deletion. This condition is associated with a cleft palate and other craniofacial abnormalities. The condition is characterized by the deletion of a specific region of chromosome 5p, which affects the development of the palate and other facial structures.\n\nMedlinePlus Genetics provides information on genetic conditions and their associated symptoms, including chromosome 5p deletion. This condition is associated with a cleft palate and other craniofacial abnormalities. The condition is characterized by the deletion of a specific region of chromosome 5p, which affects the development of the palate and other facial structures.\n\nMedlinePlus Genetics provides information on genetic conditions and their associated symptoms, including chromosome 5p deletion. This condition is associated with a cleft palate and other craniofacial abnormalities. The condition is characterized by the deletion of a specific region of chromosome 5p, which affects the development of the palate and other facial structures.\n\nMedlinePlus Genetics provides information on genetic conditions and their associated symptoms, including chromosome 5p deletion. This condition is associated with a cleft palate and other craniofacial abnormalities. The condition is characterized by the deletion of a specific region of chromosome 5p, which affects the development of the palate and other facial structures.\n\nMedlinePlus Genetics provides information on genetic conditions and their associated symptoms, including chromosome 5p delet",
+      "gt_tools": [
+        "MedlinePlus_get_genetics_condition_by_name",
+        "HPA_search_genes_by_query",
+        "get_phenotype_by_HPO_ID",
+        "get_HPO_ID_by_phenotype",
+        "get_joint_associated_diseases_by_HPO_ID_list"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 10-year-old boy is brought to his pediatrician after discovering a painless mass in the left testicle. Results from tumor markers and a biopsy are as follows:\nAFP 350 ng/mL (normal value <...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'The patient has a painless mass in the left testicle with high AFP and hCG levels, and biopsy results showing glomeruli-like structures with a central capillary within a mesodermal core, lined by flattened layers of germ cells.', 'disease_name': 'Teratoma'}\nBiomarkerDiscoveryWorkflow: {'disease_condition': 'Teratoma', 'sample_type': 'blood'}",
+      "prediction": "The presence of glomeruli-like structures with a central capillary within a mesodermal core, lined by flattened layers of germ cells, is a characteristic feature of certain types of tumors. The diagnosis is likely to be a specific type of tumor, as described in the options.",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "BiomarkerDiscoveryWorkflow"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: An 80-year-old man presents with severe pain of the right lower extremity. He says that symptoms had an acute onset while he was in the ICU for a COPD exacerbation due to a recent upper resp...",
+      "ground_truth": "NICE_Clinical_Guidelines_Search: {'query': 'immediate debridement and empiric IV antibiotics for severe infections or abscesses', 'limit': 5}\nEuropePMC_Guidelines_Search: {'query': 'immediate debridement and empiric IV antibiotics for severe infections or abscesses', 'limit': 5}\nCMA_Guidelines_Search: {'query': 'immediate debridement and empiric IV antibiotics for severe infections or abscesses', 'limit': 5}",
+      "prediction": "to identify the source of infection\n\n\nNICE guidelines recommend immediate debridement for infections involving a significant portion of the body, especially in elderly patients with a history of multiple hospitalizations. The guidelines also suggest empiric IV antibiotics to manage infections involving a significant portion of the body. High-dose IV dexamethasone is not recommended for managing infections involving a significant portion of the body.",
+      "gt_tools": [
+        "NICE_Clinical_Guidelines_Search",
+        "EuropePMC_Guidelines_Search",
+        "CMA_Guidelines_Search"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 35-year-old woman presents to the emergency department after losing consciousness at work. On presentation, she is found to be somnolent though she is able to be woken by vocal stimuli. Sh...",
+      "ground_truth": "drugbank_filter_drugs_by_name: {'condition': 'Atropine', 'value': 'Atropine', 'limit': 5}, {'condition': 'Physostigmine', 'value': 'Physostigmine', 'limit': 5}, {'condition': 'Pralidoxime', 'value': 'Pralidoxime', 'limit': 5}, {'condition': 'Pyridostigmine', 'value': 'Pyridostigmine', 'limit': 5}, {'condition': 'Neostigmine', 'value': 'Neostigmine', 'limit': 5}",
+      "prediction": "Atropine, Physostigmine, Pralidoxime, Pyridostigmine, Neostigmine are all anticholinergic drugs used to treat symptoms of poisoning. These drugs work by blocking the action of the poison, allowing the body to recover.",
+      "gt_tools": [
+        "drugbank_filter_drugs_by_name"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 34-year-old woman presents to the plastic surgery office 3 months following a rhinoplasty procedure. The patient has been recovering well. However, she has noticed a small whistling noise ...",
+      "ground_truth": "AdverseEventPredictionQuestionGenerator: rhinoplasty\nFAERS_search_adverse_event_reports: {'medicinalproduct': 'rhinoplasty'}",
+      "prediction": ", causing a perforation\n\nComplications can occur in any surgical procedure, and in the case of rhinoplasty, some of the potential complications include septal hematoma, perforation, and altered nasal airflow. It is important to monitor the patient's recovery and address any complications that may arise.",
+      "gt_tools": [
+        "AdverseEventPredictionQuestionGenerator",
+        "FAERS_search_adverse_event_reports"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 19-year-old man is brought to the emergency department because of severe right shoulder pain and inability to move the shoulder after a fall while climbing outdoors. Examination shows the ...",
+      "ground_truth": "LiteratureSynthesisAgent: {'topic': 'anatomy of the shoulder and nerves that innervate the skin areas', 'literature_data': 'The nerves that innervate the skin areas around the shoulder include the suprascapular nerve, axillary nerve, and radial nerve. These nerves provide sensation to specific areas of the skin.'}\neuhealthinfo_search_hospital_in_patient_data: {'alpha': 0.5, 'country': 'shoulder', 'language': 'English', 'limit': 5}",
+      "prediction": "The lateral aspect of the shoulder is the area of skin that is closest to the humeral head, which is the part of the bone that is externally rotated and abducted in this case. The skin above the clavicle is also close to the humeral head, but it is not directly involved in the described situation. The lateral aspect of the forearm and the dorsal aspect of the forearm and hand are farther away from the humeral head and are not directly involved in the described situation.",
+      "gt_tools": [
+        "LiteratureSynthesisAgent",
+        "euhealthinfo_search_hospital_in_patient_data"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 25-year-old girl is brought to the emergency room after a suicide attempt. Her mother states that she found a large empty pill bottle next to her. The patient is conscious and tearful. She...",
+      "ground_truth": "euhealthinfo_search_alcohol_tobacco_psychoactive_use: {'alpha': 0.5, 'country': 'US', 'language': 'English', 'limit': 25, 'term_override': 'gastric perforation', 'top_k': 25}",
+      "prediction": "The patient's symptoms and CT findings suggest a gastric perforation, which is a serious medical condition. The cause of the perforation is likely due to a combination of factors, including increased stimulation of the vagus nerve, direct irritation of the stomach lining, and hypovolemia. It is important to note that the exact cause of the perforation may vary depending on the patient's specific medical history and the underlying conditions that led to the suicide attempt.",
+      "gt_tools": [
+        "euhealthinfo_search_alcohol_tobacco_psychoactive_use"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 32-year-old male presents to the ED with acute-onset chest pain. His blood pressure is 157/90 mmHg and his his pulse is 116/min. He appears anxious and agitated and a careful exam reveals ...",
+      "ground_truth": "FDA_get_mechanism_of_action_by_drug_name: stimulant",
+      "prediction": "The agent most likely responsible for the patient's presentation is cocaine. Cocaine is a drug that blocks the reuptake of dopamine and norepinephrine, inhibits breakdown of biogenic amines, antagonizes the NMDA receptor, activates the acetylcholine receptor, and inhibits the GABA receptor. These effects can lead to acute-onset chest pain, dilated pupils, and perforated nasal septum.",
+      "gt_tools": [
+        "FDA_get_mechanism_of_action_by_drug_name"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 38-year-old woman comes to the physician because of difficulty falling asleep for the past 2 months. She wakes up frequently during the night and gets up earlier than desired. She experien...",
+      "ground_truth": "FDA_get_drug_names_by_indication: {'indication': 'sleep difficulty, anxiety, restless leg syndrome', 'limit': 5}\nFDA_get_drug_names_by_indication_aggregated: {'indication': 'sleep difficulty, anxiety, restless leg syndrome'}",
+      "prediction": ", Paroxetine, Fluoxetine, Sertraline, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine,",
+      "gt_tools": [
+        "FDA_get_drug_names_by_indication",
+        "FDA_get_drug_names_by_indication_aggregated"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 55-year-old woman is brought to the emergency department because of worsening upper abdominal pain for the past 8 hours. She reports that the pain radiates to her back and is associated wi...",
+      "ground_truth": "euhealthinfo_search_hospital_in_patient_data: {'alpha': 0.5, 'country': 'USA', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'pancreatitis', 'top_k': 5}\neuhealthinfo_search_surveillance: {'alpha': 0.5, 'country': 'USA', 'language': 'English', 'limit': 5, 'method': 'hybrid', 'term_override': 'pancreatitis', 'top_k': 5}\nBiomarkerDiscoveryWorkflow: {'disease_condition': 'pancreatitis', 'sample_type': 'blood'}",
+      "prediction": "The patient's symptoms and laboratory findings suggest a condition affecting fluid balance and electrolyte imbalance in the body. The options provided relate to different causes of these symptoms. The most likely underlying cause is capillary leakage, as it can lead to fluid accumulation and electrolyte imbalance in the body.",
+      "gt_tools": [
+        "euhealthinfo_search_hospital_in_patient_data",
+        "euhealthinfo_search_surveillance",
+        "BiomarkerDiscoveryWorkflow"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 3-year-old boy is brought to his pediatrician for evaluation because his parents have been concerned by a number of troubling signs. Specifically, they have noticed that he has been exhibi...",
+      "ground_truth": "kegg_search_pathway: {'keyword': 'aggressive behavior hyperactivity intellectual disability coarse facies short stature joint stiffness'}, {'keyword': 'lysosomal storage disorder'}\nOpenTargets_get_diseases_phenotypes_by_target_ensembl: {'ensemblId': 'Homo sapiens'}\nget_HPO_ID_by_phenotype: {'query': 'aggressive behavior', 'limit': 1}, {'query': 'hyperactivity', 'limit': 1}, {'query': 'intellectual disability', 'limit': 1}, {'query': 'coarse facies', 'limit': 1}, {'query': 'short stature', 'limit': 1}, {'query': 'joint stiffness', 'limit': 1}\nget_joint_associated_diseases_by_HPO_ID_list: {'HPO_ID_list': ['NBO:0000015', 'MP:0001399', 'HP:0001249', 'HP:0000280', 'HP:0004322', 'HP:0001387']}\nHPA_search_genes_by_query: {'search_query': 'aggressive behavior', 'required': True}, {'search_query': 'hyperactivity', 'required': True}, {'search_query': 'intellectual disability', 'required': True}, {'search_query': 'coarse facies', 'required': True}, {'search_query': 'short stature', 'required': True}, {'search_query': 'joint stiffness', 'required': True}\nGO_search_terms: {'query': 'lysosomal storage disorder'}\nPubChem_search_compounds_by_substructure: {'smiles': 'Cerebroside sulfate', 'required': True}, {'smiles': 'Galactocerebroside', 'required': True}, {'smiles': 'Glucocerebroside', 'required': True}, {'smiles': 'Heparan sulfate', 'required': True}, {'smiles': 'Sphingomyelin', 'required': True}",
+      "prediction": "These substances are lipids that are typically found in myelin, which is the protective sheath around nerve fibers. Myelin is essential for the proper functioning of the nervous system, and its accumulation in cells is a characteristic feature of certain neurological disorders.",
+      "gt_tools": [
+        "kegg_search_pathway",
+        "OpenTargets_get_diseases_phenotypes_by_target_ensembl",
+        "get_HPO_ID_by_phenotype",
+        "get_joint_associated_diseases_by_HPO_ID_list",
+        "HPA_search_genes_by_query",
+        "GO_search_terms",
+        "PubChem_search_compounds_by_substructure"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 21-year-old man with a past medical history significant for Down syndrome presents to the outpatient primary care clinic for a routine follow up and high risk screening. He is relatively h...",
+      "ground_truth": "MedlinePlus_get_genetics_condition_by_name: {'condition': 'Down syndrome', 'format': 'json'}\nOpenTargets_get_disease_ids_by_name: Gastric adenocarcinoma, Astrocytoma and cardiac rhabdomyoma, Hepatocellular carcinoma, Esophageal adenocarcinoma, Acute lymphocytic leukemia",
+      "prediction": "The incidence of neoplasms in individuals with Down syndrome is higher than in the general population. Some of the neoplasms associated with Down syndrome include:\n\n1. Gastric adenocarcinoma\n2. Astrocytoma and cardiac rhabdomyoma\n3. Hepatocellular carcinoma\n4. Esophageal adenocarcinoma\n5. Acute lymphocytic leukemia\n\nIt is important to note that the incidence of these neoplasms may vary depending on the specific population and study. However, individuals with Down syndrome are at a higher risk for developing these neoplasms compared to the general population.",
+      "gt_tools": [
+        "MedlinePlus_get_genetics_condition_by_name",
+        "OpenTargets_get_disease_ids_by_name"
+      ],
+      "pred_tools": [
+        "The incidence of neoplasms in individuals with Down syndrome is higher than in the general population. Some of the neoplasms associated with Down syndrome include"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 35-year-old woman presents to the office because she has felt a small painless mass in her neck which has been slowly growing. She has no relevant past medical history. Her vital signs are...",
+      "ground_truth": "MedicalLiteratureReviewer: {'focus_area': 'typical presentations and associations of thyroid nodules', 'literature_content': 'endemic goiter', 'quality_level': 'high', 'review_scope': 'systematic review', 'study_types': ['case-control studies', 'cohort studies'], 'research_topic': 'endemic goiter'}\nEuropePMC_Guidelines_Search: {'query': 'thyroid nodules', 'limit': 5}",
+      "prediction": "Endemic goiter: A type of goiter that is common in certain regions, often associated with iodine deficiency.\nFollicular carcinoma: A type of cancer that affects the thyroid gland, characterized by a solitary nodule.\nGraves\u2019 disease: A type of thyroid disorder characterized by a solitary nodule.\nHashimoto thyroiditis: A type of thyroid disorder characterized by a solitary nodule.\nPapillary carcinoma: A type of cancer that affects the thyroid gland, characterized by a solitary nodule.\n\nThe patient's symptoms include a small painless mass in the neck, which has been slowly growing. The nodule is fixed to the surrounding tissues and nontender. TSH is normal, and antithyroid antibodies are negative. The most likely cause of the patient's symptoms is a solitary nodule, which could be due to various types of thyroid cancer or other thyroid disorders.",
+      "gt_tools": [
+        "MedicalLiteratureReviewer",
+        "EuropePMC_Guidelines_Search"
+      ],
+      "pred_tools": [
+        "Endemic goiter",
+        "Follicular carcinoma",
+        "Graves\u2019 disease",
+        "Hashimoto thyroiditis",
+        "Papillary carcinoma"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 4-year-old boy presents to the pediatrician\u2019s office. His mother complains that he has been sleeping poorly, and she has noticed that he often scratches his perianal area. A scotch tape te...",
+      "ground_truth": "HPA_get_biological_processes_by_gene: {'gene_name': 'TH17', 'filter_processes': True}\nenrichr_gene_enrichment_analysis: {'gene_list': ['TH1', 'TH2', 'TH17', 'T0', 'TREGS'], 'libs': ['GO_Biological_Process_2023']}",
+      "prediction": "The na\u00efve T cells (TH0) have developed into TH1 cells, TH2 cells, TH17, T0 cells, and TREGs due to the infection in this patient.",
+      "gt_tools": [
+        "HPA_get_biological_processes_by_gene",
+        "enrichr_gene_enrichment_analysis"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 69-year-old right-handed man comes to the physician for a routine health maintenance examination. On questioning, he has had some difficulty speaking for 3 months. During a conversation, h...",
+      "ground_truth": "get_HPO_ID_by_phenotype: {'query': 'difficulty speaking', 'limit': 5}, {'query': 'word retrieval issues', 'limit': 5}\nget_joint_associated_diseases_by_HPO_ID_list: {'HPO_ID_list': ['HP:0002465', 'HP:0001618'], 'limit': 5}\nTool_Finder_LLM: {'categories': ['neurological disorders', 'word retrieval issues', 'difficulty speaking'], 'description': 'A tool that can provide information on neurological disorders or symptoms related to word retrieval issues and difficulty speaking.', 'limit': 5}",
+      "prediction": "cerebral\n\nThe patient's symptoms include difficulty speaking and repeating what others have said. These symptoms are likely due to occlusion of a branch of the Left posterior inferior cerebellar artery. The cerebellar arteries supply blood to the cerebellum, which is responsible for coordinating movement and maintaining balance.",
+      "gt_tools": [
+        "get_HPO_ID_by_phenotype",
+        "get_joint_associated_diseases_by_HPO_ID_list",
+        "Tool_Finder_LLM"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: An investigator is studying the frequency of polycythemia in a population of a remote, mountainous region. A representative sample of 100 men shows a normal distribution of hemoglobin concen...",
+      "ground_truth": "Tool_Finder: {'description': 'A tool that can calculate probabilities from a normal distribution, given the mean and standard error.', 'limit': 5}\nexecute_tool: {'tool_name': 'Tool_RAG', 'arguments': {'description': 'A tool that can calculate probabilities from a normal distribution, given the mean and standard error.', 'limit': 5}\nTool_Finder_LLM: {'categories': ['probability calculation', 'normal distribution', 'mean', 'standard error'], 'description': 'A tool that can calculate probabilities from normal distributions, given the mean and standard error.', 'limit': 5}",
+      "prediction": "The probability is calculated using the cumulative distribution function (CDF) of the normal distribution with mean 17 g/dL and standard error 0.1 g/dL. The CDF is a function that returns the probability of a given event occurring, in this case, the probability of a subject having a hemoglobin concentration greater than 18 g/dL.",
+      "gt_tools": [
+        "Tool_Finder",
+        "execute_tool",
+        "Tool_Finder_LLM"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 37-year-old woman presents to the emergency department with confusion, anxiety, sweating, and episodes of vomiting. She is accompanied by her sister who says that her symptoms developed ac...",
+      "ground_truth": "Epinephrine: {'epinephrine': '1', 'dose': '1', 'route': '1'}\nPropranolol: {'propranolol': '1', 'dose': '1', 'route': '1'}\nClonazepam: {'clonazepam': '1', 'dose': '1', 'route': '1'}\nCarotid massage: {'carotid_massage': '1', 'dose': '1', 'route': '1'}\nAntibiotics: {'antibiotics': '1', 'dose': '1', 'route': '1'}",
+      "prediction": ", Diazepine, Atropine, Antihistamine, Antinausea medication, Intravenous fluids, Methimazole, Carotid massage, Clonazepam, Epinephrine, Propranolol, Diazepine, Atropine, Antihistamine, Antinausea medication, Intravenous fluids, Methimazole, Carotid massage, Clonazepam, Epinephrine, Propranolol, Diazepine, Atropine, Antihistamine, Antinausea medication, Intravenous fluids, Methimazole, Carotid massage, Clonazepam, Epinephrine, Propranolol, Diazepine, Atropine, Antihistamine, Antinausea medication, Intravenous fluids, Methimazole, Carotid massage, Clonazepam, Epinephrine, Propranolol, Diazepine, Atropine, Antihistamine, Antinausea medication, Intravenous fluids, Methimazole, Carotid massage, Clonazepam, Epinephrine, Propranolol, Diazepine, Atropine, Antihistamine, Antinausea medication, Intravenous fluids, Methimazole, Carotid massage, Clonazepam, Epinephrine, Propranolol, Diazepine, Atropine, Antihistamine, Antinausea medication, Intravenous fluids, Methimazole, Carotid massage, Clonazepam, Epinephrine, Propranolol, Diazepine, Atropine, Antihistamine, Antinausea medication, Intravenous fluids, Methimazole, Carotid massage, Clonazepam, Epinephrine, Propranolol, Diazepine, Atropine, Antihistamine, Antinausea medication, Intravenous fluids, Methimazole, Carotid massage, Clonazepam, Epinephrine, Propranolol, Diazepine, Atrop",
+      "gt_tools": [
+        "Epinephrine",
+        "Propranolol",
+        "Clonazepam",
+        "Carotid massage",
+        "Antibiotics"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 24-year-old man with chronic back pain comes to the physician to establish care after moving to Florida. He complains of anxiety, nausea, abdominal cramping, vomiting, and diarrhea for thr...",
+      "ground_truth": "Methadone: {'dose': 10, 'route': 'oral'}\nMorphine: {'dose': 10, 'route': 'oral'}\nNaloxone: {'dose': 10, 'route': 'intravenous'}",
+      "prediction": "Naloxone\" is the most appropriate pharmacotherapy for opioid overdose, as it can reverse the effects of opioids and restore normal breathing.",
+      "gt_tools": [
+        "Methadone",
+        "Morphine",
+        "Naloxone"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 34-year-old man comes to the physician because of a 3-week history of colicky abdominal pain and diarrhea. He has bowel movements 10\u201312 times daily; the stool contains blood and mucus. He ...",
+      "ground_truth": "get_risk_info: {'risk': 'Colorectal cancer', 'condition': 'Ulcerative colitis'}",
+      "prediction": "The patient's symptoms and colonoscopy findings suggest a bleeding, ulcerated rectal mucosa with several pseudopolyps. This condition is associated with an increased risk of developing colorectal cancer, which is a type of cancer that affects the colon and rectum. However, it is important to note that the risk of developing other types of cancer, such as gastric cancer, pancreatic cancer, or colorectal cancer, may vary depending on the patient's specific condition and medical history. It is essential to consult a healthcare professional for a thorough evaluation and personalized risk assessment.",
+      "gt_tools": [
+        "get_risk_info"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 24-year-old woman comes to the physician\u2019s office with concerns about a recent pregnancy. She and her boyfriend had intercourse for the first time a few weeks ago. Two weeks ago she missed...",
+      "ground_truth": "Megestrol: {'indication': 'pregnancy termination', 'usage': 'early pregnancy'}\nTamoxifen: {'indication': 'pregnancy termination', 'usage': 'early pregnancy'}\nTerbutaline: {'indication': 'pregnancy termination', 'usage': 'early pregnancy'}\nMifepristone: {'indication': 'pregnancy termination', 'usage': 'early pregnancy'}\nCopper intrauterine device: {'indication': 'pregnancy termination', 'usage': 'early pregnancy'}\nFDA_get_indications_by_drug_name: Megestrol, Tamoxifen, Terbutaline, Mifepristone, Copper intrauterine device",
+      "prediction": "Mifepristone is the drug of choice for medical abortion, especially in cases of early pregnancy. It is important to consult a healthcare professional for proper guidance and dosage instructions.",
+      "gt_tools": [
+        "Megestrol",
+        "Tamoxifen",
+        "Terbutaline",
+        "Mifepristone",
+        "Copper intrauterine device",
+        "FDA_get_indications_by_drug_name"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 22-year-old woman comes to the physician because of yellow vaginal discharge, pruritus, and pain with urination for the past 6 days. Three weeks ago, she had an episode of acute bacterial ...",
+      "ground_truth": "whiff test: {'discharge': 'yellow-green', 'pH': 5.8}\nwet mount examination: {'discharge': 'yellow-green'}",
+      "prediction": "Microbiological findings:\nMicrobiological findings in vaginal discharge include the presence of Obligate intracellular organisms, Gram-negative diplococci, Positive whiff test, Pseudohyphae, and Flagellated protozoa. These findings can help identify the cause of the discharge and guide appropriate treatment.",
+      "gt_tools": [
+        "whiff test",
+        "wet mount examination"
+      ],
+      "pred_tools": [
+        "Microbiological findings"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 62-year-old woman with small-cell lung cancer comes to the physician because of a painful, burning red rash on her face and hands that developed 30 minutes after going outside to do garden...",
+      "ground_truth": "get_drug_induced_autoantibodies: demeclocycline, amoxicillin",
+      "prediction": "Drug-induced autoantibodies are a possible cause of the patient's symptoms. These autoantibodies can form when a drug is metabolized and the metabolites react with sunlight, leading to a reaction that causes the formation of autoantibodies. This reaction can result in a rash and other symptoms.",
+      "gt_tools": [
+        "get_drug_induced_autoantibodies"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A four-day-old neonate is brought to the pediatrician with vaginal discharge for the last two days. Her mother is concerned about the blood-tinged discharge but states that her daughter has ...",
+      "ground_truth": "Vaginal culture: {'description': \"Perform a vaginal culture to identify the cause of the discharge and ensure the neonate's safety.\", 'options': ['Vaginal culture', 'Warm water irrigation of the vagina', 'Reassurance']}\nWarm water irrigation of the vagina: {'description': 'Perform a warm water irrigation of the vagina to clean the area and potentially alleviate symptoms.', 'options': ['Vaginal culture', 'Warm water irrigation of the vagina', 'Reassurance']}\nReassurance: {'description': 'Provide reassurance to the mother and neonate, as the symptoms may be normal for a neonate.', 'options': ['Vaginal culture', 'Warm water irrigation of the vagina', 'Reassurance']}",
+      "prediction": "and monitoring\n\nThe best next step in managing the vaginal discharge in a neonate is to perform a vaginal culture to determine the cause and appropriate treatment. This can be done by collecting a sample of the discharge and sending it to a laboratory for analysis. The results of the vaginal culture can help guide the medical team in determining the best course of action for managing the discharge in the neonate.",
+      "gt_tools": [
+        "Vaginal culture",
+        "Warm water irrigation of the vagina",
+        "Reassurance"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 27-year-old woman with no past medical history presents to the emergency department with recurrent wrist and neck pain for the last 2 months. She reports that her fingers feel stiff in the...",
+      "ground_truth": "Synovial fluid analysis: {'description': 'Synovial fluid analysis can help identify inflammatory or infectious conditions affecting the joints.'}\nAnti-cyclic citrullinated peptide (anti-CCP) antibody: {'description': 'Anti-CCP antibody is often used to diagnose rheumatoid arthritis, but it can also be positive in other autoimmune conditions.'}\nRheumatoid factor: {'description': 'Rheumatoid factor is commonly used to diagnose rheumatoid arthritis, but it can also be positive in other autoimmune conditions.'}\nCT scan: {'description': 'A CT scan can help identify structural abnormalities or other conditions affecting the cervical spine.'}\nX-ray of cervical spine: {'description': 'An X-ray of the cervical spine can help identify structural abnormalities or other conditions affecting the cervical spine.'}",
+      "prediction": "Synovial fluid analysis: A diagnostic tool used to identify inflammation and autoimmune conditions, particularly in joint pain.\nAnti-cyclic citrullinated peptide (anti-CCP) antibody: A diagnostic tool used to identify autoimmune conditions, particularly in joint pain.\nRheumatoid factor: A diagnostic tool used to identify autoimmune conditions, particularly in joint pain.\nCT scan: A diagnostic tool used to identify inflammation and autoimmune conditions, particularly in joint pain.\nX-ray of cervical spine: A diagnostic tool used to identify inflammation and autoimmune conditions, particularly in joint pain.\n\nThese diagnostic tools can help identify the presence of inflammation and autoimmune conditions in patients with symptoms like recurrent wrist and neck pain, stiff fingers in the morning, and erythematous and tender metacarpophalangeal joints.",
+      "gt_tools": [
+        "Synovial fluid analysis",
+        "Anti-cyclic citrullinated peptide (anti-CCP) antibody",
+        "Rheumatoid factor",
+        "CT scan",
+        "X-ray of cervical spine"
+      ],
+      "pred_tools": [
+        "Synovial fluid analysis",
+        "Anti-cyclic citrullinated peptide (anti-CCP) antibody",
+        "Rheumatoid factor",
+        "CT scan",
+        "X-ray of cervical spine"
+      ],
+      "exact_match": true,
+      "first_tool_match": true
+    },
+    {
+      "input": "Question: A 47-year-old female presents to her primary physician for follow up after an ED visit for nephrolithiasis 1 week prior. CT scan in the ED revealed a 4-mm stone occluding the right ureter. S...",
+      "ground_truth": "get_preventive_measures_for_kidney_stones: {'risk_factor': 'calcium oxalate stones', 'preventive_measure': 'decreasing calcium intake'}, {'risk_factor': 'calcium oxalate stones', 'preventive_measure': 'decreasing sodium intake'}, {'risk_factor': 'calcium oxalate stones', 'preventive_measure': 'increasing consumption of nuts and seeds'}, {'risk_factor': 'calcium oxalate stones', 'preventive_measure': 'loop diuretic pharmacotherapy'}, {'risk_factor': 'calcium oxalate stones', 'preventive_measure': 'urine acidification with cranberry juice'}",
+      "prediction": "FDA-approved interventions for preventing kidney stones include:\n\n1. Decreasing calcium intake\n2. Decreasing sodium intake\n3. Increasing consumption of nuts and seeds\n4. Loop diuretic pharmacotherapy\n5. Urine acidification with cranberry juice\n\nThese interventions have been studied and shown to be effective in preventing kidney stones in patients with a history of nephrolithiasis.",
+      "gt_tools": [
+        "get_preventive_measures_for_kidney_stones"
+      ],
+      "pred_tools": [
+        "FDA-approved interventions for preventing kidney stones include"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 28-year-old woman, gravida 1, para 0, at 20 weeks' gestation comes to the physician with her husband for a prenatal visit. Her pregnancy has been uncomplicated. They are planning to travel...",
+      "ground_truth": "get_drug_names_by_indication: {'indication': 'malaria prophylaxis', 'population': 'pregnant women'}, {'indication': 'malaria prophylaxis', 'population': 'general'}",
+      "prediction": "/ Riamet Mefloquine\n\nDoxycycline, Primaquine, Mefloquine, Chloroquine, Proguanil, Riamet Mefloquine are all suitable for pre-exposure prophylaxis against malaria. However, it is important to consult a healthcare professional for personalized advice on the most suitable drug for a specific individual's needs and medical history.",
+      "gt_tools": [
+        "get_drug_names_by_indication"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 66-year-old man with high blood pressure, high cholesterol, and diabetes presents to the clinic with elevated liver function tests from baseline. He has a blood pressure of 136/92 mm Hg an...",
+      "ground_truth": "get_side_effects_by_drug_name: Metformin, Simvastatin, Aspirin, Glyburide, Lisinopril",
+      "prediction": "Metformin: Metformin is a medication used to manage diabetes and has been associated with elevated liver function tests in some patients.\n\nSimvastatin: Simvastatin is a medication used to manage high cholesterol and has been associated with elevated liver function tests in some patients.\n\nAspirin: Aspirin is a medication used to manage high blood pressure and has been associated with elevated liver function tests in some patients.\n\nGlyburide: Glyburide is a medication used to manage diabetes and has been associated with elevated liver function tests in some patients.\n\nLisinopril: Lisinopril is a medication used to manage high blood pressure and has been associated with elevated liver function tests in some patients.\n\nIt is important to note that these associations are based on case reports or studies, and the actual impact of these medications on liver function tests may vary from patient to patient. It is always best to consult a healthcare professional for personalized advice on medication effects and safety.",
+      "gt_tools": [
+        "get_side_effects_by_drug_name"
+      ],
+      "pred_tools": [
+        "Metformin",
+        "Simvastatin",
+        "Aspirin",
+        "Glyburide",
+        "Lisinopril"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 39-year-old woman presents to the clinic for her annual physical. Although she feels generally healthy she has noticed gaining about 9 kg (20 lb) over the last year. She eats a healthy, va...",
+      "ground_truth": "TSH: {'TSH': 'elevated'}\nT3: {'T3': 'elevated'}\nT4: {'T4': 'elevated'}\nerythropoietin: {'erythropoietin': 'elevated'}",
+      "prediction": "Elevated Erythropoietin: This is a hormone that stimulates the production of red blood cells. It is typically elevated in patients with anemia or conditions affecting red blood cell production.\n\nElevated Glucose: This is a sugar that is used as an energy source by the body. It is typically elevated in patients with hyperglycemia or conditions affecting blood sugar regulation.\n\nElevated Triiodothyronine (T3): This is a hormone that is responsible for regulating thyroid function and metabolism. It is typically elevated in patients with hyperthyroidism or conditions affecting thyroid function.\n\nElevated Thyroxine (T4): This is a hormone that is responsible for regulating thyroid function and metabolism. It is typically elevated in patients with hyperthyroidism or conditions affecting thyroid function.\n\nElevated Thyroid-stimulating hormone (TSH): This is a hormone that is responsible for regulating thyroid function and metabolism. It is typically elevated in patients with hyperthyroidism or conditions affecting thyroid function.\n\nElevated Erythropoietin: This is a hormone that stimulates the production of red blood cells. It is typically elevated in patients with anemia or conditions affecting red blood cell production.\n\nElevated Glucose: This is a sugar that is used as an energy source by the body. It is typically elevated in patients with hyperglycemia or conditions affecting blood sugar regulation.\n\nElevated Triiodothyronine (T3): This is a hormone that is responsible for regulating thyroid function and metabolism. It is typically elevated in patients with hyperthyroidism or conditions affecting thyroid function.\n\nElevated Thyroxine (T4): This is a hormone that is responsible for regulating thyroid function and metabolism. It is typically elevated in patients with hyperthyroidism or conditions affecting thyroid function.\n\nElevated Thyroid-stimulating hormone (TSH): This is a hormone that is responsible for regulating thyroid function and metabolism. It is typically elevated in patients with hyperthyroidism or conditions affecting thyroid function.\n\nElevated Erythropo",
+      "gt_tools": [
+        "TSH",
+        "T3",
+        "T4",
+        "erythropoietin"
+      ],
+      "pred_tools": [
+        "Elevated Erythropoietin",
+        "Elevated Glucose",
+        "Elevated Triiodothyronine (T3)",
+        "Elevated Thyroxine (T4)",
+        "Elevated Thyroid-stimulating hormone (TSH)",
+        "Elevated Erythropoietin",
+        "Elevated Glucose",
+        "Elevated Triiodothyronine (T3)",
+        "Elevated Thyroxine (T4)",
+        "Elevated Thyroid-stimulating hormone (TSH)"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 38-year-old woman comes to the physician because of difficulty falling asleep for the past 2 months. She wakes up frequently during the night and gets up earlier than desired. She experien...",
+      "ground_truth": "FDA_get_indications_by_drug_name: Amitryptiline, Pramipexole, Codeine, Propranolol, Escitalopram",
+      "prediction": ", Paroxetine, Fluoxetine, Sertraline, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine, Perphenazine, Olanzapine, Haloperidol, Ziprasidone, Divalproex Sodium, Lamotrigine,",
+      "gt_tools": [
+        "FDA_get_indications_by_drug_name"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 55-year-old woman is brought to the emergency department because of worsening upper abdominal pain for the past 8 hours. She reports that the pain radiates to her back and is associated wi...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'pancreatitis', 'disease_name': 'pancreatitis'}\nTool_Finder_LLM: {'categories': ['pancreatitis'], 'description': \"A tool that can analyze medical symptoms and laboratory findings to determine the underlying cause of a patient's condition, specifically focusing on pancreatic conditions.\", 'limit': 5}\nFDA_get_drug_names_by_indication: {'indication': 'pancreatitis'}",
+      "prediction": "The patient's symptoms and laboratory findings suggest a condition affecting fluid balance and electrolyte imbalance in the body. The options provided relate to different causes of these symptoms. The most likely underlying cause is capillary leakage, as it can lead to fluid accumulation and electrolyte imbalance in the body.",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "Tool_Finder_LLM",
+        "FDA_get_drug_names_by_indication"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 3-year-old boy is brought to his pediatrician for evaluation because his parents have been concerned by a number of troubling signs. Specifically, they have noticed that he has been exhibi...",
+      "ground_truth": "GO_get_genes_for_term: {'id': 'lysosomal storage disorder', 'rows': 5}, {'id': 'lysosomal storage disorder', 'taxon': 'Human', 'rows': 5}\nGO_search_terms: {'query': 'lysosomal storage disorder'}\nPubChem_search_compounds_by_substructure: {'smiles': 'Cerebroside sulfate'}, {'smiles': 'Galactocerebroside'}, {'smiles': 'Glucocerebroside'}, {'smiles': 'Heparan sulfate'}, {'smiles': 'Sphingomyelin'}\nHPA_search_genes_by_query: {'search_query': 'aggressive behavior'}",
+      "prediction": "These substances are lipids that are typically found in myelin, which is the protective sheath around nerve fibers. Myelin is essential for the proper functioning of the nervous system, and its accumulation in cells is a characteristic feature of certain neurological disorders.",
+      "gt_tools": [
+        "GO_get_genes_for_term",
+        "GO_search_terms",
+        "PubChem_search_compounds_by_substructure",
+        "HPA_search_genes_by_query"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 21-year-old man with a past medical history significant for Down syndrome presents to the outpatient primary care clinic for a routine follow up and high risk screening. He is relatively h...",
+      "ground_truth": "HPA_search_genes_by_query: {'search_query': 'Down syndrome'}\nOpenTargets_get_diseases_phenotypes_by_target_ensembl: {'ensemblId': 'ENSG00000171587'}, {'ensemblId': 'ENSG00000177103'}, {'ensemblId': 'ENSG00000157538'}, {'ensemblId': 'ENSG00000159200'}, {'ensemblId': 'ENSG00000159263'}",
+      "prediction": "The incidence of neoplasms in individuals with Down syndrome is higher than in the general population. Some of the neoplasms associated with Down syndrome include:\n\n1. Gastric adenocarcinoma\n2. Astrocytoma and cardiac rhabdomyoma\n3. Hepatocellular carcinoma\n4. Esophageal adenocarcinoma\n5. Acute lymphocytic leukemia\n\nIt is important to note that the incidence of these neoplasms may vary depending on the specific population and study. However, individuals with Down syndrome are at a higher risk for developing these neoplasms compared to the general population.",
+      "gt_tools": [
+        "HPA_search_genes_by_query",
+        "OpenTargets_get_diseases_phenotypes_by_target_ensembl"
+      ],
+      "pred_tools": [
+        "The incidence of neoplasms in individuals with Down syndrome is higher than in the general population. Some of the neoplasms associated with Down syndrome include"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 35-year-old woman presents to the office because she has felt a small painless mass in her neck which has been slowly growing. She has no relevant past medical history. Her vital signs are...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'Endemic goiter', 'disease_name': 'Endemic goiter'}, {'context': 'Follicular carcinoma', 'disease_name': 'Follicular carcinoma'}, {'context': 'Graves\u2019 disease', 'disease_name': 'Graves\u2019 disease'}, {'context': 'Hashimoto thyroiditis', 'disease_name': 'Hashimoto thyroiditis'}, {'context': 'Papillary carcinoma', 'disease_name': 'Papillary carcinoma'}\nget_joint_associated_diseases_by_HPO_ID_list: {'HPO_ID_list': ['solitary nodule in the thyroid gland'], 'limit': 5}\neuhealthinfo_search_causes_of_death: {'term_override': 'Endemic goiter'}, {'term_override': 'Follicular carcinoma'}, {'term_override': 'Graves\u2019 disease'}, {'term_override': 'Hashimoto thyroiditis'}, {'term_override': 'Papillary carcinoma'}\nget_clinical_trial_eligibility_criteria: {'eligibility_criteria': 'Endemic goiter'}, {'eligibility_criteria': 'Follicular carcinoma'}, {'eligibility_criteria': 'Graves\u2019 disease'}, {'eligibility_criteria': 'Hashimoto thyroiditis'}, {'eligibility_criteria': 'Papillary carcinoma'}",
+      "prediction": "Endemic goiter: A type of goiter that is common in certain regions, often associated with iodine deficiency.\nFollicular carcinoma: A type of cancer that affects the thyroid gland, characterized by a solitary nodule.\nGraves\u2019 disease: A type of thyroid disorder characterized by a solitary nodule.\nHashimoto thyroiditis: A type of thyroid disorder characterized by a solitary nodule.\nPapillary carcinoma: A type of cancer that affects the thyroid gland, characterized by a solitary nodule.\n\nThe patient's symptoms include a small painless mass in the neck, which has been slowly growing. The nodule is fixed to the surrounding tissues and nontender. TSH is normal, and antithyroid antibodies are negative. The most likely cause of the patient's symptoms is a solitary nodule, which could be due to various types of thyroid cancer or other thyroid disorders.",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "get_joint_associated_diseases_by_HPO_ID_list",
+        "euhealthinfo_search_causes_of_death",
+        "get_clinical_trial_eligibility_criteria"
+      ],
+      "pred_tools": [
+        "Endemic goiter",
+        "Follicular carcinoma",
+        "Graves\u2019 disease",
+        "Hashimoto thyroiditis",
+        "Papillary carcinoma"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 4-year-old boy presents to the pediatrician\u2019s office. His mother complains that he has been sleeping poorly, and she has noticed that he often scratches his perianal area. A scotch tape te...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'parasitic infection', 'disease_name': 'pinworm infection'}\nenrichr_gene_enrichment_analysis: {'gene_list': ['TH1', 'TH2', 'TH17', 'T0', 'TREGS'], 'libs': ['WikiPathways_2024_Human', 'Reactome_Pathways_2024', 'MSigDB_Hallmark_2020', 'GO_Molecular_Function_2023', 'GO_Biological_Process_2023']}",
+      "prediction": "The na\u00efve T cells (TH0) have developed into TH1 cells, TH2 cells, TH17, T0 cells, and TREGs due to the infection in this patient.",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "enrichr_gene_enrichment_analysis"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 69-year-old right-handed man comes to the physician for a routine health maintenance examination. On questioning, he has had some difficulty speaking for 3 months. During a conversation, h...",
+      "ground_truth": "get_nilearn_info: None",
+      "prediction": "cerebral\n\nThe patient's symptoms include difficulty speaking and repeating what others have said. These symptoms are likely due to occlusion of a branch of the Left posterior inferior cerebellar artery. The cerebellar arteries supply blood to the cerebellum, which is responsible for coordinating movement and maintaining balance.",
+      "gt_tools": [
+        "get_nilearn_info"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 57-year-old woman comes to the physician because of a 3-month history of fatigue. She also reports generalized itchiness that started approximately 2 months ago. Two weeks ago, she noticed...",
+      "ground_truth": "BiomarkerDiscoveryWorkflow: {'disease_condition': 'liver conditions', 'sample_type': 'blood'}\neuhealthinfo_search_causes_of_death: {'country': 'liver conditions', 'language': 'en', 'limit': 5}\nclinvar_search_variants: {'gene': 'liver conditions', 'max_results': 5}\nMedlinePlus_get_genetics_condition_by_name: {'condition': 'liver conditions', 'format': 'json'}\ngwas_get_associations_for_study: {'accession_id': 'liver conditions', 'page': 5}\nFDA_get_drug_names_by_lab_tests: {'lab_test_info': 'liver conditions', 'limit': 5}\ndrugbank_filter_drugs_by_name: liver conditions\nFDA_get_drug_name_by_info_on_conditions_for_doctor_consultation: {'condition': 'liver conditions', 'limit': 5}\neuhealthinfo_search_diabetes_mellitus_epidemiology_registry: {'country': 'liver conditions', 'language': 'en', 'limit': 5}",
+      "prediction": "These findings are associated with liver conditions and specific imaging results. The patient's symptoms and laboratory results suggest a condition affecting the liver, and the options provided relate to imaging findings and specific liver conditions.",
+      "gt_tools": [
+        "BiomarkerDiscoveryWorkflow",
+        "euhealthinfo_search_causes_of_death",
+        "clinvar_search_variants",
+        "MedlinePlus_get_genetics_condition_by_name",
+        "gwas_get_associations_for_study",
+        "FDA_get_drug_names_by_lab_tests",
+        "drugbank_filter_drugs_by_name",
+        "FDA_get_drug_name_by_info_on_conditions_for_doctor_consultation",
+        "euhealthinfo_search_diabetes_mellitus_epidemiology_registry"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: An investigator is studying bacterial adaptations to the environment in an infectious isolate and a noninfectious isolate of Hemophilus influenzae type B. Animals exposed to the noninfectiou...",
+      "ground_truth": "ENCODE_search_experiments: {'assay_title': 'bacterial transformation', 'limit': 5}",
+      "prediction": "Conjugation: A process where bacteria exchange genetic material between different strains, allowing them to adapt to new environments.\n\nReassortment: A process where genetic material is shuffled within a single strain, allowing them to adapt to new environments.\n\nTransformation: A process where genetic material from one strain is transferred to another strain, allowing them to adapt to new environments.\n\nGeneralized transduction: A process where genetic material is transferred between different strains, allowing them to adapt to new environments.\n\nRecombination: A process where genetic material is exchanged between different strains, allowing them to adapt to new environments.\n\nThese processes are responsible for the exchange of genetic material between different strains of bacteria, allowing them to adapt to new environments and potentially develop symptoms of infection.",
+      "gt_tools": [
+        "ENCODE_search_experiments"
+      ],
+      "pred_tools": [
+        "Conjugation",
+        "Reassortment",
+        "Transformation",
+        "Generalized transduction",
+        "Recombination"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 40-year-old female with a past medical history of high cholesterol, high blood pressure, hyperthyroidism, and asthma presents to the primary care clinic today. She has tried several differ...",
+      "ground_truth": "FDA_get_adverse_reactions_by_drug_name: colesevelam\nFDA_get_drug_interactions_by_drug_name: colesevelam",
+      "prediction": "",
+      "gt_tools": [
+        "FDA_get_adverse_reactions_by_drug_name",
+        "FDA_get_drug_interactions_by_drug_name"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 62-year-old patient with a history of deep venous thrombosis is enrolled in a clinical trial for a new oral anticoagulant. This novel drug has the property where its clearance is relativel...",
+      "ground_truth": "ADMETAI_predict_clearance_distribution: {'smiles': ['14.3', '2']}\nFDA_get_dosage_and_storage_information_by_drug_name: new oral anticoagulant\nFDA_get_clinical_pharmacology_by_drug_name: new oral anticoagulant",
+      "prediction": "FDA-approved maintenance dosing intervals for oral anticoagulants are 8 hours, 12 hours, or 24 hours. The maintenance dose should be calculated based on the patient's plasma concentration and the drug's half-life.\n\nFDA-approved maintenance dosing intervals for oral anticoagulants are 8 hours, 12 hours, or 24 hours. The maintenance dose should be calculated based on the patient's plasma concentration and the drug's half-life.\n\nFDA-approved maintenance dosing intervals for oral anticoagulants are 8 hours, 12 hours, or 24 hours. The maintenance dose should be calculated based on the patient's plasma concentration and the drug's half-life.\n\nFDA-approved maintenance dosing intervals for oral anticoagulants are 8 hours, 12 hours, or 24 hours. The maintenance dose should be calculated based on the patient's plasma concentration and the drug's half-life.\n\nFDA-approved maintenance dosing intervals for oral anticoagulants are 8 hours, 12 hours, or 24 hours. The maintenance dose should be calculated based on the patient's plasma concentration and the drug's half-life.\n\nFDA-approved maintenance dosing intervals for oral anticoagulants are 8 hours, 12 hours, or 24 hours. The maintenance dose should be calculated based on the patient's plasma concentration and the drug's half-life.\n\nFDA-approved maintenance dosing intervals for oral anticoagulants are 8 hours, 12 hours, or 24 hours. The maintenance dose should be calculated based on the patient's plasma concentration and the drug's half-life.\n\nFDA-approved maintenance dosing intervals for oral anticoagulants are 8 hours, 12 hours, or 24 hours. The maintenance dose should be calculated based on the patient's plasma concentration and the drug's half-life.\n\nFDA-approved maintenance dosing intervals for oral anticoagulants are 8 hours, 12 hours, or 24 hours. The maintenance dose should be calculated based on the patient's plasma concentration and the drug's half-life",
+      "gt_tools": [
+        "ADMETAI_predict_clearance_distribution",
+        "FDA_get_dosage_and_storage_information_by_drug_name",
+        "FDA_get_clinical_pharmacology_by_drug_name"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 7-day-old infant boy presents to an emergency department due to poor feeding. His parents are recent immigrants to the United States. He was born in a traditional home birth and has never ...",
+      "ground_truth": "Tool_Finder_LLM: {'description': 'Retrieve tools that provide detailed information about the symptoms and treatment of Clostridium botulinum.', 'limit': 5}",
+      "prediction": "Clostridium botulinum is a type of bacteria that can cause botulism, a rare but serious illness that affects the nervous system and can be fatal if not treated promptly. Clostridium tetani is another type of bacteria that can cause tetanus, a disease characterized by muscle stiffness and spasms. Escherichia coli is a common pathogen in foodborne illnesses, while Group B streptococcus is a type of bacteria that can cause infections in newborns. Listeria monocytogenes is a type of bacteria that can cause infections in newborns, particularly in those with weakened immune systems.\n\nThe most likely organism causing the infant's presentation is Clostridium botulinum, as it is known to cause botulism, a rare but serious illness that affects the nervous system and can be fatal if not treated promptly.",
+      "gt_tools": [
+        "Tool_Finder_LLM"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 28-year-old woman presents with facial flushing, weakness, and chronic diarrhea for the past month. She denies any history of smoking, alcohol use, or recreational drug use. The patient wa...",
+      "ground_truth": "MedlinePlus_get_genetics_gene_by_name: {'gene': 'menin 1', 'format': 'json'}\nMedlePlus_get_genetics_condition_by_name: {'condition': 'menin 1 gene mutation', 'format': 'json'}\nHPA_search_genes_by_query: {'search_query': 'menin 1'}\nHPA_get_gene_tsv_data_by_ensembl_id: {'ensembl_id': 'ENSG00000133895'}",
+      "prediction": "Vibrio cholera infection: A bacterial infection that causes diarrhea and can lead to dehydration and electrolyte imbalance.\nVIPoma: A type of tumor that arises from the VIP (vasoactive intestinal peptide) producing cells.\nRotavirus: A type of virus that causes diarrhea in children and can lead to dehydration and electrolyte imbalance.\nCampylobacter jejuni: A type of bacteria that causes diarrhea and can lead to dehydration and electrolyte imbalance.\nSomatostatinoma: A type of tumor that arises from the somatostatin producing cells.\n\nThe patient's symptoms include facial flushing, weakness, chronic diarrhea, and potassium imbalance. The laboratory findings include a potassium level of 3.3 mmol/L and serum calcium of 11 mg/dL. The genetic analysis is being conducted to confirm the diagnosis of a genetic mutation in the menin 1 gene on chromosome 11.",
+      "gt_tools": [
+        "MedlinePlus_get_genetics_gene_by_name",
+        "MedlePlus_get_genetics_condition_by_name",
+        "HPA_search_genes_by_query",
+        "HPA_get_gene_tsv_data_by_ensembl_id"
+      ],
+      "pred_tools": [
+        "Vibrio cholera infection",
+        "VIPoma",
+        "Rotavirus",
+        "Campylobacter jejuni",
+        "Somatostatinoma"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 9-year-old male visited his primary care physician for a check-up three months after a throat infection. Upon examination, the patient exhibits painless subcutaneous nodules on the back of...",
+      "ground_truth": "TRIP_Database_Guidelines_Search: {'query': 'rheumatic fever', 'limit': 5}, {'query': 'rheumatic fever symptoms', 'limit': 5}\nNICE_Clinical_Guidelines_Search: {'query': 'rheumatic fever', 'limit': 5}, {'query': 'rheumatic fever symptoms', 'limit': 5}\nEuropePMC_Guidelines_Search: {'query': 'rheumatic fever', 'limit': 5}, {'query': 'rheumatic fever symptoms', 'limit': 5}",
+      "prediction": "The patient's symptoms are likely to include painless subcutaneous nodules, inflammation in the joints of the lower extremities, and a butterfly rash. These symptoms are associated with a specific condition, which is likely to be sarcoidosis.",
+      "gt_tools": [
+        "TRIP_Database_Guidelines_Search",
+        "NICE_Clinical_Guidelines_Search",
+        "EuropePMC_Guidelines_Search"
+      ],
+      "pred_tools": [],
+      "exact_match": false,
+      "first_tool_match": []
+    },
+    {
+      "input": "Question: A 29-year-old man diagnosed with schizophrenia 4 years ago presents for follow-up to discuss his medication. The patient was diagnosed with schizophrenia 4 years ago and has since tried seve...",
+      "ground_truth": "FDA_get_lab_tests_by_drug_name: clozapine\nFDA_get_drug_names_by_lab_test_interference: {'indication': 'clozapine', 'lab_test_interference': 'common side effects', 'limit': 5}",
+      "prediction": "Laboratory tests that should be considered for a patient on clozapine include:\n\n1. Complete blood count: This test is important for monitoring clozapine's effects on blood cell production and for detecting any potential side effects related to blood cell abnormalities.\n\n2. Thyroid-stimulating hormone level: This test is important for monitoring clozapine's effects on thyroid function and for detecting any potential side effects related to thyroid function abnormalities.\n\n3. Prolactin level: This test is important for monitoring clozapine's effects on prolactin levels and for detecting any potential side effects related to prolactin level abnormalities.\n\n4. Complete blood count: This test is important for monitoring clozapine's effects on blood cell production and for detecting any potential side effects related to blood cell abnormalities.\n\n5. Thyroid-stimulating hormone level: This test is important for monitoring clozapine's effects on thyroid function and for detecting any potential side effects related to thyroid function abnormalities.\n\n6. Prolactin level: This test is important for monitoring clozapine's effects on prolactin levels and for detecting any potential side effects related to prolactin level abnormalities.\n\n7. Complete blood count: This test is important for monitoring clozapine's effects on blood cell production and for detecting any potential side effects related to blood cell abnormalities.\n\n8. Thyroid-stimulating hormone level: This test is important for monitoring clozapine's effects on thyroid function and for detecting any potential side effects related to thyroid function abnormalities.\n\n9. Prolactin level: This test is important for monitoring clozapine's effects on prolactin levels and for detecting any potential side effects related to prolactin level abnormalities.\n\n10. Complete blood count: This test is important for monitoring clozapine's effects on blood cell production and for detecting any potential side effects related to blood cell abnormalities.\n\n11. Thyroid-stimulating hormone level: This test is important for monitoring clozapine's effects on thyroid function and for detect",
+      "gt_tools": [
+        "FDA_get_lab_tests_by_drug_name",
+        "FDA_get_drug_names_by_lab_test_interference"
+      ],
+      "pred_tools": [
+        "Laboratory tests that should be considered for a patient on clozapine include",
+        "1. Complete blood count",
+        "2. Thyroid-stimulating hormone level",
+        "3. Prolactin level",
+        "4. Complete blood count",
+        "5. Thyroid-stimulating hormone level",
+        "6. Prolactin level",
+        "7. Complete blood count",
+        "8. Thyroid-stimulating hormone level",
+        "9. Prolactin level",
+        "10. Complete blood count",
+        "11. Thyroid-stimulating hormone level"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    },
+    {
+      "input": "Question: A 7-year-old boy is rushed to the emergency room after losing consciousness 30 mins ago at home. The patient\u2019s mother says that he has had a \u201crunning nose\u201d for the past few days However, he ...",
+      "ground_truth": "DiseaseAnalyzerAgent: {'context': 'Miliary tuberculosis', 'disease_name': 'Miliary tuberculosis'}, {'context': 'Human immunodeficiency virus infection', 'disease_name': 'Human immunodeficiency virus infection'}, {'context': 'Hypertrophic cardiomyopathy', 'disease_name': 'Hypertrophic cardiomyopathy'}, {'context': 'Adrenocortical insufficiency', 'disease_name': 'Adrenocortical insufficiency'}, {'context': 'Pheochromocytoma', 'disease_name': 'Pheochromocytoma'}\nTool_Finder_Keyword: {'description': 'Retrieve tools that can provide detailed descriptions of diseases or infections, including symptoms and conditions.', 'limit': 5}\nOpenTargets_get_disease_id_description_by_name: {'diseaseName': 'Miliary tuberculosis'}, {'diseaseName': 'Human immunodeficiency virus infection'}, {'diseaseName': 'Hypertrophic cardiomyopathy'}, {'diseaseName': 'Adrenocortical insufficiency'}, {'diseaseName': 'Pheochromocytoma'}",
+      "prediction": "Miliary tuberculosis: A type of tuberculosis infection that spreads throughout the body, affecting multiple organs and causing low blood pressure.\nHuman immunodeficiency virus infection: A type of viral infection that weakens the immune system, leading to low blood pressure.\nHypertrophic cardiomyopathy: A type of heart muscle thickening that affects blood pressure.\nAdrenocortical insufficiency: A type of insufficiency affecting the adrenal cortex, leading to low blood pressure.\nPheochromocytoma: A type of tumor that affects the adrenal cortex, leading to low blood pressure.\n\nThe patient's symptoms and medical history suggest a condition affecting the adrenal cortex, as evidenced by the low blood pressure and the lumbar puncture results. The options provided include adrenocortical insufficiency and pheochromocytoma, which are both conditions affecting the adrenal cortex.",
+      "gt_tools": [
+        "DiseaseAnalyzerAgent",
+        "Tool_Finder_Keyword",
+        "OpenTargets_get_disease_id_description_by_name"
+      ],
+      "pred_tools": [
+        "Miliary tuberculosis",
+        "Human immunodeficiency virus infection",
+        "Hypertrophic cardiomyopathy",
+        "Adrenocortical insufficiency",
+        "Pheochromocytoma"
+      ],
+      "exact_match": false,
+      "first_tool_match": false
+    }
+  ],
+  "tool_stats": {
+    "predicted": {
+      "FDA warning": 68,
+      "Question": 50,
+      "ECG findings": 24,
+      "ReceptorTargets": 23,
+      "Options": 20,
+      "Hypothesis": 15,
+      "Anti-nuclear antibody titer 1": 9,
+      "Postpartum blues": 7,
+      "Recommended vaccines for individuals with sex history and age": 6,
+      "Recommended vaccines for individuals with asthma and sex history": 6,
+      "Recommended vaccines for individuals with asthma and age": 6,
+      "Pituitary tumor": 6,
+      "Serum Na+": 5,
+      "Serum K+": 5,
+      "Serum albumin": 5,
+      "Total serum bilirubin": 5,
+      "Serum creatinine": 5,
+      "Urinalysis": 5,
+      "The brain regions involved in speech production and comprehension are as follows": 5,
+      "- Left frontal lobe": 5,
+      "- Left internal capsule": 5,
+      "- Left temporal lobe": 5,
+      "Receptors": 5,
+      "Emergency Department Trauma Guidelines": 5,
+      "- Right frontal lobe": 4,
+      "- Right temporal lobe": 4,
+      "In vitro fertilization with patient's egg": 4,
+      "Progesterone therapy": 4,
+      "Bone marrow biopsy": 4,
+      "Alcohol": 4,
+      "Benzodiazepines": 4,
+      "Marijuana": 4,
+      "HPA-MSX-API": 4,
+      "Eosin-5-maleimide binding test": 4,
+      "The patient's symptoms and laboratory results suggest a condition affecting bone marrow production. The stains mentioned are used to identify specific cell types or characteristics in peripheral blood smears. The stains are as follows": 4,
+      "Prussian Blue": 4,
+      "Ziehl-Neelsen": 4,
+      "Periodic acid-Schiff": 4,
+      "Type 1 error": 3,
+      "The patient's symptoms and laboratory findings suggest a condition involving increased urine 5-hydroxyindoleacetic acid. This condition is likely related to a specific type of cancer, as increased urine 5-hydroxyindoleacetic acid is a characteristic finding in certain types of cancer. The patient's symptoms and laboratory findings suggest a condition involving increased urine 5-hydroxyindoleacetic acid. Further evaluation of this patient will most likely show which of the following": 3,
+      "Disseminated intravascular coagulation": 3,
+      "Cardiac tamponade": 3,
+      "Focal segmental glomerulosclerosis": 3,
+      "Asherman's syndrome": 3,
+      "Pelvic inflammatory disease": 3,
+      "Bromocriptine therapy": 3,
+      "Clomiphene therapy": 3,
+      "Leuprolide therapy": 3,
+      "Autoimmune condition": 3,
+      "Atypical lymphocytes on peripheral blood smear": 3
+    },
+    "correct": {
+      "Synovial fluid analysis": 1,
+      "Anti-cyclic citrullinated peptide (anti-CCP) antibody": 1,
+      "Rheumatoid factor": 1,
+      "CT scan": 1,
+      "X-ray of cervical spine": 1
+    },
+    "total": {
+      "DiseaseAnalyzerAgent": 183,
+      "Tool_Finder": 126,
+      "TRIP_Database_Guidelines_Search": 125,
+      "Tool_Finder_LLM": 118,
+      "Tool_Finder_Keyword": 116,
+      "BiomarkerDiscoveryWorkflow": 105,
+      "EuropePMC_Guidelines_Search": 94,
+      "MedicalLiteratureReviewer": 86,
+      "MedlinePlus_get_genetics_condition_by_name": 85,
+      "ToolDiscover": 76,
+      "MedlinePlus_search_topics_by_keyword": 75,
+      "FDA_get_indications_by_drug_name": 75,
+      "NICE_Clinical_Guidelines_Search": 68,
+      "GIN_Guidelines_Search": 63,
+      "get_HPO_ID_by_phenotype": 54,
+      "FDA_get_drug_names_by_indication": 53,
+      "LiteratureSynthesisAgent": 53,
+      "FDA_get_mechanism_of_action_by_drug_name": 50,
+      "euhealthinfo_search_causes_of_death": 50,
+      "CMA_Guidelines_Search": 47,
+      "HPA_search_genes_by_query": 42,
+      "WikiPathways_search": 40,
+      "OpenAlex_Guidelines_Search": 40,
+      "get_joint_associated_diseases_by_HPO_ID_list": 36,
+      "euhealthinfo_search_infectious_diseases": 34,
+      "FDA_get_pharmacodynamics_by_drug_name": 33,
+      "kegg_search_pathway": 29,
+      "euhealthinfo_search_hospital_in_patient_data": 27,
+      "ClinicalTrialDesignAgent": 27,
+      "OpenTargets_get_target_id_description_by_name": 25,
+      "WHO_Guidelines_Search": 24,
+      "get_tool_info": 23,
+      "euhealthinfo_search_diabetes_mellitus_epidemiology_registry": 23,
+      "ToolDescriptionOptimizer": 22,
+      "euhealthinfo_search_cancer_registry": 22,
+      "HPA_get_biological_processes_by_gene": 22,
+      "FDA_get_clinical_pharmacology_by_drug_name": 20,
+      "DrugInteractionAnalyzerAgent": 19,
+      "GO_get_genes_for_term": 19,
+      "search_clinical_trials": 19,
+      "advanced_literature_search_agent": 19,
+      "list_tools": 19,
+      "get_clinical_trial_conditions_and_interventions": 18,
+      "HPA_get_contextual_biological_process_analysis": 18,
+      "DescriptionAnalyzer": 18,
+      "get_phenotype_by_HPO_ID": 18,
+      "clinvar_search_variants": 17,
+      "FAERS_search_adverse_event_reports": 16,
+      "AdverseEventPredictionQuestionGenerator": 15,
+      "MedlinePlus_get_genetics_gene_by_name": 15
+    }
+  }
+}
