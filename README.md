@@ -112,6 +112,34 @@ https://huggingface.co/mims-harvard/ToolRAG-T1-GTE-Qwen2-1.5B
 
 ![training img](./training_plots/v3_training_plot.png)
 
+### 4.1 Evaluating the ToolRAG
+Created the whole Prompt
+
+Base Model Eval
+```
+PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python CUDA_VISIBLE_DEVICES=3 python evaluate_tool_selection.py --output-file evaluation_results/tool_selection_v3_prompt_eval.json --gpu 3 --adapter-path none 2>&1 | tee evaluation_results/eval_v3_base_log_prompt.txt
+```
+
+Finetuned Model Eval
+```
+PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python CUDA_VISIBLE_DEVICES=4 python evaluate_tool_selection.py --output-file evaluation_results/tool_selection_v3_600chkptk_prompt_eval.json --gpu 4 --adapter-path checkpoints/llava-med-tool-selection-v3/checkpoint-600 2>&1 | tee evaluation_results/eval_v3_600chkpt_log_prompt.txt
+```
+Results and Logs stored in [evaluation-results](./evaluation_results/M1-toolselection/)
+
+## 5. Vision FT
+Alignment ataset present in [Vision Data](./datasets/VisualQA-PMCArticle-Dataset/)
+Training using [Finetune vision model](./Finetune_Llama3_2_(11B)_Vision.ipynb)
+
+
+CUDA_VISIBLE_DEVICES=2 python finetune_llava_med.py \
+    --lora_checkpoint checkpoints/M2Model/Llama/train/checkpoint-30 \
+    --data_path datasets/VisualQA-PMCArticle-Dataset/train/v1_text_data.jsonl \
+    --output_dir checkpoints/llava-med-vision-plus-text \
+    --num_train_epochs 3 \
+    --per_device_train_batch_size 4
+
+
+CUDA_VISIBLE_DEVICES=2 python finetune_llava_med.py --lora_checkpoint checkpoints/M2Model/Llama/train/checkpoint-30 --data_path datasets/VisualQA-PMCArticle-Dataset/train/v1_text_data.jsonl --output_dir checkpoints/llava-med-vision-plus-text --num_train_epochs 3 --per_device_train_batch_size 4
 ## 5. Train Reasoning Model
 
 ### 5.1 SFT only

@@ -3,11 +3,19 @@
 
 # FULL datasets
 datasets/MedS-Ins/
+datasets/M2datasets/
 
 # extra files
 predict_medinst_multigpu.py
 candy.JPG
 run_txagent_gpu*
+*.jinja
+
+#parallel evaluation
+merge_eval_results.py
+run_eval_parallel.sh
+evaluate_tool_selection_fast.py
+evaluate_tool_selection_sharded.py
 
 # saved models
 llava-med-finetuned*/
@@ -32,3 +40,7 @@ datasets/VisualQA-PMCArticle-Dataset/train/llava_med_instruct_60k_inline_mention
 datasets/VisualQA-PMCArticle-Dataset/train/llava_med_instruct_10k.json
 datasets/VisualQA-PMCArticle-Dataset/train/llava_med_alignment_500k.json
 datasets/VisualQA-PMCArticle-Dataset/train/llava_med_image_urls.jsonl
+unsloth_compiled_cache/
+
+# paper
+paper.tex
