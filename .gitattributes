@@ -9,3 +9,4 @@ datasets/M2training/ filter=lfs diff=lfs merge=lfs -text
 Finetune_Llama3_2_(11B)_Vision.ipynb filter=lfs diff=lfs merge=lfs -text
 checkpoints/ filter=lfs diff=lfs merge=lfs -text
 checkpoints/llava-med-finetuned-benchmark-step1/ filter=lfs diff=lfs merge=lfs -text
+checkpoints/M2LlavaMed-finetuned-vision/ filter=lfs diff=lfs merge=lfs -text
