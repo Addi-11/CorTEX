@@ -1,5 +1,7 @@
 # CorTEX
+ CORTEX (COntrolled Reasoning Tool EXpert), a multimodal reasoning agent that combines visual understanding with deterministic function calling for explainable medical decision-making. Inspired by TxAgent's structured tool reasoning and MMedAgent's multimodal capabilities, CORTEX unifies textual and visual tool-based reasoning by fine-tuning a Vision-Instruct model through supervised and reinforcement learning on biomedical instruction datasets.
 
+## Code Files
 ### Model Download File
 [llava-med-basic-test.ipynb](./llava-med-basic-test.ipynb)
 
@@ -13,12 +15,25 @@
 - [Exploring TxAgent](./)
 
 ### M1 Tool Selection Training
-[M1 Tool selection training](./M1tool-selection-training/train_tool_selection_v3.py)
+- [M1 Tool selection training](./M1tool-selection-training/train_tool_selection_v3.py)
 
 ### M2 Readoning Training
-[GRPO Training Scripts](./GRPO/)
+- [SFT Vision & Text Scripts](./finetune-llavamed/M2-SFT-TextVision/)
+- [GRPO Training Scripts](./GRPO/)
+- [PPO Training Scripts](./PPO/)
+
+### Evaluation Scripts
+- [Evaluate Tool Calling](./evaluation_scripts/evaluate_tool_calling.py)
+- [Evaluate End2End](./evaluation_results/evaluatee2e.py)
+
+### Prediction & Inferencing Scripts
+- [Generating predictions for Visual Question Answering](./prediction_scripts/generate_predictions_vqa.py)
+- [Inference Tool Selection](./prediction_scripts/inference_tool_selection.py)
+- [Inference MedInst](./prediction_scripts/predict_medinst.py)
+- [Inference Finetine](./prediction_scripts/predict_medinst_finetuned.py)
 
 
+<hr>
 
 # Steps:
 
@@ -124,13 +139,13 @@ https://huggingface.co/mims-harvard/ToolRAG-T1-GTE-Qwen2-1.5B
 
 - Analyzing Tool Selection Data [tool selection analysis](./dataset_generation_files/analysis_tool_selection_data.ipynb)
 
-## 4. Train MedINST to produce tools and parameters for input - Training Tool Selection
+## 4. Training Tool Selection (M1 model)
 - [Training model for tool selection](./train_tool_selection.py)
 - [Run Training script](./run_tool_selection_training.sh)
 - [Evaluation trained model](./evaluate_tool_selection.py)
 - [Inference on trained model](./inference_tool_selection.py)
 
-![training img](./training_plots/v3_training_plot.png)
+![training img](./images/v3_training_plot.png)
 
 ### 4.1 Evaluating the ToolRAG
 Created the whole Prompt
@@ -146,7 +161,9 @@ PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python CUDA_VISIBLE_DEVICES=4 python eval
 ```
 Results and Logs stored in [evaluation-results](./evaluation_results/M1-toolselection/)
 
-## 5. Vision FT
+## 5. Training Reasoning (M2 Model)
+
+### 5.1 ST only
 Alignment ataset present in [Vision Data](./datasets/VisualQA-PMCArticle-Dataset/)
 Training using [Finetune vision model](./Finetune_Llama3_2_(11B)_Vision.ipynb)
 
@@ -154,18 +171,22 @@ Train on text data
 ```
 CUDA_VISIBLE_DEVICES=2 python finetune_llava_med_v2.py     --data_path datasets/M2training/text_data.jsonl       --output_dir ./checkpoints/M2LlavaMed-finetuned-text     --num_train_epochs 3     --per_device_train_batch_size 1     --logging_steps 50     --save_strategy "epoch"     --use_lora True   --gradient_accumulation_steps 8   --gradient_checkpointing True
 ```
-
+```
 CUDA_VISIBLE_DEVICES=2 python finetune_llava_med_v2.py     --data_path datasets/M2training/vision_data.jsonl      --lora_checkpoint checkpoints/M2LlavaMed-finetuned-text/checkpoint-642   --output_dir ./checkpoints/M2LlavaMed-finetuned-vision     --num_train_epochs 3     --per_device_train_batch_size 1     --logging_steps 50     --save_strategy "epoch"     --use_lora True   --gradient_accumulation_steps 8   --gradient_checkpointing True
-
-## 5. Train Reasoning Model
-
-### 5.1 SFT only
-### 5.2 SFT  + PPO only
-### 5.3 PPO only
-### 5.4 SFT + GRPO
-### 5.5 GRPO only
+```
 
 
-# 6. Final Evaluation on Tool Selection + Reasoning
+### 5.2 PPO only
+```
+CUDA_VISIBLE_DEVICES=1,3,5,7,2,4,6 torchrun --nproc_per_node=7 ppo_trainer.py
+```
+![ppo](./images/ppo_training_curves.png)
+
+### 5.3 GRPO only
+```
+bash launch_grpo_training.sh
+```
+![grpo](./images/grpo-training.png)
+
 
 
