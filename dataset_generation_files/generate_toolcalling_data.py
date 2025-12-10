@@ -1,8 +1,6 @@
-#!/usr/bin/env python3
 """
 TxAgent Inference Script for MedQA Dataset
-Run in tmux: tmux attach -t txagent
-Then: python run_txagent_inference.py
+Used for tool Calling Data
 """
 
 import os
@@ -15,14 +13,14 @@ from tqdm import tqdm
 from datetime import datetime
 from collections import defaultdict
 
-# GPU and vLLM settings
+
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 os.environ["VLLM_USE_V1"] = "0"
 
 print(f"Starting TxAgent inference at {datetime.now()}")
 print("="*80)
 
-# ============ Load TxAgent ============
+
 print("Loading TxAgent model...")
 from txagent import TxAgent
 
@@ -31,9 +29,9 @@ rag_model_name = 'mims-harvard/ToolRAG-T1-GTE-Qwen2-1.5B'
 
 agent = TxAgent(model_name, rag_model_name, enable_summary=True)
 agent.init_model()
-print("✅ TxAgent loaded")
+print("TxAgent loaded")
 
-# ============ Load Dataset ============
+
 data_path = "datasets/MedInstQA/MedQa_train.json"
 print(f"\nLoading dataset from {data_path}...")
 
@@ -43,9 +41,9 @@ with open(data_path, 'r') as f:
         data.append(json.loads(line.strip()))
 
 df = pd.DataFrame(data)
-print(f"✅ Loaded {len(df)} samples")
+print(f"Loaded {len(df)} samples")
 
-# ============ Parsing Function ============
+
 def parse_tool_calls_from_output(output_text):
     """Parse tool calls and results from TxAgent's printed output."""
     ansi_escape = re.compile(r'\x1b\[[0-9;]*m')
@@ -99,7 +97,7 @@ def parse_tool_calls_from_output(output_text):
     
     return tool_calls_with_results
 
-# ============ Run Inference ============
+
 print("\n" + "="*80)
 print("STARTING INFERENCE")
 print("="*80)
@@ -110,12 +108,10 @@ os.makedirs("datasets/finetuning", exist_ok=True)
 multiagent = False
 max_round = 20
 
-# Output files - write incrementally using JSONL (one JSON per line)
 results_file = "results/medqa_txagent_results.jsonl"
 model1_file = "datasets/finetuning/model1_tool_selection.jsonl"
 model2_file = "datasets/finetuning/model2_reasoning.jsonl"
 
-# Clear/create files
 for f in [results_file, model1_file, model2_file]:
     open(f, 'w').close()
 
@@ -195,7 +191,6 @@ for idx, row in tqdm(df.iterrows(), total=len(df), desc="Running TxAgent"):
     ground_truth = row['output']
     
     try:
-        # Capture stdout
         captured_output = io.StringIO()
         sys.stdout = captured_output
         
@@ -213,7 +208,6 @@ for idx, row in tqdm(df.iterrows(), total=len(df), desc="Running TxAgent"):
         
         tool_calls_with_results = parse_tool_calls_from_output(output_text)
         
-        # Create result record
         result = {
             'index': idx,
             'instruction': row.get('instruction', ''),
@@ -223,30 +217,29 @@ for idx, row in tqdm(df.iterrows(), total=len(df), desc="Running TxAgent"):
             'final_response': response
         }
         
-        # Write immediately to results file
         with open(results_file, 'a') as f:
             f.write(json.dumps(result) + '\n')
         
-        # Create and write Model 1 sample
+        # Model 1 (Tool Calling) sample
         if tool_calls_with_results:
             m1_sample = create_model1_sample(query, tool_calls_with_results, ground_truth)
             if m1_sample:
                 with open(model1_file, 'a') as f:
                     f.write(json.dumps(m1_sample) + '\n')
             
-            # Create and write Model 2 sample
+            # Model 2 (Reasoning) sample
             m2_sample = create_model2_sample(query, tool_calls_with_results, response, ground_truth)
             if m2_sample:
                 with open(model2_file, 'a') as f:
                     f.write(json.dumps(m2_sample) + '\n')
         
         completed += 1
-        print(f"[{idx+1}/{len(df)}] ✅ Tool calls: {len(tool_calls_with_results)} | Completed: {completed}")
+        print(f"[{idx+1}/{len(df)}] Tool calls: {len(tool_calls_with_results)} | Completed: {completed}")
         
     except Exception as e:
         sys.stdout = sys.__stdout__
         
-        # Write error record
+
         error_result = {
             'index': idx,
             'instruction': row.get('instruction', ''),
@@ -260,26 +253,19 @@ for idx, row in tqdm(df.iterrows(), total=len(df), desc="Running TxAgent"):
             f.write(json.dumps(error_result) + '\n')
         
         errors += 1
-        print(f"[{idx+1}/{len(df)}] ❌ ERROR: {e} | Errors: {errors}")
 
-# ============ Final Summary ============
-print("\n" + "="*80)
+
 print("COMPLETED")
-print("="*80)
-print(f"Finished at {datetime.now()}")
 print(f"Total samples: {len(df)}")
 print(f"Completed: {completed}")
 print(f"Errors: {errors}")
-print(f"\n📁 Output files:")
+print(f"\nOutput files:")
 print(f"   - {results_file}")
 print(f"   - {model1_file}")
 print(f"   - {model2_file}")
 
-# Count lines in each file
+
 for f in [results_file, model1_file, model2_file]:
     with open(f, 'r') as file:
         lines = sum(1 for _ in file)
     print(f"   {f}: {lines} samples")
-
-print("\n✅ All results written incrementally - no data loss!")
-print("="*80)

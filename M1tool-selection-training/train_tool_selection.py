@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 LLaVA-Med Fine-tuning Script for Tool Selection (Model 1)
 Trains LLaVA-Med to generate biomedical tool calls from medical questions.
@@ -14,10 +13,8 @@ import argparse
 from datetime import datetime
 from pathlib import Path
 
-# Set environment variables before imports
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-# Add LLaVA-Med to path
 LLAVA_PATH = "/home/azureuser/localfiles/cortex-project/LLaVA-Med"
 if LLAVA_PATH not in sys.path:
     sys.path.insert(0, LLAVA_PATH)
@@ -31,8 +28,7 @@ def parse_args():
     parser.add_argument("--output_dir", type=str, 
                         default="checkpoints/llava-med-tool-selection",
                         help="Output directory for checkpoints")
-    
-    # Data arguments
+
     parser.add_argument("--data_dir", type=str,
                         default="datasets/finetuning",
                         help="Directory containing training data")
@@ -41,7 +37,6 @@ def parse_args():
     parser.add_argument("--max_samples", type=int, default=None,
                         help="Maximum number of samples to use (for testing)")
     
-    # Training arguments
     parser.add_argument("--num_epochs", type=int, default=3,
                         help="Number of training epochs")
     parser.add_argument("--batch_size", type=int, default=4,
@@ -53,7 +48,6 @@ def parse_args():
     parser.add_argument("--warmup_ratio", type=float, default=0.03,
                         help="Warmup ratio")
     
-    # LoRA arguments
     parser.add_argument("--lora_r", type=int, default=64,
                         help="LoRA rank")
     parser.add_argument("--lora_alpha", type=int, default=16,
@@ -61,7 +55,6 @@ def parse_args():
     parser.add_argument("--lora_dropout", type=float, default=0.05,
                         help="LoRA dropout")
     
-    # Hardware arguments
     parser.add_argument("--device", type=str, default="auto",
                         help="Device to use (auto, cuda:0, etc.)")
     parser.add_argument("--bf16", action="store_true", default=True,
@@ -89,7 +82,6 @@ def load_and_combine_datasets(data_dir, max_samples=None):
     
     print(f"\nTotal samples: {len(all_data)}")
     
-    # Limit samples if specified (for testing)
     if max_samples and max_samples < len(all_data):
         all_data = all_data[:max_samples]
         print(f"Limited to {max_samples} samples for testing")
@@ -99,7 +91,6 @@ def load_and_combine_datasets(data_dir, max_samples=None):
 
 def create_prompt(sample):
     """Create training prompt from sample."""
-    # Use a clearer instruction that matches the actual output format
     instruction = """You are a biomedical tool selector. Given a medical question, identify the appropriate biomedical database tools and their parameters needed to answer it.
 
 Output each tool call on a new line in the format:
@@ -169,21 +160,17 @@ def main():
     print(f"Model: {args.model_name}")
     print(f"Output: {args.output_dir}")
     print()
-    
-    # Create output directory
+
     os.makedirs(args.output_dir, exist_ok=True)
     
-    # Load dataset
     print("Loading datasets...")
     data = load_and_combine_datasets(args.data_dir, max_samples=args.max_samples)
     
-    # Split into train/val (use smaller val set for small datasets)
     from sklearn.model_selection import train_test_split
     val_size = min(0.1, max(1, len(data) // 5)) if len(data) < 20 else 0.1
     train_data, val_data = train_test_split(data, test_size=val_size, random_state=42)
     print(f"Train: {len(train_data)}, Validation: {len(val_data)}")
-    
-    # Load tokenizer and model
+
     print("\nLoading model and tokenizer...")
     from transformers import (
         AutoTokenizer, 
@@ -197,23 +184,19 @@ def main():
         prepare_model_for_kbit_training,
         TaskType
     )
-    
-    # Import LLaVA-Med model
+
     from llava.model import LlavaMistralForCausalLM
-    
-    # Load tokenizer
+
     tokenizer = AutoTokenizer.from_pretrained(
         args.model_name,
         trust_remote_code=True,
         padding_side="right"
     )
-    
-    # Add pad token if needed
+
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
         tokenizer.pad_token_id = tokenizer.eos_token_id
     
-    # Load LLaVA-Med model using custom class
     print(f"Loading LLaVA-Med model from {args.model_name}...")
     model = LlavaMistralForCausalLM.from_pretrained(
         args.model_name,
@@ -221,12 +204,10 @@ def main():
         device_map=args.device,
         low_cpu_mem_usage=True,
     )
-    
-    # Enable gradient checkpointing
+
     if args.gradient_checkpointing:
         model.gradient_checkpointing_enable()
-    
-    # Configure LoRA
+
     print("\nConfiguring LoRA...")
     lora_config = LoraConfig(
         r=args.lora_r,
@@ -242,13 +223,11 @@ def main():
     
     model = get_peft_model(model, lora_config)
     model.print_trainable_parameters()
-    
-    # Prepare datasets
+
     print("\nPreparing datasets...")
     train_dataset = prepare_dataset(train_data, tokenizer, args.max_length)
     val_dataset = prepare_dataset(val_data, tokenizer, args.max_length)
     
-    # Data collator
     data_collator = DataCollatorForLanguageModeling(
         tokenizer=tokenizer,
         mlm=False
@@ -268,17 +247,16 @@ def main():
         save_strategy="epoch",
         eval_strategy="epoch",
         save_total_limit=3,
-        load_best_model_at_end=False,  # Disabled due to peft compatibility issue
+        load_best_model_at_end=False, 
         metric_for_best_model="eval_loss",
         greater_is_better=False,
         bf16=args.bf16,
         gradient_checkpointing=args.gradient_checkpointing,
         dataloader_num_workers=4,
-        report_to="none",  # Disable wandb
+        report_to="none", 
         remove_unused_columns=False,
     )
     
-    # Initialize trainer
     trainer = Trainer(
         model=model,
         args=training_args,
@@ -287,19 +265,16 @@ def main():
         data_collator=data_collator,
     )
     
-    # Train
     print("\n" + "="*60)
     print("Starting training...")
     print("="*60)
     
     trainer.train()
     
-    # Save final model
     print("\nSaving model...")
     trainer.save_model(os.path.join(args.output_dir, "final"))
     tokenizer.save_pretrained(os.path.join(args.output_dir, "final"))
     
-    # Save training config
     config = vars(args)
     config["train_samples"] = len(train_data)
     config["val_samples"] = len(val_data)
@@ -310,7 +285,6 @@ def main():
     
     print("\n" + "="*60)
     print("Training complete!")
-    print("="*60)
     print(f"Model saved to: {args.output_dir}/final")
     print(f"Completion time: {datetime.now()}")
 

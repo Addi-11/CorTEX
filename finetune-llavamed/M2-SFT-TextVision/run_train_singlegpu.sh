@@ -1,8 +1,5 @@
-#!/usr/bin/env bash
-
 set -e
 
-# Adjust these paths
 MODEL_PATH="microsoft/llava-med-v1.5-mistral-7b"
 DATA_PATH="datasets/MedS-Ins"        # text-only MedInst/MedS-Ins json/jsonl
 OUTPUT_DIR="outputs/llava_med_text"
@@ -34,13 +31,11 @@ python finetune_llava_med_v2.py \
   --report_to "none"
 
 
-#!/usr/bin/env bash
 
 set -e
 
-# Adjust these paths
 MODEL_PATH="microsoft/llava-med-v1.5-mistral-7b"
-DATA_PATH="datasets/VisualQA-PMCArticle-Dataset/train/llava_med_alignment_500k.json"       # multimodal json/jsonl with "image" fields
+DATA_PATH="datasets/VisualQA-PMCArticle-Dataset/train/llava_med_alignment_500k.json"  
 IMAGE_ROOT="datasets/VisualQA-PMCArticle-Dataset/train/images"
 OUTPUT_DIR="outputs/llava_med_vision"
 

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Evaluate Tool Selection V3 Model on Test Data
 
@@ -21,10 +20,8 @@ import re
 import warnings
 warnings.filterwarnings("ignore")
 
-# Add llava to path
 sys.path.insert(0, '/home/azureuser/localfiles/LLaVA-Med')
 
-# System prompt matching training format with few-shot examples
 SYSTEM_PROMPT = """You are CorTEX, a biomedical AI assistant specialized in selecting the right tools to answer medical questions.
 
 Given a medical question, you must select ONE OR MORE tools from the available biomedical tool library. Output each tool call on a separate line in the format:
@@ -144,7 +141,7 @@ def load_model(base_model_path, adapter_path=None, device="cuda"):
     tokenizer.pad_token = tokenizer.eos_token
     
     print(f"Loading base model (LLaVA-Med)...")
-    # Use 4-bit quantization for faster inference
+    # 4-bit quantization for faster inference
     bnb_config = BitsAndBytesConfig(
         load_in_4bit=True,
         bnb_4bit_quant_type="nf4",
@@ -159,7 +156,6 @@ def load_model(base_model_path, adapter_path=None, device="cuda"):
         torch_dtype=torch.float16,
     )
     
-    # Load LoRA adapter if provided
     if adapter_path and adapter_path.lower() != 'none':
         print(f"Loading LoRA adapter from {adapter_path}...")
         model = PeftModel.from_pretrained(model, adapter_path)
@@ -177,30 +173,23 @@ def generate_prediction(model, tokenizer, input_text, max_new_tokens=512):
     attention_mask = inputs['attention_mask'].to(model.device)
     
     with torch.no_grad():
-        # Manual generation loop to avoid transformers version incompatibility
-        # LLaVA-Med doesn't support newer transformers args like cache_position
         generated_ids = input_ids.clone()
         
         for _ in range(max_new_tokens):
-            # Forward pass
             outputs = model(
                 input_ids=generated_ids,
                 attention_mask=torch.ones_like(generated_ids),
                 use_cache=False,
             )
             
-            # Get next token (greedy)
             next_token_logits = outputs.logits[:, -1, :]
             next_token = torch.argmax(next_token_logits, dim=-1, keepdim=True)
             
-            # Check for EOS
             if next_token.item() == tokenizer.eos_token_id:
                 break
             
-            # Append token
             generated_ids = torch.cat([generated_ids, next_token], dim=-1)
     
-    # Decode only the generated part
     input_length = input_ids.shape[1]
     generated_tokens = generated_ids[0][input_length:]
     prediction = tokenizer.decode(generated_tokens, skip_special_tokens=True)
@@ -211,7 +200,6 @@ def evaluate(model, tokenizer, test_samples, output_file=None):
     """Run evaluation and compute metrics."""
     results = []
     
-    # Metrics
     exact_match = 0
     first_tool_match = 0
     any_tool_match = 0
@@ -219,7 +207,6 @@ def evaluate(model, tokenizer, test_samples, output_file=None):
     total_pred_tools = 0
     correct_tools = 0
     
-    # Per-tool stats
     tool_correct = Counter()
     tool_total = Counter()
     tool_predicted = Counter()
@@ -230,21 +217,19 @@ def evaluate(model, tokenizer, test_samples, output_file=None):
         input_text = sample['input']
         ground_truth = sample['output']
         
-        # Add system prompt if the input doesn't already have it
-        # The test data has format "Question: ..." but training used full system prompt
+
         if not input_text.startswith("You are CorTEX"):
-            # Extract just the question part
+            # Extract question part
             if input_text.startswith("Question:"):
                 question = input_text
             else:
                 question = f"Question: {input_text}"
-            # Format like training data
             input_text = f"{SYSTEM_PROMPT}\n\n{question}\n\nTool Calls:"
         
-        # Generate prediction
+
         prediction = generate_prediction(model, tokenizer, input_text)
         
-        # Parse tools
+ 
         gt_tools = parse_tools_from_output(ground_truth)
         pred_tools = parse_tools_from_output(prediction)
         
@@ -252,7 +237,7 @@ def evaluate(model, tokenizer, test_samples, output_file=None):
         gt_set = set(gt_tools)
         pred_set = set(pred_tools)
         
-        # Exact match (all tools in order)
+        # Exact match
         if gt_tools == pred_tools:
             exact_match += 1
         
@@ -287,7 +272,6 @@ def evaluate(model, tokenizer, test_samples, output_file=None):
             'first_tool_match': gt_tools and pred_tools and gt_tools[0] == pred_tools[0],
         })
     
-    # Compute final metrics
     n = len(test_samples)
     precision = correct_tools / total_pred_tools if total_pred_tools > 0 else 0
     recall = correct_tools / total_gt_tools if total_gt_tools > 0 else 0
@@ -309,7 +293,6 @@ def evaluate(model, tokenizer, test_samples, output_file=None):
         'correct_tools': correct_tools,
     }
     
-    # Print results
     print("\n" + "="*60)
     print("EVALUATION RESULTS - Tool Selection V3")
     print("="*60)
@@ -323,14 +306,14 @@ def evaluate(model, tokenizer, test_samples, output_file=None):
     print(f"Recall:    {recall:.4f}")
     print(f"F1 Score:  {f1:.4f}")
     
-    # Top predicted tools
+
     print(f"\n--- Top 10 Predicted Tools ---")
     for tool, count in tool_predicted.most_common(10):
         correct = tool_correct.get(tool, 0)
         total = tool_total.get(tool, 0)
         print(f"  {tool}: {count} predicted, {correct}/{total} correct")
     
-    # Save results
+
     if output_file:
         output_data = {
             'metrics': metrics,
@@ -368,13 +351,10 @@ def main():
     
     args = parser.parse_args()
     
-    # Set GPU
     os.environ['CUDA_VISIBLE_DEVICES'] = str(args.gpu)
     
-    # Create output directory
     os.makedirs(os.path.dirname(args.output_file), exist_ok=True)
     
-    # Load test data
     print(f"Loading test data from {args.test_dir}...")
     test_samples = load_test_data(args.test_dir)
     print(f"Loaded {len(test_samples)} test samples")
@@ -383,10 +363,8 @@ def main():
         test_samples = test_samples[:args.max_samples]
         print(f"Using first {args.max_samples} samples")
     
-    # Load model
     model, tokenizer = load_model(args.base_model, args.adapter_path)
     
-    # Run evaluation
     metrics, results = evaluate(model, tokenizer, test_samples, args.output_file)
     
     return metrics

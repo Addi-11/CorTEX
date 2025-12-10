@@ -1,5 +1,25 @@
 # CorTEX
 
+### Model Download File
+[llava-med-basic-test.ipynb](./llava-med-basic-test.ipynb)
+
+### Dataset Generation, Cleaning and Exploring files
+- [Download MedS-Ins Dataset](./dataset_generation_files/download_meds_ins.py)
+- [Download PMC articles VisualQA](./dataset_generation_files/download_images.py)
+- [Generate Tool Selection Dataset with TxAgent ToolRAG model](./dataset_generation_files/generate_toolcalling_data.py)
+- [Clean Tool Selection Dataset from TxAgent](./dataset_generation_files/clean_dataset.py)
+- [Analyzing Tool Selection Dataset](./dataset_generation_files/analysis_tool_selection_data.ipynb)
+
+- [Exploring TxAgent](./)
+
+### M1 Tool Selection Training
+[M1 Tool selection training](./M1tool-selection-training/train_tool_selection_v3.py)
+
+### M2 Readoning Training
+[GRPO Training Scripts](./GRPO/)
+
+
+
 # Steps:
 
 ## 1. Benchmarking LLava-Med Model
@@ -9,7 +29,7 @@
 1. Run the [llava-med-basic-test.ipynb](./llava-med-basic-test.ipynb) to download the model weights.
 
 ### VQA Dataset (PMC article 60K-IM)
-1. Run the [download_images.py](./download_images.py) to download (PMC-15M dataset). Pass the urls to get the images.
+1. Run the [download_images.py](./dataset_generation_files/download_images.py) to download (PMC-15M dataset). Pass the urls to get the images.
 2. Datasetfor visual QA added in [VisualQA-Dataset](.datasets/VisualQA-Dataset/)
 3. Generate predictions using this script:
     1. [predictions](./llava_med_vqa_predictions.jsonl) for the VQAdataset.
@@ -56,7 +76,7 @@ Accuracy: 32.84%
 
 ### MedS-Ins Dataset
 Dataset link - https://huggingface.co/datasets/Henrychur/MedS-Ins
-1. Download dataset using [MedS-Ins data download](./download_meds_ins.py). 136 tasks (4k examples each)
+1. Download dataset using [MedS-Ins data download](./dataset_generation_files/download_meds_ins.py). 136 tasks (4k examples each)
 
 ## 2. Finetuning the LLava-Med Model on MedINST dataset
 We use SFT using LoRA-PEFT
@@ -99,10 +119,10 @@ Selects suitable candidate from Tool Universe based on description
 https://huggingface.co/mims-harvard/ToolRAG-T1-GTE-Qwen2-1.5B
 
 - Discovering - add suitable tools for the MedInst Dataset [tool_rag model](./tool_rag.ipynb)
-- Script to run inference on MedInstdataset [run_txagent_inference](./run_txagent_inference.py)
+- Script to run inference on MedInstdataset [run_txagent_inference](./dataset_generation_files/generate_toolcalling_data.py)
 - Run to run all the generation script on all GPUS, with different data portions - [launch-gpu](./launch_all_gpus.sh)
 
-- Analyzing Tool Selection Data [tool selection analysis](./analysis_tool_selection_data.ipynb)
+- Analyzing Tool Selection Data [tool selection analysis](./dataset_generation_files/analysis_tool_selection_data.ipynb)
 
 ## 4. Train MedINST to produce tools and parameters for input - Training Tool Selection
 - [Training model for tool selection](./train_tool_selection.py)

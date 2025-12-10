@@ -17,11 +17,9 @@ echo "Combining datasets..."
 cat datasets/finetuning/model1_tool_selection*.jsonl > datasets/finetuning/model1_combined.jsonl
 wc -l datasets/finetuning/model1_combined.jsonl
 
-# Activate environment
 source /anaconda/etc/profile.d/conda.sh
 conda activate azureml_py310_sdkv2
 
-# Install required packages if needed
 pip install -q peft accelerate bitsandbytes scikit-learn
 
 echo ""

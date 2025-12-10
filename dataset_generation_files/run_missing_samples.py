@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 TxAgent Inference Script - Process ONLY missing samples
 This script identifies which samples haven't been generated yet and processes them.
@@ -16,7 +15,6 @@ from datetime import datetime
 
 def get_missing_indices(source_path, output_dir):
     """Find indices of samples that haven't been processed yet."""
-    # Load source data
     source_data = []
     with open(source_path, 'r') as f:
         for line in f:
@@ -24,21 +22,18 @@ def get_missing_indices(source_path, output_dir):
     
     print(f"Total source samples: {len(source_data)}")
     
-    # Load all generated data and extract inputs
     generated_inputs = set()
     for fpath in glob.glob(os.path.join(output_dir, 'model1_tool_selection*.jsonl')):
         with open(fpath, 'r') as f:
             for line in f:
                 try:
                     d = json.loads(line.strip())
-                    # Use first 200 chars of input as key
                     generated_inputs.add(d['input'][:200])
                 except:
                     continue
     
     print(f"Total generated samples: {len(generated_inputs)}")
     
-    # Find missing indices
     missing_indices = []
     for i, sample in enumerate(source_data):
         input_key = sample['input'][:200]
@@ -127,7 +122,6 @@ def main():
     print(f"Start time: {datetime.now()}")
     print(f"="*80)
     
-    # Get missing indices
     source_path = "datasets/MedInstQA/MedQa_train.json"
     output_dir = "datasets/finetuning"
     
@@ -137,12 +131,10 @@ def main():
         print("No missing samples! All done.")
         return
     
-    # Select batch to process
     batch_indices = missing_indices[START_OFFSET:START_OFFSET + BATCH_SIZE]
     print(f"\nProcessing {len(batch_indices)} samples (offset {START_OFFSET} to {START_OFFSET + len(batch_indices)})")
     print(f"Sample indices: {batch_indices[0]} to {batch_indices[-1]}")
     
-    # Load TxAgent
     print("\nLoading TxAgent model...")
     from txagent import TxAgent
     
@@ -151,13 +143,11 @@ def main():
     
     agent = TxAgent(model_name, rag_model_name, enable_summary=True)
     agent.init_model()
-    print("✅ TxAgent loaded")
+    print("TxAgent loaded")
     
-    # Output file
     output_file = f"{output_dir}/model1_tool_selection_missing_gpu{GPU_ID}.jsonl"
     print(f"\nOutput file: {output_file}")
     
-    # Process samples
     instruction = "Identify the biomedical database tools and drug names needed to answer this medical question. Output format: TOOL_NAME: drug1, drug2, ..."
     
     processed = 0
@@ -169,11 +159,9 @@ def main():
             question = sample['input']
             
             try:
-                # Capture stdout
                 old_stdout = sys.stdout
                 sys.stdout = captured_output = io.StringIO()
                 
-                # Run TxAgent - use run_multistep_agent (not run_gradio_chat)
                 response = agent.run_multistep_agent(
                     question,
                     temperature=0.3,
@@ -183,11 +171,9 @@ def main():
                     max_round=5
                 )
                 
-                # Get captured output
                 sys.stdout = old_stdout
                 output_text = captured_output.getvalue()
                 
-                # Parse tool calls
                 tool_calls = parse_tool_calls_from_output(output_text)
                 
                 if tool_calls:
@@ -208,7 +194,6 @@ def main():
                     failed += 1
                     
             except Exception as e:
-                # Make sure stdout is restored
                 sys.stdout = sys.__stdout__
                 print(f"Error processing index {idx}: {e}")
                 failed += 1

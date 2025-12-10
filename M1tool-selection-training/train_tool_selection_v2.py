@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 LLaVA-Med Fine-tuning Script for Tool Selection (Model 1) - V2
 Enhanced version with comprehensive system prompt including tool definitions.
@@ -14,15 +13,12 @@ import argparse
 from datetime import datetime
 from pathlib import Path
 
-# Set environment variables before imports
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-# Add LLaVA-Med to path
 LLAVA_PATH = "/home/azureuser/localfiles/cortex-project/LLaVA-Med"
 if LLAVA_PATH not in sys.path:
     sys.path.insert(0, LLAVA_PATH)
 
-# Top 100 most frequently used tools with their descriptions (extracted from dataset + tooluniverse)
 TOOL_DEFINITIONS = """
 ## Core Analysis Tools
 
@@ -298,7 +294,6 @@ def parse_args():
                         default="checkpoints/llava-med-tool-selection-v2",
                         help="Output directory for checkpoints")
     
-    # Data arguments
     parser.add_argument("--data_dir", type=str,
                         default="datasets/finetuning",
                         help="Directory containing training data")
@@ -307,7 +302,6 @@ def parse_args():
     parser.add_argument("--max_samples", type=int, default=None,
                         help="Maximum number of samples to use (for testing)")
     
-    # Training arguments
     parser.add_argument("--num_epochs", type=int, default=5,
                         help="Number of training epochs")
     parser.add_argument("--batch_size", type=int, default=2,
@@ -321,7 +315,6 @@ def parse_args():
     parser.add_argument("--weight_decay", type=float, default=0.01,
                         help="Weight decay")
     
-    # LoRA arguments
     parser.add_argument("--lora_r", type=int, default=128,
                         help="LoRA rank")
     parser.add_argument("--lora_alpha", type=int, default=256,
@@ -329,7 +322,6 @@ def parse_args():
     parser.add_argument("--lora_dropout", type=float, default=0.05,
                         help="LoRA dropout")
     
-    # Hardware arguments
     parser.add_argument("--device", type=str, default="auto",
                         help="Device to use (auto, cuda:0, etc.)")
     parser.add_argument("--bf16", action="store_true", default=True,
@@ -359,7 +351,6 @@ def load_and_combine_datasets(data_dir, max_samples=None):
     
     print(f"\nTotal samples: {len(all_data)}")
     
-    # Limit samples if specified (for testing)
     if max_samples and max_samples < len(all_data):
         all_data = all_data[:max_samples]
         print(f"Limited to {max_samples} samples for testing")
@@ -380,7 +371,6 @@ def create_prompt(sample, include_system=True):
 {question} [/INST]
 {output}</s>"""
     else:
-        # Simplified format without system prompt (shorter context)
         instruction = """Identify biomedical tools needed to answer this medical question. Output format: tool_name: {'param': 'value'} or tool_name: value1, value2"""
         prompt = f"""### Instruction:
 {instruction}
@@ -422,16 +412,14 @@ def prepare_dataset(data, tokenizer, max_length, include_system=True):
             
             labels = encoding["input_ids"].clone()
             
-            # Mask padding tokens
             labels[labels == self.tokenizer.pad_token_id] = -100
             
-            # For instruction tuning, we should mask the instruction/input part
+            # For instruction tuning
             # Only train on the response
             if self.include_system:
-                # Find [/INST] token and mask everything before it
+                # mask everything before it
                 inst_token = "[/INST]"
             else:
-                # Find ### Response: and mask before
                 inst_token = "### Response:"
             
             return {
@@ -457,19 +445,15 @@ def main():
     print(f"Learning rate: {args.learning_rate}")
     print()
     
-    # Create output directory
     os.makedirs(args.output_dir, exist_ok=True)
     
-    # Load dataset
     print("Loading datasets...")
     data = load_and_combine_datasets(args.data_dir, max_samples=args.max_samples)
     
-    # Split into train/val
     from sklearn.model_selection import train_test_split
     train_data, val_data = train_test_split(data, test_size=0.1, random_state=42)
     print(f"Train: {len(train_data)}, Validation: {len(val_data)}")
     
-    # Load tokenizer and model
     print("\nLoading model and tokenizer...")
     from transformers import (
         AutoTokenizer, 
@@ -482,23 +466,19 @@ def main():
         get_peft_model,
         TaskType
     )
-    
-    # Import LLaVA-Med model
+
     from llava.model import LlavaMistralForCausalLM
     
-    # Load tokenizer
     tokenizer = AutoTokenizer.from_pretrained(
         args.model_name,
         trust_remote_code=True,
         padding_side="right"
     )
     
-    # Add pad token if needed
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
         tokenizer.pad_token_id = tokenizer.eos_token_id
     
-    # Load LLaVA-Med model using custom class
     print(f"Loading LLaVA-Med model from {args.model_name}...")
     model = LlavaMistralForCausalLM.from_pretrained(
         args.model_name,
@@ -507,11 +487,9 @@ def main():
         low_cpu_mem_usage=True,
     )
     
-    # Enable gradient checkpointing
     if args.gradient_checkpointing:
         model.gradient_checkpointing_enable()
     
-    # Configure LoRA with higher rank for more capacity
     print("\nConfiguring LoRA...")
     lora_config = LoraConfig(
         r=args.lora_r,
@@ -528,27 +506,23 @@ def main():
     model = get_peft_model(model, lora_config)
     model.print_trainable_parameters()
     
-    # Check sample prompt length to decide on system prompt
     sample_prompt = create_prompt(data[0], include_system=True)
     sample_tokens = tokenizer(sample_prompt, return_tensors="pt")
     sample_len = sample_tokens["input_ids"].shape[1]
     
-    include_system = sample_len < args.max_length * 0.8  # Leave room for response
+    include_system = sample_len < args.max_length * 0.8 
     print(f"\nSample prompt length: {sample_len} tokens")
     print(f"Including system prompt: {include_system}")
     
-    # Prepare datasets
     print("\nPreparing datasets...")
-    train_dataset = prepare_dataset(train_data, tokenizer, args.max_length, include_system=False)  # Use simpler format to fit context
+    train_dataset = prepare_dataset(train_data, tokenizer, args.max_length, include_system=False) 
     val_dataset = prepare_dataset(val_data, tokenizer, args.max_length, include_system=False)
     
-    # Data collator
     data_collator = DataCollatorForLanguageModeling(
         tokenizer=tokenizer,
         mlm=False
     )
     
-    # Training arguments with optimizations
     training_args = TrainingArguments(
         output_dir=args.output_dir,
         num_train_epochs=args.num_epochs,
@@ -575,7 +549,6 @@ def main():
         max_grad_norm=1.0,
     )
     
-    # Initialize trainer
     trainer = Trainer(
         model=model,
         args=training_args,
@@ -584,16 +557,13 @@ def main():
         data_collator=data_collator,
     )
     
-    # Train
     print("\n" + "="*60)
     print("Starting training...")
     print("="*60)
     
-    # Handle resume from checkpoint
     resume_checkpoint = None
     if args.resume_from_checkpoint:
         if args.resume_from_checkpoint == "latest":
-            # Find latest checkpoint
             import glob
             checkpoints = glob.glob(os.path.join(args.output_dir, "checkpoint-*"))
             if checkpoints:
@@ -604,17 +574,14 @@ def main():
             print(f"Resuming from checkpoint: {resume_checkpoint}")
     
     trainer.train(resume_from_checkpoint=resume_checkpoint)
-    
-    # Save final model
+
     print("\nSaving model...")
     trainer.save_model(os.path.join(args.output_dir, "final"))
     tokenizer.save_pretrained(os.path.join(args.output_dir, "final"))
     
-    # Save system prompt for inference
     with open(os.path.join(args.output_dir, "system_prompt.txt"), "w") as f:
         f.write(SYSTEM_PROMPT)
     
-    # Save training config
     config = vars(args)
     config["train_samples"] = len(train_data)
     config["val_samples"] = len(val_data)

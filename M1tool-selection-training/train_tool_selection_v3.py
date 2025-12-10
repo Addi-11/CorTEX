@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 LLaVA-Med Tool Selection Fine-tuning V3
 - Uses CLEANED dataset (no CallAgent, no invalid tools)
@@ -170,8 +169,7 @@ def format_sample(sample: dict) -> dict:
     """Format a sample for training."""
     question = sample['input']
     tools_output = sample['output']
-    
-    # Create the full prompt
+
     full_prompt = f"{SYSTEM_PROMPT}\n\nQuestion: {question}\n\nTool Calls:"
     
     return {
@@ -187,7 +185,6 @@ def prepare_dataset(data: list, tokenizer, max_length: int = 4096):
     print(f"Formatting {len(data)} samples...")
     formatted_samples = [format_sample(sample) for sample in tqdm(data, desc="Formatting")]
     
-    # Prepare texts for batch tokenization
     input_texts = [s['input'] for s in formatted_samples]
     full_texts = [s['input'] + "\n" + s['output'] for s in formatted_samples]
     
@@ -214,13 +211,11 @@ def prepare_dataset(data: list, tokenizer, max_length: int = 4096):
     for i in tqdm(range(len(data)), desc="Processing"):
         input_ids = input_encodings['input_ids'][i]
         full_ids = full_encodings['input_ids'][i]
-        
-        # Create labels (mask input portion with -100)
+
         labels = [-100] * len(input_ids) + full_ids[len(input_ids):]
         labels = labels[:max_length]
         full_ids = full_ids[:max_length]
-        
-        # Pad labels if needed
+
         if len(labels) < len(full_ids):
             labels = labels + [-100] * (len(full_ids) - len(labels))
         
@@ -253,18 +248,15 @@ def main():
     print("LLaVA-Med Tool Selection Fine-tuning V3")
     print("Using CLEANED dataset (no meta tools, no invalid tools)")
     print("=" * 60)
-    
-    # Load tokenizer
+
     print(f"\nLoading tokenizer from {args.model_name}...")
     tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
-    
-    # Load data
+
     print(f"\nLoading cleaned data from {args.data_dir}...")
     train_data, val_data = load_cleaned_data(args.data_dir)
     
-    # Prepare datasets
     print("\nPreparing datasets...")
     train_dataset = prepare_dataset(train_data, tokenizer, args.max_length)
     val_dataset = prepare_dataset(val_data, tokenizer, args.max_length)
@@ -281,7 +273,6 @@ def main():
         bnb_4bit_use_double_quant=True
     )
     
-    # Import custom model
     from llava.model import LlavaMistralForCausalLM
     
     model = LlavaMistralForCausalLM.from_pretrained(
@@ -292,10 +283,9 @@ def main():
         torch_dtype=torch.bfloat16
     )
     
-    # Prepare for k-bit training
+    # Prepare k-bit training
     model = prepare_model_for_kbit_training(model)
-    
-    # LoRA config
+
     lora_config = LoraConfig(
         r=args.lora_r,
         lora_alpha=args.lora_alpha,
@@ -308,7 +298,6 @@ def main():
     model = get_peft_model(model, lora_config)
     model.print_trainable_parameters()
     
-    # Training arguments
     training_args = TrainingArguments(
         output_dir=args.output_dir,
         num_train_epochs=args.num_epochs,
@@ -336,14 +325,12 @@ def main():
         remove_unused_columns=False,
     )
     
-    # Data collator
     data_collator = DataCollatorForSeq2Seq(
         tokenizer=tokenizer,
         padding=True,
         return_tensors="pt"
     )
     
-    # Trainer
     trainer = Trainer(
         model=model,
         args=training_args,
@@ -352,7 +339,6 @@ def main():
         data_collator=data_collator,
     )
     
-    # Train
     print("\n" + "=" * 60)
     print("Starting training...")
     print("=" * 60)
@@ -362,13 +348,12 @@ def main():
     else:
         trainer.train()
     
-    # Save final model
     print("\nSaving final model...")
     final_dir = os.path.join(args.output_dir, "final")
     trainer.save_model(final_dir)
     tokenizer.save_pretrained(final_dir)
     
-    print(f"\n✅ Training complete! Model saved to {final_dir}")
+    print(f"\nTraining complete! Model saved to {final_dir}")
 
 
 if __name__ == "__main__":

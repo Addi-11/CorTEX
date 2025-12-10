@@ -20,7 +20,6 @@ def main(args):
   os.makedirs(args.pmc_output_path, exist_ok=True)
   os.makedirs(args.images_output_path, exist_ok=True)
 
-  # Download all PMC articles
   print('Downloading PMC articles')
   for idx, sample in enumerate(tqdm(input_data)):
     if idx < 179:
@@ -31,8 +30,6 @@ def main(args):
       print('Error downloading PMC article: {}'.format(sample['pmc_tar_url']))
       continue
 
-
-  # Untar all PMC articles
   print('Untarring PMC articles')
   for sample in tqdm(input_data):
     fname = os.path.join(args.pmc_output_path, os.path.basename(os.path.join(sample['pmc_tar_url'])))
@@ -40,7 +37,6 @@ def main(args):
     tar.extractall(args.pmc_output_path)
     tar.close()
     
-  # Copy to images directory
   print('Copying images')
   for sample in tqdm(input_data):
     src = os.path.join(args.pmc_output_path, sample['image_file_path'])
@@ -50,7 +46,6 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    # Add path to LLAVA MED URLS JSONL
     parser.add_argument('--input_path', type=str, default='datasets/VisualQA-PMCArticle-Dataset/train/llava_med_image_urls.jsonl')
     parser.add_argument('--pmc_output_path', type=str, default='datasets/VisualQA-PMCArticle-Dataset/train/')
     parser.add_argument('--images_output_path', type=str, default='datasets/VisualQA-PMCArticle-Dataset/train/images/')

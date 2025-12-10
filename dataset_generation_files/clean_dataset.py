@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Post-processing script to clean TxAgent-generated datasets.
 Run this after inference completes to create a clean training dataset.
@@ -15,9 +14,7 @@ import re
 from collections import defaultdict, Counter
 from pathlib import Path
 
-# ============ Configuration ============
 
-# Tools to KEEP (actual FDA/drug-related APIs)
 VALID_TOOLS = {
     # FDA Drug Tools
     'FDA_get_indications_by_drug_name',
@@ -50,7 +47,7 @@ VALID_TOOLS = {
     'OpenFDA_get_drug_label',
 }
 
-# Tools to EXCLUDE (meta-tools, agents)
+# EXCLUDE (meta-tools, agents)
 EXCLUDED_TOOLS = {
     'DiseaseAnalyzerAgent',
     'BiomarkerDiscoveryWorkflow', 
@@ -67,11 +64,9 @@ EXCLUDED_TOOLS = {
 
 def extract_drug_names_from_question(question):
     """Extract drug names from the Options line in the question."""
-    # Look for "Options: Drug1 / Drug2 / Drug3"
     match = re.search(r'Options?:\s*(.+?)(?:\n|$)', question, re.IGNORECASE)
     if match:
         options = match.group(1)
-        # Split by / and clean
         drugs = [d.strip() for d in options.split('/')]
         return [d for d in drugs if d and len(d) > 1]
     return []
@@ -86,12 +81,10 @@ def is_drug_related_question(question):
     ]
     question_lower = question.lower()
     
-    # Check for drug keywords
     has_keyword = any(kw in question_lower for kw in drug_keywords)
     
-    # Check if options look like drug names (capitalized single words)
     drugs = extract_drug_names_from_question(question)
-    has_drug_options = len(drugs) >= 3  # At least 3 drug-like options
+    has_drug_options = len(drugs) >= 3
     
     return has_keyword or has_drug_options
 
@@ -109,25 +102,19 @@ def parse_and_clean_output(output_str):
         tool_name = line.split(':')[0].strip()
         args_part = ':'.join(line.split(':')[1:]).strip()
         
-        # Skip excluded tools
         if tool_name in EXCLUDED_TOOLS:
             continue
-        
-        # Parse arguments
-        # Handle dict format: {'drug_name': 'Aspirin', ...}
+
         if args_part.startswith('{'):
-            # Extract drug_name from dict
             drug_match = re.search(r"'drug_name':\s*'([^']+)'", args_part)
             if drug_match:
                 tool_args[tool_name].append(drug_match.group(1))
             else:
-                # Try to extract any quoted string as potential drug
                 matches = re.findall(r"'([A-Z][a-z]+(?:\s+[A-Z]?[a-z]+)*)'", args_part)
                 for m in matches:
                     if len(m) > 2 and m not in ['True', 'False', 'None']:
                         tool_args[tool_name].append(m)
         else:
-            # Simple comma-separated format: Drug1, Drug2, Drug3
             args = [a.strip() for a in args_part.split(',')]
             for arg in args:
                 if arg and len(arg) > 1:
@@ -139,7 +126,6 @@ def format_clean_output(tool_args):
     """Format tool_args dict into clean output string."""
     lines = []
     for tool_name, args in tool_args.items():
-        # Remove duplicates while preserving order
         unique_args = list(dict.fromkeys(args))
         if unique_args:
             lines.append(f"{tool_name}: {', '.join(unique_args)}")
@@ -178,11 +164,9 @@ def clean_dataset(input_file, output_file, mode='all'):
             question = sample.get('input', '')
             output = sample.get('output', '')
             ground_truth = sample.get('ground_truth_answer', '')
-            
-            # Parse and clean the output
+
             tool_args = parse_and_clean_output(output)
             
-            # Filter based on mode
             if mode == 'fda_only':
                 tool_args = {k: v for k, v in tool_args.items() if k in VALID_TOOLS}
             
@@ -194,14 +178,12 @@ def clean_dataset(input_file, output_file, mode='all'):
                 stats['non_drug_question'] += 1
                 continue
             
-            # Format clean output
             clean_output = format_clean_output(tool_args)
             
             if not clean_output:
                 stats['excluded_tools_only'] += 1
                 continue
             
-            # Count tools
             for tool in tool_args.keys():
                 tool_counts[tool] += 1
             
@@ -214,12 +196,10 @@ def clean_dataset(input_file, output_file, mode='all'):
             cleaned_samples.append(cleaned_sample)
             stats['kept'] += 1
     
-    # Save cleaned dataset
     with open(output_file, 'w') as f:
         for sample in cleaned_samples:
             f.write(json.dumps(sample) + '\n')
     
-    # Print stats
     print(f"\n=== Cleaning Stats ===")
     print(f"Total input samples: {stats['total']}")
     print(f"Removed (no valid tools): {stats['no_tools']}")
@@ -239,7 +219,6 @@ def create_balanced_dataset(input_file, output_file, samples_per_tool=50):
     """Create a balanced dataset with similar representation of tools."""
     print(f"\nCreating balanced dataset...")
     
-    # Group samples by primary tool
     samples_by_tool = defaultdict(list)
     
     with open(input_file, 'r') as f:
@@ -247,7 +226,6 @@ def create_balanced_dataset(input_file, output_file, samples_per_tool=50):
             try:
                 sample = json.loads(line.strip())
                 output = sample.get('output', '')
-                # Get first tool as primary
                 if '\n' in output:
                     primary_tool = output.split('\n')[0].split(':')[0].strip()
                 elif ':' in output:
@@ -258,17 +236,14 @@ def create_balanced_dataset(input_file, output_file, samples_per_tool=50):
             except:
                 continue
     
-    # Sample from each tool
     balanced = []
     for tool, samples in samples_by_tool.items():
         n = min(len(samples), samples_per_tool)
         balanced.extend(samples[:n])
     
-    # Shuffle
     import random
     random.shuffle(balanced)
     
-    # Save
     with open(output_file, 'w') as f:
         for sample in balanced:
             f.write(json.dumps(sample) + '\n')
@@ -289,7 +264,6 @@ if __name__ == '__main__':
     
     input_file = 'datasets/finetuning/model1_tool_selection.jsonl'
     
-    # Clean with different modes
     print("="*60)
     print("MODE: all (keep all valid tools)")
     print("="*60)
@@ -326,7 +300,6 @@ if __name__ == '__main__':
             'datasets/finetuning/model1_balanced.jsonl'
         )
     
-    print("\n✅ Done! Output files:")
     print("  - model1_cleaned_all.jsonl (all valid tools)")
     print("  - model1_cleaned_fda.jsonl (FDA tools only)")
     print("  - model1_cleaned_drug_questions.jsonl (drug questions)")

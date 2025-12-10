@@ -25,7 +25,9 @@ checkpoints/llava-med-tool-selection-v2/
 checkpoints/llava-med-tool-selection-v3/checkpoint-800/
 checkpoints/llava-med-tool-selection-v3/checkpoint-1800/
 anatomical*
-RL/grpo_output/
+GRPO/grpo_output/
+
+extra-files/
 
 #logs
 logs/

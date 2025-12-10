@@ -14,7 +14,6 @@ def load_model(base_model_path, lora_model_path):
     
     print(f"Loading base model: {base_model_path}")
     
-    # Load tokenizer from adapter path
     tokenizer = AutoTokenizer.from_pretrained(
         base_model_path,
         trust_remote_code=True
@@ -23,7 +22,6 @@ def load_model(base_model_path, lora_model_path):
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
     
-    # Load base LLaVA-Med model
     model = LlavaMistralForCausalLM.from_pretrained(
         base_model_path,
         torch_dtype=torch.bfloat16,
@@ -31,7 +29,6 @@ def load_model(base_model_path, lora_model_path):
         low_cpu_mem_usage=True,
     )
     
-    # Load LoRA weights
     print(f"Loading LoRA adapter from: {lora_model_path}")
     model = PeftModel.from_pretrained(model, lora_model_path)
     model.eval()
@@ -39,9 +36,8 @@ def load_model(base_model_path, lora_model_path):
     return model, tokenizer
 
 
-# Load model and tokenizer
-base_model_path = "/mnt/workspace/CorTEX/.models/llava-med-v1.5-mistral-7b"  # Update this
-lora_model_path = "/mnt/workspace/CorTEX/checkpoints/llava-med-tool-selection-v3/checkpoint-600"  # Update this
+base_model_path = "/mnt/workspace/CorTEX/.models/llava-med-v1.5-mistral-7b"  
+lora_model_path = "/mnt/workspace/CorTEX/checkpoints/llava-med-tool-selection-v3/checkpoint-600" 
 
 model_name = 'llava-med-v1.5-mistral-7b'
 tokenizer, model = load_model(base_model_path, lora_model_path)
@@ -123,7 +119,6 @@ def evaluate_tool_and_args(dataset_path):
     }
     """
     
-    # Load dataset
     with open(dataset_path, 'r') as f:
         dataset = [json.loads(line) for line in f]
     
@@ -141,10 +136,9 @@ def evaluate_tool_and_args(dataset_path):
         user_input = sample.get("input", "")
         expected_output = sample.get("output", "")
         
-        # Parse expected output
         expected_calls = parse_output_format(expected_output)
         expected_tools = set([call[0] for call in expected_calls])
-        expected_dict = {call[0]: set(call[1]) for call in expected_calls}  # tool -> args set
+        expected_dict = {call[0]: set(call[1]) for call in expected_calls} 
         
         system_prompt = f"""SYSTEM: You MUST output ONLY tool calls. Nothing else. No explanations, no reasoning, no text.
 
@@ -202,27 +196,23 @@ Remember: ONLY output the tool calls. Nothing else. Start directly with the tool
                 top_p=0.9,
                 do_sample=False,
                 use_cache=True,
-                num_beams=1  # Reduce to greedy search for less memory
+                num_beams=1  
             )
                 
         response = tokenizer.decode(output_ids[0], skip_special_tokens=True)
         response = response.strip()
         print(f"Response: {response}")
-        # Parse predicted output
         predicted_calls = parse_output_format(response)
         predicted_tools = set([call[0] for call in predicted_calls])
         predicted_dict = {call[0]: set(call[1]) for call in predicted_calls}
         
-        # Evaluation metrics
         is_exact_match = expected_calls == predicted_calls
         if is_exact_match:
             exact_match += 1
         
-        # Tool-level correctness
         tools_match = expected_tools == predicted_tools
         if tools_match:
             tool_correct += 1
-            # Check if args also match
             args_match = all(
                 expected_dict.get(tool) == predicted_dict.get(tool)
                 for tool in expected_tools
@@ -230,7 +220,6 @@ Remember: ONLY output the tool calls. Nothing else. Start directly with the tool
             if not args_match:
                 error_analysis["tool_correct_args_wrong"] += 1
         else:
-            # Some tools correct but not all
             correct_tool_count = len(expected_tools & predicted_tools)
             missing_tools = expected_tools - predicted_tools
             extra_tools = predicted_tools - expected_tools
@@ -244,7 +233,6 @@ Remember: ONLY output the tool calls. Nothing else. Start directly with the tool
             if extra_tools:
                 error_analysis["extra_tools"] += 1
         
-        # Detailed result
         result = {
             "input_summary": user_input[:100] + "...",
             "expected": [(t, list(a)) for t, a in expected_calls],
@@ -257,7 +245,6 @@ Remember: ONLY output the tool calls. Nothing else. Start directly with the tool
         }
         results.append(result)
     
-    # Calculate metrics
     exact_match_rate = (exact_match / total) * 100
     tool_match_rate = (tool_correct / total) * 100
     
@@ -272,7 +259,6 @@ Remember: ONLY output the tool calls. Nothing else. Start directly with the tool
         print(f"  - {error_type}: {count}")
     print(f"{'='*70}\n")
     
-    # Show sample errors
     incorrect = [r for r in results if not r["exact_match"]]
     if incorrect:
         print(f"Sample Errors (first 3):\n")
@@ -295,6 +281,6 @@ Remember: ONLY output the tool calls. Nothing else. Start directly with the tool
 if __name__ == "__main__":
     import os
     os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2,3,4,5,6,7'
-    dataset_path = "/mnt/workspace/CorTEX/datasets/finetuning/cleaned/model1_tool_selection_val_filtered_9.jsonl"  # Your dataset path
+    dataset_path = "/mnt/workspace/CorTEX/datasets/finetuning/cleaned/model1_tool_selection_val_filtered_9.jsonl"
     eval_results = evaluate_tool_and_args(dataset_path)
     
